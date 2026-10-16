@@ -7,7 +7,7 @@ const authRoutes=require("./src/routes/authRoutes")
 
 const app = express();
 
-const allowedOrigins = (process.env.FRONTEND_URL || "https://tesheport.vercel.app")
+const allowedOrigins = (process.env.FRONTEND_URL || "https://tesheport.vercel.app","https://kenandev.vercel.app/")
   .split(",")
   .map((origin) => origin.trim().replace(/\/$/, ""))
   .filter(Boolean);

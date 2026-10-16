@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Teshe.Dev | Portfolio",
-  description: "This is my portfolio website built with Next.js and Tailwind CSS.",
+  title: "Kenan Worku | Full Stack Software Engineer & Web Developer",
+  description: "The personal portfolio of Kenan Worku, a software engineer and web developer.",
 };
 
 export default function RootLayout({

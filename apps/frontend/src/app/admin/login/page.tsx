@@ -2,6 +2,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
+
 // Optional: Small lock icon
 const LockIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-400">
@@ -29,7 +31,11 @@ export default function Login() {
         setLoading(true);
 
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`, {
+            if (!API_URL) {
+                throw new Error("The API URL is not configured.");
+            }
+
+            const res = await fetch(`${API_URL}/api/auth/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

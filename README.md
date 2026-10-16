@@ -141,7 +141,7 @@ npm install
 Create `.env.local`:
 
 ```env
-NEXT_PUBLIC_API_URL=https://future-fs-01-ku9l.onrender.com/
+NEXT_PUBLIC_API_URL=https://future-fs-01-ku9l.onrender.com
 ```
 
 Run frontend:
@@ -157,7 +157,10 @@ npm run dev
 ### Backend (Render)
 
 * Root Directory: `apps/backend`
-* Add environment variables in Render dashboard
+* Build Command: `npm install`
+* Start Command: `npm start`
+* Add the backend environment variables from the setup section in the Render dashboard.
+* Add `FRONTEND_URL=https://tesheport.vercel.app` in the Render dashboard. Use a comma-separated list if more than one frontend origin is required.
 
 ### Frontend (Vercel)
 
@@ -165,8 +168,13 @@ npm run dev
 * Add environment variable:
 
 ```env
-NEXT_PUBLIC_API_URL=https://future-fs-01-ku9l.onrender.com/
+NEXT_PUBLIC_API_URL=https://future-fs-01-ku9l.onrender.com
 ```
+
+After deploying, open `https://future-fs-01-ku9l.onrender.com/` directly. It must return
+`Backend is running 🚀` before login requests can work. If it returns `503`, inspect the
+Render service logs first; the backend exits when `MONGO_URI` is missing or MongoDB
+cannot be reached.
 
 ---
 

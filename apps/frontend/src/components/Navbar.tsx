@@ -80,7 +80,7 @@ export default function Navbar() {
                     <span className="absolute -left-2 top-1/2 -translate-y-1/2 h-2 w-2 rounded-full bg-emerald-400 opacity-0 group-hover:opacity-100 blur-[3px] transition-opacity duration-500" />
                     <span className="text-2xl font-bold tracking-tight">
                         <span className="text-emerald-400 drop-shadow-[0_0_12px_rgba(52,211,153,0.45)]">
-                            Teshe
+                            Kenan
                         </span>
                         <span className="text-gray-400 font-light">.Dev</span>
                     </span>

@@ -99,7 +99,7 @@ FUTURE_INTERS/
 ### 1️⃣ Clone Repository
 
 ```bash
-git clone https://github.com/Teshome-Worku/FUTURE_FS_01.git
+git clone https://github.com/Teshome-Worku/my-portfolio-web.git
 cd FUTURE_FS_01
 ```
 

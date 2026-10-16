@@ -270,7 +270,7 @@ export default function AdminPage() {
                             <div className="bg-gray-900 border border-white/5 rounded-2xl shadow-xl overflow-hidden p-8 space-y-8">
                                 <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
                                     <div className="w-24 h-24 rounded-full bg-emerald-500/20 border-2 border-emerald-500/50 flex items-center justify-center text-emerald-400 text-3xl font-bold shadow-lg shadow-emerald-500/10">
-                                        TW
+                                        KW
                                     </div>
                                     <div className="text-center sm:text-left">
                                         <h3 className="text-xl font-bold">Admin Account</h3>
@@ -286,7 +286,7 @@ export default function AdminPage() {
                                 <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
                                     <div>
                                         <label className="block text-sm font-medium text-gray-400 mb-1.5">Full Name</label>
-                                        <input type="text" defaultValue="Teshome Worku" className="w-full bg-black/50 border border-gray-800 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all" />
+                                        <input type="text" defaultValue="Kenan Worku" className="w-full bg-black/50 border border-gray-800 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all" />
                                     </div>
                                     <div>
                                         <label className="block text-sm font-medium text-gray-400 mb-1.5">Email Address</label>

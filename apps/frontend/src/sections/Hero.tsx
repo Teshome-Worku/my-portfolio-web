@@ -20,7 +20,7 @@ export default function Hero() {
                             Hello, I&apos;m
                         </p>
                         <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight max-w-md mx-auto lg:mx-0 ">
-                            Teshome Worku
+                            Kenan Worku
                         </h1>
                         <h2 className="text-xl md:text-2xl lg:text-3xl text-gray-300 font-light mt-2">
                             Full Stack <span className="font-semibold text-white">Developer</span>

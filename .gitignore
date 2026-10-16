@@ -2,4 +2,3 @@ node_modules
 .env
 .next
 dist
-seedAdmin.js

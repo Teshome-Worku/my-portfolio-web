@@ -1,104 +1,115 @@
-"use client";
-
 import Image from "next/image";
+import Link from "next/link";
 import aboutImage from "@/assets/profile.jpg";
-import AnimatedSection from "@/components/AnimatedSection";
+
+const journey = [
+  ["01", "Learn", "I started by learning how the web works and building a strong foundation in frontend development."],
+  ["02", "Build", "Hands-on projects helped me turn that foundation into responsive interfaces and useful product experiences."],
+  ["03", "Go deeper", "I expanded into APIs, databases, authentication, and the backend systems that make products reliable."],
+  ["04", "Keep improving", "Today I bring frontend and backend thinking together while preparing to deliver thoughtful solutions for clients."],
+];
+
+const process = [
+  ["01", "Understand", "Identify the goals, users, and practical problem behind the request."],
+  ["02", "Plan", "Define the right features, priorities, and technical approach before building."],
+  ["03", "Build", "Develop a responsive interface and the functionality it needs to work well."],
+  ["04", "Test", "Check usability, responsiveness, reliability, and the details that are easy to miss."],
+  ["05", "Deploy", "Prepare the application for release and the improvements that come next."],
+];
+
+const principles = [
+  "Clear communication from the first conversation to delivery.",
+  "Maintainable code that remains understandable as a project grows.",
+  "Responsive and accessible experiences for real people and devices.",
+  "Practical problem-solving, careful testing, and continuous improvement.",
+];
 
 export default function About() {
-    return (
-        <section className="bg-[#0a0f0d] text-white px-6 py-24 relative overflow-hidden" id="about">
-            {/* Background Decorations */}
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-                <div className="absolute -top-1/4 -right-1/4 w-96 h-96 bg-green-500/10 blur-[120px] rounded-full mix-blend-screen"></div>
-                <div className="absolute bottom-0 -left-1/4 w-80 h-80 bg-emerald-500/10 blur-[100px] rounded-full mix-blend-screen"></div>
+  return (
+    <div className="about-page">
+      <section className="about-intro">
+        <div className="about-shell about-intro__grid">
+          <div className="about-portrait">
+            <div className="about-portrait__frame">
+              <Image src={aboutImage} alt="Kenan Worku" priority sizes="(max-width: 767px) 88vw, 38vw" />
             </div>
+            <p className="about-portrait__caption">Kenan Worku / Full-Stack Developer</p>
+          </div>
+          <div className="about-intro__copy">
+            <p className="eyebrow">A little more about me</p>
+            <h1>Building with purpose, <em>not just pixels.</em></h1>
+            <p className="about-lede">
+              I&apos;m Kenan Worku, a Full-Stack Developer who builds modern business websites and practical full-stack applications.
+            </p>
+            <p className="about-body">
+              My focus is on making digital products usable, reliable, and clear. I enjoy taking a real problem, understanding the people behind it, and shaping a solution that feels considered from the first interaction to the final detail.
+            </p>
+            <Link href="/contact" className="text-link">Let&apos;s work together <span aria-hidden>-&gt;</span></Link>
+          </div>
+        </div>
+      </section>
 
-            <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-12 items-center relative z-10">
+      <section className="about-section about-journey">
+        <div className="about-shell">
+          <div className="about-heading">
+            <p className="eyebrow">The journey so far</p>
+            <h2>From learning the fundamentals to <em>building useful things.</em></h2>
+          </div>
+          <div className="about-timeline">
+            {journey.map(([number, title, description]) => (
+              <article className="about-timeline__item" key={number}>
+                <span className="about-index">{number}</span>
+                <div><h3>{title}</h3><p>{description}</p></div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
-                {/* LEFT - IMAGE */}
-                <AnimatedSection variant="fadeInLeft" className="w-full flex justify-center relative group">
-                    <div className="relative isolate z-10">
-                        {/* Interactive Glow Behind Image */}
-                        <div className="absolute -inset-2 bg-linear-to-tr from-green-500 to-emerald-400 rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-700"></div>
+      <section className="about-section about-process">
+        <div className="about-shell">
+          <div className="about-heading about-heading--row">
+            <div><p className="eyebrow">How I work</p><h2>A clear process keeps good work <em>moving.</em></h2></div>
+            <p className="about-heading__note">The details change from project to project, but the way I approach the work stays grounded and collaborative.</p>
+          </div>
+          <ol className="about-process-list">
+            {process.map(([number, title, description]) => (
+              <li key={number}><span className="about-index">{number}</span><h3>{title}</h3><p>{description}</p></li>
+            ))}
+          </ol>
+        </div>
+      </section>
 
-                        <div className="relative rounded-2xl overflow-hidden border border-white/5 bg-zinc-900 shadow-2xl transition-transform duration-700 group-hover:-translate-y-2">
-                            <Image
-                                src={aboutImage}
-                                alt="About me"
-                                className="relative w-80 sm:w-96 h-[416px] sm:h-[480px] object-cover object-top grayscale-15 group-hover:grayscale-0 transition-all duration-700 hover:scale-105"
-                            />
-                        </div>
-
-                        {/* Decorative floating badge */}
-                        <div className="absolute -bottom-6 -right-6 lg:-right-10 bg-zinc-900/90 backdrop-blur-md border border-white/10 p-5 rounded-2xl shadow-2xl shadow-black/50 transform group-hover:-translate-y-4 group-hover:-rotate-3 transition-all duration-500 z-20">
-                            <div className="flex items-center gap-3">
-                                <div className="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center text-green-400">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                                    </svg>
-                                </div>
-                                <div>
-                                    <p className="text-sm text-gray-400 font-medium">Focus</p>
-                                    <p className="text-xl font-bold text-white">Full Stack</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </AnimatedSection>
-
-                {/* RIGHT - CONTENT */}
-                <AnimatedSection variant="fadeInRight" delay={0.2} className="space-y-8">
-                    {/* Header */}
-                    <div className="space-y-3">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10">
-                            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-                            <span className="text-gray-300 text-xs font-medium uppercase tracking-wider">Discover More</span>
-                        </div>
-                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mt-4">
-                            About <span className="text-transparent bg-clip-text bg-linear-to-r from-green-400 to-emerald-300">Me</span>
-                        </h2>
-                    </div>
-
-                    {/* Text content with improved typography */}
-                    <div className="space-y-5 text-gray-400 leading-relaxed text-lg font-light max-w-lg">
-                        <p className="text-gray-200 font-medium text-xl leading-snug">
-                            I’m a Full Stack Developer focused on building modern, scalable web applications that solve real-world problems.
-                        </p>
-
-                        <p>
-                            I work with modern technologies like Next.js, Node.js, and MongoDB to create fast, responsive, and user-friendly digital experiences. Turning complex ideas into elegant, intuitive interfaces is my passion.
-                        </p>
-
-                        <p>
-                            I’m relentlessly focused on improving my skills through hands-on projects and preparing for professional opportunities. I believe in continuous learning to adapt to the ever-evolving tech landscape.
-                        </p>
-                    </div>
-
-                    {/* Highlights Section */}
-                    <div className="pt-8 border-t border-white/5 max-w-lg">
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                            {/* Highlight 1 */}
-                            <div className="bg-gray-900/50 p-4 rounded-xl border border-white/5 hover:bg-gray-800 hover:border-gray-700 transition-colors duration-300">
-                                <p className="text-lg font-semibold text-white">1+ Years</p>
-                                <p className="text-xs text-gray-400 mt-1">Experience</p>
-                            </div>
-
-                            {/* Highlight 2 */}
-                            <div className="bg-gray-900/50 p-4 rounded-xl border border-white/5 hover:bg-gray-800 hover:border-gray-700 transition-colors duration-300">
-                                <p className="text-lg font-semibold text-white">6+ Real</p>
-                                <p className="text-xs text-gray-400 mt-1">Projects Built</p>
-                            </div>
-
-                            {/* Highlight 3 */}
-                            <div className="bg-gray-900/50 p-4 rounded-xl border border-white/5 hover:bg-gray-800 hover:border-gray-700 transition-colors duration-300">
-                                <p className="text-lg font-semibold text-emerald-400">Focus on</p>
-                                <p className="text-xs text-gray-400 mt-1">Real-World Solutions</p>
-                            </div>
-                        </div>
-                    </div>
-                </AnimatedSection>
-
+      <section className="about-section about-credibility">
+        <div className="about-shell about-credibility__grid">
+          <div className="about-heading"><p className="eyebrow">Practical experience</p><h2>Learning by <em>making.</em></h2></div>
+          <div className="about-credibility__copy">
+            <p>I&apos;ve developed projects across business websites, course platforms, online stores, ordering flows, and structured management systems. Each one has helped me practice turning a requirement into an interface and a working end-to-end experience.</p>
+            <div className="about-evidence">
+              <Link href="/projects" className="about-evidence__item"><span>01</span><strong>Explore the projects</strong><i aria-hidden>-&gt;</i></Link>
+              <a href="https://astu-complaint-tracker.vercel.app/" target="_blank" rel="noreferrer" className="about-evidence__item"><span>02</span><strong>See a live full-stack system</strong><i aria-hidden>-&gt;</i></a>
             </div>
-        </section>
-    );
+          </div>
+        </div>
+      </section>
+
+      <section className="about-section about-principles">
+        <div className="about-shell about-principles__grid">
+          <div className="about-heading"><p className="eyebrow">Working principles</p><h2>Good work should feel <em>thoughtful.</em></h2></div>
+          <ul>{principles.map((principle) => <li key={principle}><span aria-hidden>+</span>{principle}</li>)}</ul>
+        </div>
+      </section>
+
+      <section className="about-closing">
+        <div className="about-shell about-closing__inner">
+          <p className="eyebrow">Have something in mind?</p>
+          <h2>Let&apos;s make your next idea <em>useful.</em></h2>
+          <div className="about-actions">
+            <Link href="/contact" className="home-button home-button--gold">Let&apos;s Discuss Your Project <span aria-hidden>-&gt;</span></Link>
+            <Link href="/projects" className="home-button home-button--quiet">Explore My Work <span aria-hidden>-&gt;</span></Link>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
 }

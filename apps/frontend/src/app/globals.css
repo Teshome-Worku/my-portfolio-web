@@ -44,7 +44,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .about-intro__grid { display: grid; grid-template-columns: minmax(260px, .78fr) 1.22fr; align-items: center; gap: clamp(3rem, 9vw, 9rem); }
 .about-portrait__frame { position: relative; max-width: 440px; padding: .65rem; border: 1px solid var(--color-border); background: var(--color-surface); }
 .about-portrait__frame::before { content: ""; position: absolute; z-index: 0; top: -1.2rem; left: 1.2rem; width: 68%; height: 1px; background: var(--color-gold); }
-.about-portrait__frame img { position: relative; z-index: 1; display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 30%; filter: saturate(.72); }
+.about-portrait__frame img { position: relative; z-index: 1; display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 46%; filter: saturate(.72); }
 .about-portrait__caption { margin: 1rem 0 0; color: var(--color-muted); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; }
 .about-intro__copy { max-width: 41rem; }.about-intro h1, .about-heading h2, .about-closing h2 { margin: 0; font-size: clamp(2.7rem, 5.5vw, 5.5rem); font-weight: 520; letter-spacing: -.065em; line-height: .98; }.about-intro h1 em, .about-heading h2 em, .about-closing h2 em { color: var(--color-gold); font-family: Georgia, serif; font-weight: 400; letter-spacing: -.075em; }
 .about-lede { margin: 2rem 0 0; color: var(--color-ivory); font-size: clamp(1.15rem, 1.8vw, 1.45rem); line-height: 1.45; }.about-body { max-width: 34rem; margin: 1.2rem 0 2rem; color: var(--color-muted); font-size: 1rem; line-height: 1.8; }

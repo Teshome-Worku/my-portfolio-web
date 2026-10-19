@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import aboutImage from "@/assets/profile.jpg";
+import aboutImage from "@/assets/kenan.jpg";
 
 const journey = [
   ["01", "Learn", "I started by learning how the web works and building a strong foundation in frontend development."],

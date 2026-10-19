@@ -1,114 +1,110 @@
-"use client";
+import Link from "next/link";
 
-import { AnimatedStaggerContainer, AnimatedStaggerItem } from "@/components/AnimatedSection";
+const capabilities = [
+  ["01", "Business websites", "Clear, responsive websites that help a business present its services and guide visitors toward action.", "/projects/appointment-booking-system"],
+  ["02", "Responsive interfaces", "Thoughtful frontend experiences that stay readable, usable, and focused across screen sizes.", "/projects"],
+  ["03", "Full-stack applications", "Connected web applications that bring interface, server logic, and stored data into one useful workflow.", "/projects/astu-complaint-tracker"],
+  ["04", "REST API development", "Backend routes and integrations that allow interfaces and services to exchange the data they need.", "/projects/astu-complaint-tracker"],
+  ["05", "Database-backed systems", "Practical data workflows using persistent or browser-based storage suited to the project.", "/projects/inventory-management-system"],
+  ["06", "Integrations and automation", "Useful connections such as Telegram order notifications that reduce manual follow-up.", "/projects/lemi-fashion"],
+];
 
-const skills = [
-    {
-        category: "Frontend",
-        icon: (
-            <svg className="w-6 h-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-        ),
-        items: [
-            { name: "Next.js", icon: "https://cdn.simpleicons.org/nextdotjs/white" },
-            { name: "React", icon: "https://cdn.simpleicons.org/react/61DAFB" },
-            { name: "Tailwind CSS", icon: "https://cdn.simpleicons.org/tailwindcss/06B6D4" },
-            { name: "JavaScript", icon: "https://cdn.simpleicons.org/javascript/F7DF1E" },
-        ],
-    },
-    {
-        category: "Backend",
-        icon: (
-            <svg className="w-6 h-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
-            </svg>
-        ),
-        items: [
-            { name: "Node.js", icon: "https://cdn.simpleicons.org/nodedotjs/339933" },
-            { name: "Express", icon: "https://cdn.simpleicons.org/express/white" },
-        ],
-    },
-    {
-        category: "Database",
-        icon: (
-            <svg className="w-6 h-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
-            </svg>
-        ),
-        items: [
-            { name: "MongoDB", icon: "https://cdn.simpleicons.org/mongodb/47A248" },
-            { name: "PostgreSQL ", icon: "https://cdn.simpleicons.org/postgresql/4169E1" },
-        ],
-    },
-    {
-        category: "Tools",
-        icon: (
-            <svg className="w-6 h-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-        ),
-        items: [
-            { name: "Git", icon: "https://cdn.simpleicons.org/git/F05032" },
-            { name: "GitHub", icon: "https://cdn.simpleicons.org/github/white" },
-            { name: "VS Code", icon: "https://cdn.simpleicons.org/visualstudiocode/007ACC" },
-            { name: "Figma", icon: "https://cdn.simpleicons.org/figma/F24E1E" },
-        ],
-    },
+const skillGroups = [
+  {
+    category: "Frontend",
+    detail: "Interfaces and responsive presentation",
+    items: ["React", "Next.js", "JavaScript", "HTML", "CSS", "Tailwind CSS"],
+  },
+  {
+    category: "Backend",
+    detail: "Server logic and application workflows",
+    items: ["Node.js", "Express", "REST APIs"],
+  },
+  {
+    category: "Data and storage",
+    detail: "Application data and local persistence",
+    items: ["MongoDB", "IndexedDB"],
+  },
+  {
+    category: "Tools and integrations",
+    detail: "Delivery workflow and connected services",
+    items: ["Git", "GitHub", "Telegram API"],
+  },
+];
+
+const practices = [
+  ["01", "Structure", "Break requirements into clear components, routes, and responsibilities so the code stays understandable."],
+  ["02", "Connect", "Choose an appropriate way for interfaces, APIs, and storage to work together around the user’s task."],
+  ["03", "Check", "Test responsive behavior, errors, and important flows while refining the details that affect usability."],
+  ["04", "Improve", "Treat delivery as a starting point for feedback, maintenance, and useful future changes."],
 ];
 
 export default function Skills() {
-    return (
-        <section className="bg-[#0a0f0d] text-white px-6 py-24 relative overflow-hidden" id="skills">
-            {/* Ambient Background Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-green-500/5 blur-[150px] rounded-full pointer-events-none z-0"></div>
+  return (
+    <div className="skills-page">
+      <header className="skills-intro">
+        <div className="skills-shell">
+          <p className="eyebrow">Capabilities / technical skills</p>
+          <h1>Technical skills, <em>applied to real problems.</em></h1>
+          <p>I build business websites and full-stack web applications using modern frontend, backend, and data technologies chosen around what the project needs.</p>
+        </div>
+      </header>
 
-            <div className="max-w-6xl mx-auto relative z-10">
+      <section className="skills-section skills-capabilities">
+        <div className="skills-shell">
+          <div className="skills-heading">
+            <p className="eyebrow">What I can build</p>
+            <h2>Technology matters most when it makes the work <em>easier.</em></h2>
+          </div>
+          <div className="capability-list">
+            {capabilities.map(([number, title, description, href]) => (
+              <Link href={href} className="capability-item" key={number}>
+                <span>{number}</span><div><h3>{title}</h3><p>{description}</p></div><i aria-hidden>↗</i>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
-                {/* Section Title */}
-                <div className="text-center mb-16">
-                    <p className="text-green-400 font-mono text-sm tracking-wider uppercase mb-3">Powering My Projects</p>
-                    <h2 className="text-4xl md:text-5xl font-bold">
-                        My Technical <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-300">Arsenal</span>
-                    </h2>
-                </div>
+      <section className="skills-section skills-stack">
+        <div className="skills-shell">
+          <div className="skills-heading skills-heading--row">
+            <div><p className="eyebrow">Technical toolkit</p><h2>Tools I use to turn ideas into <em>working products.</em></h2></div>
+            <p>These groups reflect technologies already represented in my projects, portfolio, and supporting application code.</p>
+          </div>
+          <div className="skill-groups">
+            {skillGroups.map((group) => (
+              <section className="skill-group" key={group.category}>
+                <h3>{group.category}</h3><p>{group.detail}</p>
+                <ul>{group.items.map((item) => <li key={item}>{item}</li>)}</ul>
+              </section>
+            ))}
+          </div>
+        </div>
+      </section>
 
-                {/* Skills Grid */}
-                <AnimatedStaggerContainer className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {skills.map((group, index) => (
-                        <AnimatedStaggerItem key={index} className="h-full">
-                            <div className="h-full flex flex-col bg-zinc-900/60 border border-white/5 rounded-2xl p-6 shadow-xl hover:shadow-2xl hover:shadow-green-500/10 hover:border-white/10 transition-all duration-300 group cursor-pointer backdrop-blur-md">
-                                {/* Category Header */}
-                                <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
-                                    <div className="p-2 bg-green-500/10 rounded-lg group-hover:bg-green-500/20 group-hover:scale-110 transition-all duration-300">
-                                        {group.icon}
-                                    </div>
-                                    <h3 className="text-lg font-bold text-gray-200">
-                                        {group.category}
-                                    </h3>
-                                </div>
+      <section className="skills-section skills-projects">
+        <div className="skills-shell">
+          <div className="skills-heading"><p className="eyebrow">Skills in practice</p><h2>Real projects are where the pieces <em>come together.</em></h2></div>
+          <div className="skills-project-list">
+            <Link href="/projects/lemi-fashion"><span>01</span><div><h3>Lemi Fashion</h3><p>HTML, CSS, JavaScript, Node.js, and Telegram API applied to a fashion store and order-notification workflow.</p></div><i aria-hidden>↗</i></Link>
+            <Link href="/projects/inventory-management-system"><span>02</span><div><h3>Inventory Management System</h3><p>React and IndexedDB used for a responsive interface with browser-based local data storage.</p></div><i aria-hidden>↗</i></Link>
+            <Link href="/projects/astu-complaint-tracker"><span>03</span><div><h3>ASTU Complaint Tracker</h3><p>React, Node.js, Express, and MongoDB connected around complaint submission, tracking, and management workflows.</p></div><i aria-hidden>↗</i></Link>
+            <Link href="/projects/appointment-booking-system"><span>04</span><div><h3>Appointment Booking System</h3><p>React and Tailwind CSS used to shape a focused experience for scheduling service appointments.</p></div><i aria-hidden>↗</i></Link>
+          </div>
+        </div>
+      </section>
 
-                                {/* Skills List */}
-                                <ul className="space-y-4 pt-2">
-                                    {group.items.map((skill, i) => (
-                                        <li key={i} className="flex items-center gap-3 group/item">
-                                            <div className="w-8 h-8 rounded-full bg-black flex items-center justify-center p-1.5 border border-white/5 group-hover/item:border-green-400/30 group-hover/item:scale-110 transition-all">
-                                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                                <img src={skill.icon} alt={skill.name} className="w-full h-full object-contain" />
-                                            </div>
-                                            <span className="text-gray-400 font-medium group-hover/item:text-green-400 transition-colors">
-                                                {skill.name}
-                                            </span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </AnimatedStaggerItem>
-                    ))}
-                </AnimatedStaggerContainer>
+      <section className="skills-section skills-approach">
+        <div className="skills-shell">
+          <div className="skills-heading"><p className="eyebrow">Engineering approach</p><h2>Build clearly. Test carefully. <em>Keep improving.</em></h2></div>
+          <ol className="practice-list">{practices.map(([number, title, description]) => <li key={number}><span>{number}</span><h3>{title}</h3><p>{description}</p></li>)}</ol>
+        </div>
+      </section>
 
-            </div>
-        </section>
-    );
+      <section className="skills-closing">
+        <div className="skills-shell"><p className="eyebrow">Have a project in mind?</p><h2>Let&apos;s put the right skills to <em>work.</em></h2><div className="skills-actions"><Link href="/contact" className="home-button home-button--gold">Let&apos;s Discuss Your Project <span aria-hidden>-&gt;</span></Link><Link href="/projects" className="home-button home-button--quiet">Explore My Work <span aria-hidden>-&gt;</span></Link></div></div>
+      </section>
+    </div>
+  );
 }

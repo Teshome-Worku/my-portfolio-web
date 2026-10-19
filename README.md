@@ -6,8 +6,8 @@ A modern, full-stack personal portfolio website built to showcase my work, skill
 
 ## 🚀 Live Demo
 
-* 🌍 Frontend (Vercel): https://tesheport.vercel.app/
-* 🔗 Backend API (Render):https://future-fs-01-ku9l.onrender.com/
+* 🌍 Frontend (Vercel): https://kenandev.vercel.app/
+* 🔗 Backend API (Render):https://my-portfolio-web.onrender.com/
 * Admin login creds: 
     * [EMAIL_ADDRESS] / [PASSWORD]
 ---

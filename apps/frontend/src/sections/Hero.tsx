@@ -32,14 +32,14 @@ export default function Hero() {
 
                     <div className="flex  sm:flex-row items-center gap-4 w-full sm:w-auto pt-2">
                         <Link
-                            href="#projects"
+                            href="/projects"
                             className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-sm font-semibold rounded-xl bg-emerald-500 text-[#0a0f0d] hover:bg-emerald-400 transition-colors"
                         >
                             View Projects
                         </Link>
 
                         <Link
-                            href="#contact"
+                            href="/contact"
                             className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-sm font-semibold rounded-xl border border-gray-700 bg-gray-900/50 text-gray-300 hover:border-emerald-500 hover:text-emerald-400 transition-colors"
                         >
                             Contact Me

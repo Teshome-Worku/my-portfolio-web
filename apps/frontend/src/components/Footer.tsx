@@ -32,7 +32,7 @@ export default function Footer() {
             <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-10 flex flex-col items-center text-center">
 
                 {/* Brand Logo */}
-                <Link href="#home" className="group flex items-center gap-2 select-none mb-4">
+                <Link href="/" className="group flex items-center gap-2 select-none mb-4">
                     <span className="text-2xl font-bold tracking-tight">
                         <span className="text-emerald-400 drop-shadow-[0_0_12px_rgba(52,211,153,0.45)]">Kenan</span>
                         <span className="text-gray-400 font-light group-hover:text-white transition-colors duration-300">.Dev</span>

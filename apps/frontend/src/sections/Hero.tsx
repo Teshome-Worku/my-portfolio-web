@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import kenanImage from "@/assets/kenan.jpg";
+import profileAvatar from "@/assets/profile-avatar.jpg";
 import astuTracker from "@/assets/astu-tracker.png";
 import mamiFood from "@/assets/mami-food.png";
 
@@ -151,10 +151,10 @@ export default function Hero() {
             <div className="home-hero__avatar-wrap">
               <div className="home-hero__avatar">
                 <Image
-                  src={kenanImage}
+                  src={profileAvatar}
                   alt="Kenan Worku"
-                  width={104}
-                  height={104}
+                  width={112}
+                  height={112}
                   priority
                 />
               </div>

@@ -374,8 +374,8 @@ h3 em {
 }
 
 .home-hero__avatar {
-  width: 108px;
-  height: 108px;
+  width: 112px;
+  height: 112px;
   border-radius: 9999px;
   border: 2px solid var(--color-brand);
   padding: 3px;
@@ -393,7 +393,8 @@ h3 em {
   height: 100%;
   border-radius: 9999px;
   object-fit: cover;
-  object-position: center top;
+  object-position: center;
+  display: block;
 }
 
 .home-role {

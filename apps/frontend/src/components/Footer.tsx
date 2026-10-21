@@ -22,7 +22,7 @@ const MailIcon = () => (
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#0A0A0A] text-[#FFFFFF] pt-14 pb-8 overflow-hidden border-t border-[#262626]">
+    <footer className="site-footer relative bg-[#0A0A0A] text-[#FFFFFF] pt-14 pb-[calc(6.5rem+env(safe-area-inset-bottom))] md:pb-8 overflow-hidden border-t border-[#262626]">
       {/* Top subtle ember highlight */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-linear-to-r from-transparent via-[#BB4D00]/50 to-transparent" />
 

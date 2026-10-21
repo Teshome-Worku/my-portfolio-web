@@ -1,10 +1,15 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type TargetAndTransition } from "framer-motion";
 import { ReactNode } from "react";
 
+type AnimationVariant = {
+    hidden: TargetAndTransition;
+    visible: TargetAndTransition;
+};
+
 // Predefined animation variants
-export const variants: Record<string, any> = {
+export const variants: Record<string, AnimationVariant> = {
     fadeInUp: {
         hidden: { opacity: 0, y: 30 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
@@ -49,16 +54,19 @@ export default function AnimatedSection({
     delay = 0,
     viewportAmount = 0.2, // Trigger when 20% is in view
 }: AnimatedSectionProps) {
-    // If a delay is provided, we merge it into the specific variant
+    const baseVariant = variants[variant] || variants.fadeInUp;
     const customVariant = delay
         ? {
-              ...variants[variant],
+              ...baseVariant,
               visible: {
-                  ...variants[variant].visible,
-                  transition: { ...variants[variant].visible.transition, delay },
+                  ...baseVariant.visible,
+                  transition: {
+                      ...(typeof baseVariant.visible.transition === "object" ? baseVariant.visible.transition : {}),
+                      delay,
+                  },
               },
           }
-        : variants[variant];
+        : baseVariant;
 
     return (
         <motion.div

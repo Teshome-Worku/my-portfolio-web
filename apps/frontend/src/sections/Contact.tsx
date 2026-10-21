@@ -105,33 +105,125 @@ export default function Contact() {
           <aside className="contact-aside">
             <div className="contact-details">
               <p className="eyebrow">Direct contact</p>
-              {contactDetails.map(([label, value, href]) => <a href={href} key={label}><span>{label}</span><strong>{value}</strong></a>)}
-              <div className="contact-detail"><span>Based in</span><strong>Adama, Ethiopia</strong></div>
+              {contactDetails.map(([label, value, href]) => (
+                <a href={href} key={label}>
+                  <span>{label}</span>
+                  <strong>{value}</strong>
+                </a>
+              ))}
+              <div className="contact-detail">
+                <span>Based in</span>
+                <strong>Adama, Ethiopia</strong>
+              </div>
             </div>
             <div className="contact-socials">
               <p className="eyebrow">Elsewhere</p>
-              <div><Link href="https://github.com/Teshome-Worku" target="_blank" rel="noreferrer">GitHub ↗</Link><Link href="https://www.linkedin.com/in/teshome-worku-017834392" target="_blank" rel="noreferrer">LinkedIn ↗</Link></div>
+              <div>
+                <Link href="https://github.com/Teshome-Worku" target="_blank" rel="noreferrer">
+                  GitHub ↗
+                </Link>
+                <Link href="https://www.linkedin.com/in/teshome-worku-017834392" target="_blank" rel="noreferrer">
+                  LinkedIn ↗
+                </Link>
+              </div>
             </div>
             <div className="contact-next">
               <p className="eyebrow">What happens next</p>
-              {nextSteps.map(([number, title, description]) => <div key={number}><span>{number}</span><p><strong>{title}</strong>{description}</p></div>)}
+              {nextSteps.map(([number, title, description]) => (
+                <div key={number}>
+                  <span>{number}</span>
+                  <p>
+                    <strong>{title}</strong>
+                    {description}
+                  </p>
+                </div>
+              ))}
             </div>
           </aside>
 
           <form className="contact-form" onSubmit={handleSubmit}>
-            <div className="contact-form__heading"><p className="eyebrow">Project inquiry</p><h2>What are you working on?</h2><p>Even an early idea is a good place to start. The more context you share, the more useful our first conversation can be.</p></div>
+            <div className="contact-form__heading">
+              <p className="eyebrow">Project inquiry</p>
+              <h2>What are you working on?</h2>
+              <p>Even an early idea is a good place to start. The more context you share, the more useful our first conversation can be.</p>
+            </div>
             {status && <p className="contact-status contact-status--success" role="status">{status}</p>}
             {error && <p className="contact-status contact-status--error" role="alert">{error}</p>}
             <div className="contact-fields">
-              <label>Name <input name="name" value={form.name} onChange={handleChange} required minLength={3} maxLength={30} placeholder="Your name" /></label>
-              <label>Email <input name="email" type="email" value={form.email} onChange={handleChange} required placeholder="you@example.com" /></label>
-              <label>Phone <span>(optional)</span><input name="phone" type="tel" value={form.phone} onChange={handleChange} placeholder="+251 ..." /></label>
-              <label>Project type <span>(optional)</span><select name="projectType" value={form.projectType} onChange={handleChange}><option value="">Choose one</option><option>Business Website</option><option>Full-Stack Application</option><option>E-commerce</option><option>API Integration</option><option>Other</option></select></label>
-              <label>Budget range <span>(optional)</span><select name="budget" value={form.budget} onChange={handleChange}><option value="">Prefer not to say</option><option>Under $500</option><option>$500 - $1,000</option><option>$1,000 - $2,500</option><option>$2,500+</option></select></label>
-              <label className="contact-field--full">Message <textarea name="message" value={form.message} onChange={handleChange} required minLength={5} rows={6} placeholder="Tell me about your goals, users, timeline, or the problem you want to solve." /></label>
+              <label>
+                Name
+                <input
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
+                  required
+                  minLength={3}
+                  maxLength={30}
+                  placeholder="Your name"
+                />
+              </label>
+              <label>
+                Email
+                <input
+                  name="email"
+                  type="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                  placeholder="you@example.com"
+                />
+              </label>
+              <label>
+                Phone <span>(optional)</span>
+                <input
+                  name="phone"
+                  type="tel"
+                  value={form.phone}
+                  onChange={handleChange}
+                  placeholder="+251 ..."
+                />
+              </label>
+              <label>
+                Project type <span>(optional)</span>
+                <select name="projectType" value={form.projectType} onChange={handleChange}>
+                  <option value="">Choose one</option>
+                  <option>Business Website</option>
+                  <option>Full-Stack Application</option>
+                  <option>E-commerce</option>
+                  <option>API Integration</option>
+                  <option>Other</option>
+                </select>
+              </label>
+              <label>
+                Budget range <span>(optional)</span>
+                <select name="budget" value={form.budget} onChange={handleChange}>
+                  <option value="">Prefer not to say</option>
+                  <option>Under $500</option>
+                  <option>$500 - $1,000</option>
+                  <option>$1,000 - $2,500</option>
+                  <option>$2,500+</option>
+                </select>
+              </label>
+              <label className="contact-field--full">
+                Message
+                <textarea
+                  name="message"
+                  value={form.message}
+                  onChange={handleChange}
+                  required
+                  minLength={5}
+                  rows={6}
+                  placeholder="Tell me about your goals, users, timeline, or the problem you want to solve."
+                />
+              </label>
             </div>
-            <button type="submit" disabled={loading}>{loading ? "Sending..." : "Send project inquiry"} <span aria-hidden>{loading ? "..." : "→"}</span></button>
-            <p className="contact-form__note">Your message is sent securely to the portfolio contact service. I&apos;ll review it before getting back to you.</p>
+            <button type="submit" disabled={loading}>
+              {loading ? "Sending..." : "Send project inquiry"}
+              <span aria-hidden="true">{loading ? "..." : "→"}</span>
+            </button>
+            <p className="contact-form__note">
+              Your message is sent securely to the portfolio contact service. I&apos;ll review it before getting back to you.
+            </p>
           </form>
         </div>
       </section>

@@ -44,7 +44,7 @@ export default function About() {
             <p className="about-body">
               My focus is on making digital products usable, reliable, and clear. I enjoy taking a real problem, understanding the people behind it, and shaping a solution that feels considered from the first interaction to the final detail.
             </p>
-            <Link href="/contact" className="text-link">Let&apos;s work together <span aria-hidden>-&gt;</span></Link>
+            <Link href="/contact" className="text-link">Let&apos;s work together <span aria-hidden="true">→</span></Link>
           </div>
         </div>
       </section>
@@ -86,8 +86,8 @@ export default function About() {
           <div className="about-credibility__copy">
             <p>I&apos;ve developed projects across business websites, course platforms, online stores, ordering flows, and structured management systems. Each one has helped me practice turning a requirement into an interface and a working end-to-end experience.</p>
             <div className="about-evidence">
-              <Link href="/projects" className="about-evidence__item"><span>01</span><strong>Explore the projects</strong><i aria-hidden>-&gt;</i></Link>
-              <a href="https://astu-complaint-tracker.vercel.app/" target="_blank" rel="noreferrer" className="about-evidence__item"><span>02</span><strong>See a live full-stack system</strong><i aria-hidden>-&gt;</i></a>
+              <Link href="/projects" className="about-evidence__item"><span>01</span><strong>Explore the projects</strong><i aria-hidden="true">→</i></Link>
+              <a href="https://astu-complaint-tracker.vercel.app/" target="_blank" rel="noreferrer" className="about-evidence__item"><span>02</span><strong>See a live full-stack system</strong><i aria-hidden="true">→</i></a>
             </div>
           </div>
         </div>
@@ -96,7 +96,7 @@ export default function About() {
       <section className="about-section about-principles">
         <div className="about-shell about-principles__grid">
           <div className="about-heading"><p className="eyebrow">Working principles</p><h2>Good work should feel <em>thoughtful.</em></h2></div>
-          <ul>{principles.map((principle) => <li key={principle}><span aria-hidden>+</span>{principle}</li>)}</ul>
+          <ul>{principles.map((principle) => <li key={principle}><span aria-hidden="true">+</span>{principle}</li>)}</ul>
         </div>
       </section>
 
@@ -105,8 +105,8 @@ export default function About() {
           <p className="eyebrow">Have something in mind?</p>
           <h2>Let&apos;s make your next idea <em>useful.</em></h2>
           <div className="about-actions">
-            <Link href="/contact" className="home-button home-button--gold">Let&apos;s Discuss Your Project <span aria-hidden>-&gt;</span></Link>
-            <Link href="/projects" className="home-button home-button--quiet">Explore My Work <span aria-hidden>-&gt;</span></Link>
+            <Link href="/contact" className="home-button home-button--primary">Let&apos;s Discuss Your Project <span aria-hidden="true">→</span></Link>
+            <Link href="/projects" className="home-button home-button--secondary">Explore My Work <span aria-hidden="true">→</span></Link>
           </div>
         </div>
       </section>

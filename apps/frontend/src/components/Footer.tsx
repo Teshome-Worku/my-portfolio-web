@@ -55,7 +55,7 @@ export default function Footer() {
             <GitHubIcon />
           </Link>
           <Link
-            href="https://www.linkedin.com/in/teshome-worku-017834392"
+            href="https://www.linkedin.com/in/kenan-worku-017834392"
             target="_blank"
             rel="noreferrer"
             className="p-3 rounded-full bg-[#171717] border border-[#262626] text-[#A3A3A3] hover:text-[#FFFFFF] hover:border-[#BB4D00] hover:shadow-[0_0_16px_rgba(187,77,0,0.25)] transition-all duration-200 hover:-translate-y-0.5"

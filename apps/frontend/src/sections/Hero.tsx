@@ -4,10 +4,59 @@ import kenanImage from "@/assets/kenan.jpg";
 import astuTracker from "@/assets/astu-tracker.png";
 import mamiFood from "@/assets/mami-food.png";
 
+const GlobeLayoutIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <rect width="18" height="18" x="3" y="3" rx="2" />
+    <path d="M3 9h18" />
+    <path d="M9 21V9" />
+  </svg>
+);
+
+const LayersStackIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <polygon points="12 2 2 7 12 12 22 7 12 2" />
+    <polyline points="2 17 12 22 22 17" />
+    <polyline points="2 12 12 17 22 12" />
+  </svg>
+);
+
+const CpuWorkflowIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <rect width="16" height="16" x="4" y="4" rx="2" />
+    <rect width="6" height="6" x="9" y="9" rx="1" />
+    <path d="M15 2v2" />
+    <path d="M15 20v2" />
+    <path d="M2 15h2" />
+    <path d="M2 9h2" />
+    <path d="M20 15h2" />
+    <path d="M20 9h2" />
+    <path d="M9 2v2" />
+    <path d="M9 20v2" />
+  </svg>
+);
+
 const services = [
-  ["01", "Business websites", "Clear, responsive websites made to present a business with confidence."],
-  ["02", "Full-stack applications", "Practical web products with thoughtful interfaces and reliable workflows."],
-  ["03", "Custom digital solutions", "Focused builds shaped around the way your users and team actually work."],
+  {
+    number: "01",
+    title: "Business websites",
+    detail: "Clear, responsive websites made to present a business with confidence and turn visitors into clients.",
+    icon: <GlobeLayoutIcon />,
+    features: ["Responsive Design", "Fast & SEO-Ready", "Brand Showcase"],
+  },
+  {
+    number: "02",
+    title: "Full-stack applications",
+    detail: "Practical web products with thoughtful interfaces, secure authentication, and reliable database workflows.",
+    icon: <LayersStackIcon />,
+    features: ["REST APIs & Auth", "Database Workflows", "State Architecture"],
+  },
+  {
+    number: "03",
+    title: "Custom digital solutions",
+    detail: "Focused builds shaped around the way your users and team actually work, including alerts and automated flows.",
+    icon: <CpuWorkflowIcon />,
+    features: ["Telegram Alerts", "Workflow Automation", "Tailored Integrations"],
+  },
 ];
 
 const process = ["Understand", "Plan", "Build", "Deliver"];
@@ -43,7 +92,7 @@ export default function Hero() {
               <div className="home-hero__avatar">
                 <Image
                   src={kenanImage}
-                  alt="Kenan Worku profile picture"
+                  alt="Kenan Worku"
                   width={104}
                   height={104}
                   priority
@@ -82,7 +131,7 @@ export default function Hero() {
                 <span>GitHub</span>
               </Link>
               <Link
-                href="https://www.linkedin.com/in/kenan-worku-017834392"
+                href="https://www.linkedin.com/in/teshome-worku-017834392"
                 target="_blank"
                 rel="noreferrer"
                 className="home-social-link"
@@ -92,7 +141,7 @@ export default function Hero() {
                 <span>LinkedIn</span>
               </Link>
               <Link
-                href="mailto:kenanworku981@gmail.com"
+                href="mailto:teshomeworku96@gmail.com"
                 className="home-social-link"
                 aria-label="Direct Email"
               >
@@ -104,19 +153,31 @@ export default function Hero() {
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* Services Section with Elevated Cards */}
       <section className="home-section home-services">
         <div className="home-shell">
           <div className="section-heading home-reveal">
             <p className="eyebrow">What I can help with</p>
             <h2>Useful digital work, <em>made with care.</em></h2>
           </div>
-          <div className="service-list">
-            {services.map(([number, title, detail]) => (
-              <article className="service-item home-reveal" key={number}>
-                <span>{number}</span>
-                <h3>{title}</h3>
-                <p>{detail}</p>
+          <div className="services-grid">
+            {services.map((service) => (
+              <article className="service-card home-reveal" key={service.number}>
+                <div className="service-card__top">
+                  <div className="service-card__icon">
+                    {service.icon}
+                  </div>
+                  <span className="service-card__number">{service.number}</span>
+                </div>
+                <h3>{service.title}</h3>
+                <p>{service.detail}</p>
+                <div className="service-card__features">
+                  {service.features.map((feature) => (
+                    <span className="service-card__tag" key={feature}>
+                      {feature}
+                    </span>
+                  ))}
+                </div>
               </article>
             ))}
           </div>

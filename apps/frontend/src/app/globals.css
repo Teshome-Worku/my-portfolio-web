@@ -686,58 +686,145 @@ h3 em {
   font-size: 0.95rem;
 }
 
-/* Home Process */
+/* Home Process - Interactive Stepper Cards */
 .home-process {
   background: var(--color-obsidian);
   border-top: 1px solid var(--color-border);
-}
-
-.process-list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  margin: 3.5rem 0 0;
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid var(--color-border);
-}
-
-.process-list li {
   position: relative;
-  min-height: 12rem;
-  padding: 1.5rem;
-  border: 1px solid var(--color-border);
-  border-top: 0;
-  border-left: 0;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 3.5rem;
+}
+
+.process-card {
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  padding: 2.25rem 1.75rem;
   background: var(--color-surface-card);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  overflow: hidden;
 }
 
-.process-list li:first-child {
-  border-left: 1px solid var(--color-border);
+.process-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(187, 77, 0, 0.45);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 24px rgba(187, 77, 0, 0.1);
 }
 
-.process-list span {
-  color: var(--color-brand);
-  font-size: 0.75rem;
+.process-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.process-card__step-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.72rem;
   font-weight: 700;
-}
-
-.process-list strong {
-  font-size: clamp(1.2rem, 1.8vw, 1.6rem);
-  font-weight: 600;
-  letter-spacing: -0.03em;
-}
-
-.process-list i {
-  color: var(--color-text-secondary);
-  font-style: normal;
-}
-
-.process-list li:last-child i {
+  letter-spacing: 0.08em;
   color: var(--color-brand);
+  background: rgba(187, 77, 0, 0.08);
+  border: 1px solid rgba(187, 77, 0, 0.22);
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+}
+
+.process-card__step-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-brand);
+  box-shadow: 0 0 8px var(--color-brand);
+}
+
+.process-card__arrow {
+  color: #555555;
+  font-size: 1rem;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.process-card:hover .process-card__arrow {
+  color: var(--color-brand);
+  transform: translateX(3px);
+}
+
+.process-card__icon {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  background: var(--color-surface-hover);
+  border: 1px solid var(--color-border);
+  color: var(--color-brand);
+  margin-bottom: 1.35rem;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.process-card:hover .process-card__icon {
+  background: rgba(187, 77, 0, 0.14);
+  border-color: rgba(187, 77, 0, 0.35);
+  transform: scale(1.05);
+}
+
+.process-card h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--color-text-primary);
+}
+
+.process-card p {
+  margin: 0 0 1.5rem;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  flex-grow: 1;
+}
+
+.process-card__deliverable {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-brand);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.process-card__deliverable span {
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 1024px) {
+  .process-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .process-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
 }
 
 /* Home Closing */
@@ -2166,18 +2253,6 @@ h3 em {
     border-left: 0;
   }
 
-  .process-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .process-list li:nth-child(3) {
-    border-left: 1px solid var(--color-border);
-  }
-
-  .process-list li {
-    min-height: 8rem;
-  }
-
   .contact-fields {
     grid-template-columns: 1fr;
   }
@@ -2215,19 +2290,6 @@ h3 em {
 
   .home-role {
     font-size: 2.2rem;
-  }
-
-  .process-list {
-    grid-template-columns: 1fr;
-  }
-
-  .process-list li:not(:first-child) {
-    border-left: 1px solid var(--color-border);
-    border-top: 0;
-  }
-
-  .process-list li {
-    min-height: 6.5rem;
   }
 }
 

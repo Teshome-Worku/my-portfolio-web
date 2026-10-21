@@ -35,6 +35,37 @@ const CpuWorkflowIcon = () => (
   </svg>
 );
 
+const CompassSearchIcon = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10" />
+    <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+  </svg>
+);
+
+const BlueprintMapIcon = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+  </svg>
+);
+
+const CodeTerminalIcon = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <polyline points="16 18 22 12 16 6" />
+    <polyline points="8 6 2 12 8 18" />
+    <line x1="12" y1="2" x2="12" y2="22" />
+  </svg>
+);
+
+const RocketLaunchIcon = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
+    <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
+    <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
+    <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
+  </svg>
+);
+
 const services = [
   {
     number: "01",
@@ -59,7 +90,36 @@ const services = [
   },
 ];
 
-const process = ["Understand", "Plan", "Build", "Deliver"];
+const processSteps = [
+  {
+    step: "01",
+    title: "Understand",
+    description: "Clarify project goals, target audience, and core technical requirements before writing a line of code.",
+    icon: <CompassSearchIcon />,
+    deliverable: "Scope & Discovery",
+  },
+  {
+    step: "02",
+    title: "Plan",
+    description: "Map out the architecture, user flows, database models, and sprint milestones for steady execution.",
+    icon: <BlueprintMapIcon />,
+    deliverable: "Architecture & Roadmap",
+  },
+  {
+    step: "03",
+    title: "Build",
+    description: "Develop responsive frontend interfaces and secure backend APIs with clean, maintainable code.",
+    icon: <CodeTerminalIcon />,
+    deliverable: "Full-Stack Development",
+  },
+  {
+    step: "04",
+    title: "Deliver",
+    description: "Test thoroughly across screen sizes, optimize performance, deploy securely, and support post-launch.",
+    icon: <RocketLaunchIcon />,
+    deliverable: "Testing & Launch",
+  },
+];
 
 const GitHubSmallIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -252,22 +312,36 @@ export default function Hero() {
         </div>
       </section>
 
-      {/* Process Section */}
+      {/* Process Section - Interactive Stepper Cards */}
       <section className="home-section home-process">
         <div className="home-shell">
           <div className="section-heading home-reveal">
             <p className="eyebrow">How I work</p>
             <h2>Simple process. <em>Clear progress.</em></h2>
           </div>
-          <ol className="process-list">
-            {process.map((step, index) => (
-              <li className="home-reveal" key={step}>
-                <span>0{index + 1}</span>
-                <strong>{step}</strong>
-                <i aria-hidden="true">↓</i>
-              </li>
+          <div className="process-grid">
+            {processSteps.map((item, index) => (
+              <article className="process-card home-reveal" key={item.step}>
+                <div className="process-card__header">
+                  <span className="process-card__step-badge">
+                    <span className="process-card__step-dot" />
+                    STEP {item.step}
+                  </span>
+                  <span className="process-card__arrow" aria-hidden="true">
+                    {index < processSteps.length - 1 ? "→" : "✓"}
+                  </span>
+                </div>
+                <div className="process-card__icon">
+                  {item.icon}
+                </div>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+                <div className="process-card__deliverable">
+                  <span>Phase:</span> {item.deliverable}
+                </div>
+              </article>
             ))}
-          </ol>
+          </div>
         </div>
       </section>
 

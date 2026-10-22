@@ -1974,151 +1974,581 @@ h3 em {
   font-size: clamp(2rem, 3.8vw, 3.6rem);
 }
 
-.about-timeline {
-  max-width: 900px;
-  margin: 3.5rem 0 0 auto;
-  border-top: 1px solid var(--color-border);
+/* About Page Subtitles & Actions */
+.about-intro__actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
 }
 
-.about-timeline__item {
-  display: grid;
-  grid-template-columns: 5rem 1fr;
-  gap: 1.5rem;
-  padding: 1.75rem 0;
-  border-bottom: 1px solid var(--color-border);
+.about-heading__sub {
+  margin: 1.25rem 0 0;
+  color: var(--color-text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  max-width: 36rem;
 }
 
-.about-index {
-  color: var(--color-brand);
+.about-heading--center {
+  text-align: center;
+  max-width: 48rem;
+  margin: 0 auto 3.5rem;
+}
+
+.about-heading--center .about-heading__sub {
+  margin: 1rem auto 0;
+}
+
+/* Section 2: The Journey So Far - Vertical Stepper */
+.about-stepper {
+  position: relative;
+  max-width: 860px;
+  margin: 3.5rem auto 0;
+  padding-left: 3.5rem;
+}
+
+.about-stepper::before {
+  content: "";
+  position: absolute;
+  left: 1.25rem;
+  top: 1.75rem;
+  bottom: 2rem;
+  width: 2px;
+  background: linear-gradient(180deg, var(--color-brand) 0%, rgba(187, 77, 0, 0.45) 75%, rgba(38, 38, 38, 0.2) 100%);
+}
+
+.about-stepper__item {
+  position: relative;
+  margin-bottom: 2.25rem;
+}
+
+.about-stepper__item:last-child {
+  margin-bottom: 0;
+}
+
+.about-stepper__node {
+  position: absolute;
+  left: -3.5rem;
+  top: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background: var(--color-surface-card);
+  border: 2px solid var(--color-brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 0.75rem;
+  font-weight: 750;
+  color: var(--color-brand);
+  box-shadow: 0 0 16px rgba(187, 77, 0, 0.28);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  z-index: 2;
+}
+
+.about-stepper__item:hover .about-stepper__node {
+  transform: scale(1.12);
+  box-shadow: 0 0 24px rgba(255, 122, 0, 0.5);
+}
+
+.about-stepper__card {
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  padding: 1.85rem 2rem;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-stepper__card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-brand), transparent);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.about-stepper__card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(187, 77, 0, 0.4);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4), 0 0 20px rgba(187, 77, 0, 0.1);
+}
+
+.about-stepper__card:hover::before {
+  opacity: 1;
+}
+
+.about-stepper__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.about-stepper__phase {
+  color: var(--color-brand);
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
-.about-timeline h3,
-.about-process-list h3 {
-  margin: 0 0 0.35rem;
-  font-size: 1.15rem;
-  font-weight: 650;
-}
-
-.about-timeline p,
-.about-process-list p {
-  max-width: 36rem;
-  margin: 0;
+.about-stepper__number {
   color: var(--color-text-secondary);
-  line-height: 1.65;
-  font-size: 0.92rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border);
 }
 
+.about-stepper__title {
+  margin: 0 0 0.65rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+}
+
+.about-stepper__desc {
+  margin: 0 0 1.35rem;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  font-size: 0.94rem;
+}
+
+.about-stepper__skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.about-stepper__skill-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--color-border);
+  color: #d4d4d4;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+/* Section 3: How I Work - Connected Engineering Methodology */
 .about-process {
-  background: var(--color-surface-card);
+  background: var(--color-obsidian);
   border-bottom: 1px solid var(--color-border);
 }
 
-.about-process-list {
+.about-process-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 0;
-  margin: 3.5rem 0 0;
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid var(--color-border);
-}
-
-.about-process-list li {
-  min-height: 14rem;
-  padding: 1.25rem 1.2rem 1.2rem 0;
-  border-right: 1px solid var(--color-border);
-}
-
-.about-process-list li:not(:first-child) {
-  padding-left: 1.2rem;
-}
-
-.about-process-list h3 {
+  gap: 1.25rem;
   margin-top: 3.5rem;
 }
 
-.about-process-list p {
-  font-size: 0.85rem;
+.about-process-card {
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  padding: 1.75rem 1.35rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+.about-process-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-brand), transparent);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.about-process-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(187, 77, 0, 0.4);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(187, 77, 0, 0.12);
+}
+
+.about-process-card:hover::before {
+  opacity: 1;
+}
+
+.about-process-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.about-process-card__index {
+  font-size: 0.78rem;
+  font-weight: 750;
+  color: var(--color-brand);
+  letter-spacing: 0.08em;
+}
+
+.about-process-card__icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.55rem;
+  background: rgba(187, 77, 0, 0.1);
+  border: 1px solid rgba(187, 77, 0, 0.25);
+  color: var(--color-brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.about-process-card:hover .about-process-card__icon {
+  transform: scale(1.08);
+  background: rgba(187, 77, 0, 0.18);
+}
+
+.about-process-card__title {
+  margin: 0 0 0.65rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+}
+
+.about-process-card__desc {
+  margin: 0 0 1.5rem;
+  color: var(--color-text-secondary);
+  line-height: 1.65;
+  font-size: 0.88rem;
+  flex-grow: 1;
+}
+
+.about-process-card__deliverable {
+  margin-top: auto;
+}
+
+.about-process-card__deliverable span {
+  display: inline-block;
+  padding: 0.3rem 0.65rem;
+  border-radius: 9999px;
+  background: rgba(187, 77, 0, 0.1);
+  border: 1px solid rgba(187, 77, 0, 0.25);
+  color: var(--color-brand);
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+/* Section 4: Practical Experience - Evidence & Live Proof Cards */
 .about-credibility {
   border-bottom: 1px solid var(--color-border);
 }
 
-.about-credibility__grid,
-.about-principles__grid {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: clamp(2.5rem, 6vw, 6rem);
-}
-
-.about-credibility__copy > p {
-  margin: 0;
+.about-credibility__copy-lead {
+  margin: 1.25rem 0 0;
   color: var(--color-text-secondary);
   font-size: 1.05rem;
   line-height: 1.75;
 }
 
-.about-evidence {
+.about-credibility__metrics {
+  display: flex;
+  gap: 0.85rem;
   margin-top: 2rem;
-  border-top: 1px solid var(--color-border);
+  flex-wrap: wrap;
 }
 
-.about-evidence__item {
-  display: grid;
-  grid-template-columns: 3rem 1fr auto;
-  gap: 1rem;
-  align-items: center;
-  padding: 1.15rem 0;
-  border-bottom: 1px solid var(--color-border);
-  color: var(--color-text-primary);
+.about-metric-pill {
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.about-metric-pill strong {
+  font-size: 1.25rem;
+  font-weight: 750;
+  color: var(--color-brand);
+  line-height: 1;
+}
+
+.about-metric-pill span {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.about-credibility__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.about-proof-card {
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  padding: 1.75rem 1.85rem;
   text-decoration: none;
-  transition: color 0.2s ease;
+  color: inherit;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.about-evidence__item span,
-.about-evidence__item i {
+.about-proof-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-brand), transparent);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.about-proof-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(187, 77, 0, 0.4);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4), 0 0 20px rgba(187, 77, 0, 0.1);
+}
+
+.about-proof-card:hover::before {
+  opacity: 1;
+}
+
+.about-proof-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+}
+
+.about-proof-card__index {
+  font-size: 0.75rem;
+  font-weight: 750;
   color: var(--color-brand);
-  font-style: normal;
+  letter-spacing: 0.08em;
 }
 
-.about-evidence__item strong {
-  font-size: 0.92rem;
+.about-proof-card__tag {
+  font-size: 0.72rem;
   font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--color-text-secondary);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border);
+}
+
+.about-proof-card__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.1);
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(34, 197, 94, 0.25);
+}
+
+.about-proof-card__status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+}
+
+.about-proof-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
   transition: color 0.2s ease;
 }
 
-.about-evidence__item:hover strong {
+.about-proof-card:hover h3 {
   color: var(--color-brand);
 }
 
+.about-proof-card p {
+  margin: 0 0 1.25rem;
+  color: var(--color-text-secondary);
+  line-height: 1.65;
+  font-size: 0.92rem;
+}
+
+.about-proof-card__tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1.25rem;
+}
+
+.about-proof-card__tech span {
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--color-border);
+  color: #d4d4d4;
+  font-size: 0.76rem;
+  font-weight: 500;
+}
+
+.about-proof-card__cta {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--color-brand);
+  font-size: 0.88rem;
+  font-weight: 650;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-border);
+  transition: gap 0.2s ease;
+}
+
+.about-proof-card:hover .about-proof-card__cta {
+  gap: 0.65rem;
+}
+
+.about-proof-card__arrow {
+  transition: transform 0.2s ease;
+}
+
+.about-proof-card:hover .about-proof-card__arrow {
+  transform: translateX(3px);
+}
+
+/* Section 5: Working Principles - 2x2 Elevated Principle Grid */
 .about-principles {
   background: var(--color-obsidian);
   border-bottom: 1px solid var(--color-border);
 }
 
-.about-principles ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid var(--color-border);
+.about-principles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  max-width: 980px;
+  margin: 0 auto;
 }
 
-.about-principles li {
+.about-principle-card {
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  padding: 2rem 1.85rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.about-principle-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-brand), transparent);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.about-principle-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(187, 77, 0, 0.4);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4), 0 0 20px rgba(187, 77, 0, 0.1);
+}
+
+.about-principle-card:hover::before {
+  opacity: 1;
+}
+
+.about-principle-card__top {
   display: flex;
-  gap: 0.85rem;
-  padding: 1.15rem 0;
-  border-bottom: 1px solid var(--color-border);
-  color: var(--color-text-secondary);
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.about-principle-card__icon {
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 0.6rem;
+  background: rgba(187, 77, 0, 0.1);
+  border: 1px solid rgba(187, 77, 0, 0.25);
+  color: var(--color-brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.about-principle-card:hover .about-principle-card__icon {
+  transform: scale(1.08);
+  background: rgba(187, 77, 0, 0.18);
+}
+
+.about-principle-card__tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--color-brand);
+  background: rgba(187, 77, 0, 0.1);
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(187, 77, 0, 0.25);
+}
+
+.about-principle-card__title {
+  margin: 0 0 0.65rem;
+  font-size: 1.22rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+}
+
+.about-principle-card__quote {
+  margin: 0 0 0.85rem;
+  color: #f3f3f3;
+  font-size: 0.96rem;
+  font-weight: 500;
   line-height: 1.6;
 }
 
-.about-principles li span {
-  color: var(--color-brand);
-  font-size: 1.1rem;
+.about-principle-card__detail {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.65;
 }
 
 .about-closing {
@@ -2217,15 +2647,17 @@ h3 em {
     display: block;
   }
 
+  .about-heading__note {
+    margin-top: 1rem;
+  }
+
   .skill-groups,
-  .practice-list,
-  .about-process-list {
+  .practice-list {
     grid-template-columns: repeat(2, 1fr);
   }
 
   .skill-group:nth-child(odd),
-  .practice-list li:nth-child(odd),
-  .about-process-list li:nth-child(odd) {
+  .practice-list li:nth-child(odd) {
     padding-left: 0;
   }
 
@@ -2234,20 +2666,18 @@ h3 em {
     border-left: 1px solid var(--color-border);
   }
 
-  .about-process-list li {
-    min-height: 11rem;
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .about-process-list li:nth-child(even) {
-    border-right: 0;
+  .about-process-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .about-intro__grid,
-  .about-credibility__grid,
-  .about-principles__grid {
+  .about-credibility__grid {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 3rem;
+  }
+
+  .about-principles-grid {
+    grid-template-columns: 1fr;
   }
 
   .contact-grid {
@@ -2257,6 +2687,40 @@ h3 em {
 }
 
 @media (max-width: 767px) {
+  .about-stepper {
+    padding-left: 2.75rem;
+  }
+
+  .about-stepper::before {
+    left: 1rem;
+  }
+
+  .about-stepper__node {
+    left: -2.75rem;
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.7rem;
+  }
+
+  .about-stepper__card {
+    padding: 1.5rem 1.35rem;
+  }
+
+  .about-process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-credibility__metrics {
+    flex-direction: column;
+  }
+
+  .about-proof-card {
+    padding: 1.5rem 1.35rem;
+  }
+
+  .about-principle-card {
+    padding: 1.6rem 1.35rem;
+  }
   .projects-shell,
   .skills-shell,
   .contact-shell,

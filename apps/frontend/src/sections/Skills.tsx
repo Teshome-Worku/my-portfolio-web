@@ -9,6 +9,21 @@ const capabilities = [
   ["06", "Integrations and automation", "Useful connections such as Telegram order notifications that reduce manual follow-up.", "/projects/lemi-fashion"],
 ];
 
+const capIcons = [
+  /* 01 – monitor */
+  <svg key="01" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>,
+  /* 02 – mobile/responsive */
+  <svg key="02" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 22v-4h6v4M9 6h6M9 10h6M9 14h4"/></svg>,
+  /* 03 – layers/stack */
+  <svg key="03" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3L2 9l10 6 10-6-10-6z"/><path d="M2 15l10 6 10-6"/><path d="M2 12l10 6 10-6"/></svg>,
+  /* 04 – API/arrows */
+  <svg key="04" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M14 6l6 6-6 6"/></svg>,
+  /* 05 – database */
+  <svg key="05" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.66 3.58 3 8 3s8-1.34 8-3V6"/><path d="M4 12v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/></svg>,
+  /* 06 – link/integration */
+  <svg key="06" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>,
+];
+
 const skillGroups = [
   {
     category: "Frontend",
@@ -34,7 +49,7 @@ const skillGroups = [
 
 const practices = [
   ["01", "Structure", "Break requirements into clear components, routes, and responsibilities so the code stays understandable."],
-  ["02", "Connect", "Choose an appropriate way for interfaces, APIs, and storage to work together around the user’s task."],
+  ["02", "Connect", "Choose an appropriate way for interfaces, APIs, and storage to work together around the user's task."],
   ["03", "Check", "Test responsive behavior, errors, and important flows while refining the details that affect usability."],
   ["04", "Improve", "Treat delivery as a starting point for feedback, maintenance, and useful future changes."],
 ];
@@ -50,24 +65,34 @@ export default function Skills() {
         </div>
       </header>
 
+      {/* ── Section 1: What I can build – Editorial showcase list ── */}
       <section className="skills-section skills-capabilities">
         <div className="skills-shell">
           <div className="skills-heading">
             <p className="eyebrow">What I can build</p>
             <h2>Technology matters most when it makes the work <em>easier.</em></h2>
           </div>
-          <div className="capability-list">
-            {capabilities.map(([number, title, description, href]) => (
-              <Link href={href} className="capability-item" key={number}>
-                <span>{number}</span>
-                <div><h3>{title}</h3><p>{description}</p></div>
-                <i aria-hidden="true">↗</i>
-              </Link>
+          <ul className="cap-showcase">
+            {capabilities.map(([number, title, description, href], idx) => (
+              <li key={number} className="cap-showcase__item">
+                <Link href={href} className="cap-showcase__link">
+                  <span className="cap-showcase__num" aria-hidden="true">{number}</span>
+                  <span className="cap-showcase__icon">{capIcons[idx]}</span>
+                  <div className="cap-showcase__body">
+                    <h3 className="cap-showcase__title">{title}</h3>
+                    <p className="cap-showcase__desc">{description}</p>
+                  </div>
+                  <span className="cap-showcase__arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                  </span>
+                </Link>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
+      {/* ── Section 2: Technical Toolkit – Typographic constellation ── */}
       <section className="skills-section skills-stack">
         <div className="skills-shell">
           <div className="skills-heading skills-heading--row">
@@ -77,22 +102,29 @@ export default function Skills() {
             </div>
             <p>These groups reflect technologies already represented in my projects, portfolio, and supporting application code.</p>
           </div>
-          <div className="skill-groups">
-            {skillGroups.map((group) => (
-              <section className="skill-group" key={group.category}>
-                <h3>{group.category}</h3>
-                <p>{group.detail}</p>
-                <ul>
+          <div className="toolkit-grid">
+            {skillGroups.map((group, gi) => (
+              <div className="toolkit-col" key={group.category}>
+                <div className="toolkit-col__header">
+                  <span className="toolkit-col__index">0{gi + 1}</span>
+                  <h3 className="toolkit-col__name">{group.category}</h3>
+                  <p className="toolkit-col__detail">{group.detail}</p>
+                </div>
+                <ul className="toolkit-col__items">
                   {group.items.map((item) => (
-                    <li key={item}>{item}</li>
+                    <li key={item} className="toolkit-col__item">
+                      <span className="toolkit-col__dot" aria-hidden="true" />
+                      {item}
+                    </li>
                   ))}
                 </ul>
-              </section>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* ── Skills in practice ── */}
       <section className="skills-section skills-projects">
         <div className="skills-shell">
           <div className="skills-heading">
@@ -136,21 +168,25 @@ export default function Skills() {
         </div>
       </section>
 
+      {/* ── Section 3: Engineering Approach – Manifesto strip ── */}
       <section className="skills-section skills-approach">
         <div className="skills-shell">
           <div className="skills-heading">
             <p className="eyebrow">Engineering approach</p>
             <h2>Build clearly. Test carefully. <em>Keep improving.</em></h2>
           </div>
-          <ol className="practice-list">
+          <div className="manifesto-strip">
             {practices.map(([number, title, description]) => (
-              <li key={number}>
-                <span>{number}</span>
-                <h3>{title}</h3>
-                <p>{description}</p>
-              </li>
+              <div className="manifesto-step" key={number}>
+                <span className="manifesto-step__ghost" aria-hidden="true">{number}</span>
+                <div className="manifesto-step__content">
+                  <h3 className="manifesto-step__title">{title}</h3>
+                  <p className="manifesto-step__desc">{description}</p>
+                </div>
+                <span className="manifesto-step__bar" aria-hidden="true" />
+              </div>
             ))}
-          </ol>
+          </div>
         </div>
       </section>
 

@@ -1379,113 +1379,213 @@ h3 em {
   font-size: clamp(2rem, 3.8vw, 3.5rem);
 }
 
+/* ── What I can build: editorial showcase ── */
 .skills-capabilities {
   border-bottom: 1px solid var(--color-border);
 }
 
-.capability-list {
-  max-width: 930px;
-  margin: 3.5rem 0 0 auto;
+.cap-showcase {
+  margin: 3.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cap-showcase__item {
   border-top: 1px solid var(--color-border);
 }
 
-.capability-item {
-  display: grid;
-  grid-template-columns: 4rem 1fr auto;
-  gap: 1.25rem;
-  align-items: center;
-  padding: 1.5rem 0;
+.cap-showcase__item:last-child {
   border-bottom: 1px solid var(--color-border);
+}
+
+.cap-showcase__link {
+  display: grid;
+  grid-template-columns: 3.5rem 3rem 1fr 2.5rem;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.6rem 0;
   color: var(--color-text-primary);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: background 0.2s ease;
 }
 
-.capability-item > span,
-.capability-item > i {
+.cap-showcase__num {
+  font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+  font-weight: 750;
+  letter-spacing: -0.04em;
   color: var(--color-brand);
-  font-style: normal;
+  opacity: 0.35;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  transition: opacity 0.2s ease, font-size 0.2s ease;
 }
 
-.capability-item h3 {
-  margin: 0 0 0.35rem;
-  font-size: 1.15rem;
+.cap-showcase__link:hover .cap-showcase__num {
+  opacity: 1;
+}
+
+.cap-showcase__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  background: rgba(187, 77, 0, 0.1);
+  color: var(--color-brand);
+  flex-shrink: 0;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.cap-showcase__icon svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.cap-showcase__link:hover .cap-showcase__icon {
+  background: rgba(187, 77, 0, 0.22);
+  transform: scale(1.1);
+}
+
+.cap-showcase__title {
+  margin: 0 0 0.3rem;
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
   font-weight: 650;
+  letter-spacing: -0.02em;
   transition: color 0.2s ease;
 }
 
-.capability-item p {
-  max-width: 38rem;
+.cap-showcase__link:hover .cap-showcase__title {
+  color: var(--color-brand);
+}
+
+.cap-showcase__desc {
   margin: 0;
   color: var(--color-text-secondary);
-  line-height: 1.6;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  max-width: 40rem;
 }
 
-.capability-item:hover h3 {
+.cap-showcase__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  color: var(--color-text-secondary);
+  transition: color 0.2s ease, transform 0.25s ease;
+}
+
+.cap-showcase__arrow svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.cap-showcase__link:hover .cap-showcase__arrow {
   color: var(--color-brand);
-}
-
-.capability-item:hover > i {
   transform: translate(3px, -3px);
 }
 
+/* ── Technical Toolkit: typographic constellation ── */
 .skills-stack {
   background: var(--color-surface-card);
   border-bottom: 1px solid var(--color-border);
 }
 
-.skill-groups {
+.toolkit-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   margin-top: 3.5rem;
   border-top: 1px solid var(--color-border);
 }
 
-.skill-group {
-  min-height: 17rem;
-  padding: 1.5rem 1.25rem 1.5rem 0;
-  border-bottom: 1px solid var(--color-border);
+.toolkit-col {
+  padding: 2.25rem 1.5rem 2.25rem 0;
 }
 
-.skill-group + .skill-group {
-  padding-left: 1.25rem;
+.toolkit-col + .toolkit-col {
+  padding-left: 1.5rem;
   border-left: 1px solid var(--color-border);
 }
 
-.skill-group h3 {
+.toolkit-col__header {
+  margin-bottom: 1.75rem;
+}
+
+.toolkit-col__index {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--color-brand);
+  opacity: 0.6;
+  margin-bottom: 0.6rem;
+  text-transform: uppercase;
+}
+
+.toolkit-col__name {
+  margin: 0 0 0.4rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+}
+
+.toolkit-col__detail {
   margin: 0;
-  font-size: 1.1rem;
-  font-weight: 650;
-}
-
-.skill-group > p {
-  min-height: 2.75rem;
-  margin: 0.5rem 0 1.5rem;
+  font-size: 0.78rem;
   color: var(--color-text-secondary);
-  font-size: 0.82rem;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
-.skill-group ul {
+.toolkit-col__items {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
+  flex-direction: column;
+  gap: 0;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.skill-group li {
-  padding: 0.35rem 0.55rem;
-  border: 1px solid var(--color-border);
-  background: var(--color-surface-hover);
-  color: var(--color-brand);
-  border-radius: 0.35rem;
-  font-size: 0.72rem;
-  font-weight: 500;
+.toolkit-col__item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0;
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  font-weight: 550;
+  color: var(--color-text-primary);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  letter-spacing: -0.01em;
+  transition: color 0.15s ease;
 }
 
+.toolkit-col__item:first-child {
+  border-top: none;
+}
+
+.toolkit-col__item:hover {
+  color: var(--color-brand);
+}
+
+.toolkit-col__dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-brand);
+  opacity: 0.5;
+  flex-shrink: 0;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.toolkit-col__item:hover .toolkit-col__dot {
+  opacity: 1;
+  transform: scale(1.4);
+}
+
+/* ── Skills in practice ── */
 .skills-projects {
   border-bottom: 1px solid var(--color-border);
 }
@@ -1533,50 +1633,87 @@ h3 em {
   color: var(--color-brand);
 }
 
+/* ── Engineering Approach: manifesto strip ── */
 .skills-approach {
   background: var(--color-obsidian);
   border-bottom: 1px solid var(--color-border);
 }
 
-.practice-list {
+.manifesto-strip {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  margin: 3.5rem 0 0;
-  padding: 0;
-  list-style: none;
+  margin-top: 3.5rem;
   border-top: 1px solid var(--color-border);
 }
 
-.practice-list li {
-  min-height: 14rem;
-  padding: 1.5rem 1.25rem 1.25rem 0;
-  border-bottom: 1px solid var(--color-border);
+.manifesto-step {
+  position: relative;
+  padding: 2.5rem 1.75rem 2.5rem 0;
+  overflow: hidden;
 }
 
-.practice-list li + li {
-  padding-left: 1.25rem;
+.manifesto-step + .manifesto-step {
+  padding-left: 1.75rem;
   border-left: 1px solid var(--color-border);
 }
 
-.practice-list span {
+.manifesto-step__ghost {
+  position: absolute;
+  top: -0.5rem;
+  right: -0.25rem;
+  font-size: clamp(5rem, 9vw, 8rem);
+  font-weight: 900;
+  letter-spacing: -0.08em;
   color: var(--color-brand);
-  font-size: 0.75rem;
-  font-weight: 700;
+  opacity: 0.06;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  font-variant-numeric: tabular-nums;
 }
 
-.practice-list h3 {
-  margin: 3.5rem 0 0.5rem;
-  font-size: 1.1rem;
-  font-weight: 650;
+.manifesto-step__content {
+  position: relative;
+  z-index: 1;
 }
 
-.practice-list p {
+.manifesto-step__title {
+  margin: 0 0 0.85rem;
+  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+  font-weight: 750;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+  line-height: 1.15;
+}
+
+.manifesto-step__desc {
   margin: 0;
   color: var(--color-text-secondary);
-  font-size: 0.88rem;
-  line-height: 1.6;
+  font-size: 0.875rem;
+  line-height: 1.7;
 }
 
+.manifesto-step__bar {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-brand);
+  transition: width 0.35s ease;
+}
+
+.manifesto-step:hover .manifesto-step__bar {
+  width: calc(100% - 1.75rem);
+}
+
+.manifesto-step + .manifesto-step:hover .manifesto-step__bar {
+  left: 1.75rem;
+  width: calc(100% - 1.75rem);
+}
+
+/* ── Closing ── */
 .skills-closing {
   padding: clamp(6.5rem, 11vw, 10rem) 0;
   background: var(--color-surface-card);
@@ -2651,19 +2788,48 @@ h3 em {
     margin-top: 1rem;
   }
 
-  .skill-groups,
-  .practice-list {
+  /* Toolkit tablet: 2 columns */
+  .toolkit-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .skill-group:nth-child(odd),
-  .practice-list li:nth-child(odd) {
+  .toolkit-col:nth-child(odd) {
     padding-left: 0;
+    border-left: none;
   }
 
-  .skill-group:nth-child(even),
-  .practice-list li:nth-child(even) {
+  .toolkit-col:nth-child(even) {
     border-left: 1px solid var(--color-border);
+  }
+
+  .toolkit-col:nth-child(3),
+  .toolkit-col:nth-child(4) {
+    border-top: 1px solid var(--color-border);
+  }
+
+  /* Manifesto tablet: 2 columns */
+  .manifesto-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .manifesto-step:nth-child(odd) {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .manifesto-step:nth-child(even) {
+    border-left: 1px solid var(--color-border);
+  }
+
+  .manifesto-step:nth-child(3),
+  .manifesto-step:nth-child(4) {
+    border-top: 1px solid var(--color-border);
+  }
+
+  /* Capability showcase tablet */
+  .cap-showcase__link {
+    grid-template-columns: 2.5rem 2.4rem 1fr 2rem;
+    gap: 1rem;
   }
 
   .about-process-grid {
@@ -2720,6 +2886,63 @@ h3 em {
 
   .about-principle-card {
     padding: 1.6rem 1.35rem;
+  }
+
+  /* Skills mobile overrides */
+  .cap-showcase__link {
+    grid-template-columns: 2rem 2rem 1fr;
+    gap: 0.75rem;
+    padding: 1.25rem 0;
+  }
+
+  .cap-showcase__arrow {
+    display: none;
+  }
+
+  .cap-showcase__num {
+    font-size: 1.3rem;
+  }
+
+  .cap-showcase__icon {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .toolkit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .toolkit-col {
+    padding-left: 0 !important;
+    border-left: none !important;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.75rem;
+    padding-bottom: 1.75rem;
+  }
+
+  .toolkit-col:first-child {
+    border-top: none;
+  }
+
+  .manifesto-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .manifesto-step {
+    padding-left: 0 !important;
+    border-left: none !important;
+    border-top: 1px solid var(--color-border);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .manifesto-step:first-child {
+    border-top: none;
+  }
+
+  .manifesto-step__ghost {
+    font-size: 5rem;
+    opacity: 0.08;
   }
   .projects-shell,
   .skills-shell,

@@ -222,8 +222,8 @@ export default function AdminPage() {
                                     <table className="w-full text-left border-collapse">
                                         <thead>
                                             <tr className="bg-black/40 border-b border-[#262626] text-[#A3A3A3] text-xs uppercase tracking-widest">
-                                                <th className="px-6 py-5 font-semibold">Name</th>
-                                                <th className="px-6 py-5 font-semibold">Email</th>
+                                                <th className="px-6 py-5 font-semibold">Contact</th>
+                                                <th className="px-6 py-5 font-semibold">Project / Budget</th>
                                                 <th className="px-6 py-5 font-semibold min-w-75">Message</th>
                                                 <th className="px-6 py-5 font-semibold">Date</th>
                                                 <th className="px-6 py-5 font-semibold text-right">Actions</th>
@@ -232,9 +232,26 @@ export default function AdminPage() {
                                         <tbody className="divide-y divide-[#262626]">
                                             {messages.map((msg: any, index) => (
                                                 <tr key={index} className="hover:bg-white/2 transition-colors group">
-                                                    <td className="px-6 py-5 whitespace-nowrap font-medium text-gray-200">{msg.name}</td>
-                                                    <td className="px-6 py-5 whitespace-nowrap text-[#A3A3A3] text-sm">
-                                                        <Link href={`mailto:${msg.email}`} className="hover:text-[#BB4D00] transition-colors">{msg.email}</Link>
+                                                    <td className="px-6 py-5 whitespace-nowrap">
+                                                        <div className="font-medium text-gray-200">{msg.name}</div>
+                                                        <div className="text-xs text-[#A3A3A3] mt-0.5">
+                                                            <Link href={`mailto:${msg.email}`} className="hover:text-[#BB4D00] transition-colors">{msg.email}</Link>
+                                                        </div>
+                                                        {msg.phone && (
+                                                            <div className="text-xs text-[#737373] mt-0.5">
+                                                                <a href={`tel:${msg.phone}`} className="hover:text-[#BB4D00] transition-colors">{msg.phone}</a>
+                                                            </div>
+                                                        )}
+                                                    </td>
+                                                    <td className="px-6 py-5 whitespace-nowrap text-sm">
+                                                        <div className="text-gray-200 font-medium">
+                                                            {msg.projectType || <span className="text-[#737373] italic">Not specified</span>}
+                                                        </div>
+                                                        {msg.budget && (
+                                                            <div className="text-xs text-[#BB4D00] mt-1 inline-block bg-[#BB4D00]/10 px-2 py-0.5 rounded">
+                                                                {msg.budget}
+                                                            </div>
+                                                        )}
                                                     </td>
                                                     <td className="px-6 py-5 text-gray-300 text-sm leading-relaxed">
                                                         <p className="line-clamp-2">{msg.message}</p>

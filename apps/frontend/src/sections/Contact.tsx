@@ -59,20 +59,19 @@ export default function Contact() {
     }
 
     setLoading(true);
-    const context = [
-      form.phone && `Phone: ${form.phone}`,
-      form.projectType && `Project type: ${form.projectType}`,
-      form.budget && `Budget range: ${form.budget}`,
-    ].filter(Boolean);
-    const message = context.length > 0
-      ? `${form.message}\n\nProject details:\n${context.join("\n")}`
-      : form.message;
 
     try {
       const response = await fetch(`${API_URL}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: form.name, email: form.email, message }),
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          projectType: form.projectType,
+          budget: form.budget,
+          message: form.message,
+        }),
       });
       const data: { message?: string } = await response.json();
 
@@ -158,7 +157,7 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   minLength={3}
-                  maxLength={30}
+                  maxLength={50}
                   placeholder="Your name"
                 />
               </label>

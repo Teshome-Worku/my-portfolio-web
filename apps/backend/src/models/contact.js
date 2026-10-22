@@ -12,6 +12,24 @@ const contactSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    phone: {
+      type: String,
+      required: false,
+      trim: true,
+      default: "",
+    },
+    projectType: {
+      type: String,
+      required: false,
+      trim: true,
+      default: "",
+    },
+    budget: {
+      type: String,
+      required: false,
+      trim: true,
+      default: "",
+    },
     message: {
       type: String,
       required: true,

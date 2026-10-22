@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import BrandLogo from "@/components/BrandLogo";
 
 // Consistent 20x20 inline SVG icons with 1.8 stroke width
 const HomeIcon = () => (
@@ -61,7 +62,10 @@ export default function Navbar() {
       <header className="site-header">
         <div className="site-header__inner">
           <Link href="/" className="brand" aria-label="Kenan Worku home">
-            <span>Kenan</span><em>.Dev</em>
+            <BrandLogo size={28} className="brand__logo" />
+            <span className="brand__text">
+              <span>Kenan</span><em>.Dev</em>
+            </span>
           </Link>
           <nav className="desktop-nav" aria-label="Primary navigation">
             {navLinks.map((link) => {

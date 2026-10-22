@@ -67,6 +67,30 @@ main {
   width: max-content;
   display: inline-flex;
   align-items: center;
+  gap: 0.625rem;
+  transition: transform 200ms ease;
+}
+
+.brand:hover {
+  transform: translateY(-1px);
+}
+
+.brand__logo {
+  display: block;
+  flex-shrink: 0;
+  border-radius: 7px;
+  box-shadow: 0 0 14px rgba(187, 77, 0, 0.22);
+  transition: box-shadow 200ms ease, transform 200ms ease;
+}
+
+.brand:hover .brand__logo {
+  box-shadow: 0 0 20px rgba(255, 122, 0, 0.42);
+  transform: scale(1.04);
+}
+
+.brand__text {
+  display: inline-flex;
+  align-items: center;
 }
 
 .brand span {
@@ -77,6 +101,11 @@ main {
   color: var(--color-text-secondary);
   font-style: normal;
   font-weight: 400;
+  transition: color 200ms ease;
+}
+
+.brand:hover em {
+  color: var(--color-text-primary);
 }
 
 .desktop-nav {

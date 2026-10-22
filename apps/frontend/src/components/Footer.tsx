@@ -1,4 +1,5 @@
 import Link from "next/link";
+import BrandLogo from "@/components/BrandLogo";
 
 const email = "kenanworku981@gmail.com";
 
@@ -31,7 +32,8 @@ export default function Footer() {
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 flex flex-col items-center text-center">
         {/* Brand Logo */}
-        <Link href="/" className="group flex items-center gap-1 select-none mb-3" aria-label="Kenan Worku home">
+        <Link href="/" className="group flex items-center gap-2 select-none mb-3" aria-label="Kenan Worku home">
+          <BrandLogo size={28} className="brand__logo" />
           <span className="text-xl font-bold tracking-tight">
             <span className="text-[#BB4D00]">Kenan</span>
             <span className="text-[#A3A3A3] font-light group-hover:text-white transition-colors duration-200">.Dev</span>

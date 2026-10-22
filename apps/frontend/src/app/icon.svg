@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Kenan.Dev">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
   <defs>
     <linearGradient id="iconBg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#181818"/>
@@ -8,10 +8,11 @@
       <stop offset="0%" stop-color="#FF7A00"/>
       <stop offset="100%" stop-color="#BB4D00"/>
     </linearGradient>
-    <filter id="iconGlow" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="4.5" result="blur"/>
-      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-    </filter>
+    <radialGradient id="dotHalo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF7A00" stop-opacity="1"/>
+      <stop offset="60%" stop-color="#FF7A00" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#FF7A00" stop-opacity="0"/>
+    </radialGradient>
   </defs>
 
   <!-- Obsidian Tile Base -->
@@ -30,6 +31,9 @@
   <!-- Right .Dev Chevron Closure (Crisp White Accent) -->
   <path d="M84 46 L98 64 L84 82" fill="none" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
 
-  <!-- The .Dev Pulse Dot -->
-  <circle cx="104" cy="64" r="5.5" fill="#FF7A00" filter="url(#iconGlow)"/>
+  <!-- Glowing Aura for Dot -->
+  <circle cx="104" cy="64" r="10" fill="url(#dotHalo)"/>
+
+  <!-- The .Dev Pulse Dot Core -->
+  <circle cx="104" cy="64" r="5.5" fill="#FF7A00"/>
 </svg>

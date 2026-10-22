@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 
 interface Capability {
@@ -64,118 +64,98 @@ const capabilities: Capability[] = [
 
 export default function CapabilitiesSection() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-
-    itemRefs.current.forEach((el, idx) => {
-      if (!el) return;
-
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setActiveIndex(idx);
-          }
-        },
-        {
-          root: null,
-          /* Activate when the item is within the central 30% of the viewport */
-          rootMargin: '-35% 0px -35% 0px',
-          threshold: 0,
-        }
-      );
-
-      observer.observe(el);
-      observers.push(observer);
-    });
-
-    return () => observers.forEach((obs) => obs.disconnect());
-  }, []);
+  const handleWheel = (e: React.WheelEvent) => {
+    // If scrolling down and not at the last line: advance line & hold scroll inside section
+    if (e.deltaY > 25 && activeIndex < capabilities.length - 1) {
+      e.preventDefault();
+      setActiveIndex((prev) => prev + 1);
+    } 
+    // If scrolling up and not at the first line: previous line & hold scroll inside section
+    else if (e.deltaY < -25 && activeIndex > 0) {
+      e.preventDefault();
+      setActiveIndex((prev) => prev - 1);
+    }
+    // If at index 0 and scrolling up, or index 5 and scrolling down: allow default natural page scroll!
+  };
 
   return (
-    <div className="cap-split">
-      {/* ── Left: scrollable capability list ── */}
-      <div className="cap-split__left">
-        {capabilities.map((cap, idx) => (
-          <div
-            key={cap.number}
-            ref={(el) => {
-              itemRefs.current[idx] = el;
-            }}
-            className={`cap-item${activeIndex === idx ? ' cap-item--active' : ''}`}
-          >
-            {/* Mobile-only image (hidden on desktop) */}
-            <div className="cap-item__img-mobile" aria-hidden="true">
-              <Image
-                src={cap.image}
-                alt={cap.alt}
-                fill
-                sizes="100vw"
-                style={{ objectFit: 'cover' }}
-              />
-            </div>
-
-            <div className="cap-item__body">
-              <span className="cap-item__num" aria-hidden="true">
-                {cap.number}
-              </span>
-              <div className="cap-item__text">
-                <h3 className="cap-item__title">{cap.title}</h3>
-                <p className="cap-item__desc">{cap.description}</p>
-              </div>
-              <span className="cap-item__indicator" aria-hidden="true" />
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* ── Right: sticky image panel (desktop only) ── */}
-      <div className="cap-split__right" aria-hidden="true">
-        <div className="cap-split__img-wrap">
+    <div className="cap-pinned" onWheel={handleWheel}>
+      <div className="cap-split">
+        {/* ── Left: capability list (all items visible in viewport, active item highlighted) ── */}
+        <div className="cap-split__left">
           {capabilities.map((cap, idx) => (
             <div
               key={cap.number}
-              className={`cap-split__img${activeIndex === idx ? ' cap-split__img--visible' : ''}`}
+              onClick={() => setActiveIndex(idx)}
+              className={`cap-item${activeIndex === idx ? ' cap-item--active' : ''}`}
             >
-              <Image
-                src={cap.image}
-                alt={cap.alt}
-                fill
-                sizes="50vw"
-                style={{ objectFit: 'cover' }}
-                priority={idx === 0}
-              />
-              {/* Subtle dark overlay so white text is always legible */}
-              <span className="cap-split__overlay" />
+              {/* Mobile-only image (shown on mobile layout) */}
+              <div className="cap-item__img-mobile" aria-hidden="true">
+                <Image
+                  src={cap.image}
+                  alt={cap.alt}
+                  fill
+                  sizes="100vw"
+                  style={{ objectFit: 'cover' }}
+                />
+              </div>
+
+              <div className="cap-item__body">
+                <span className="cap-item__num" aria-hidden="true">
+                  {cap.number}
+                </span>
+                <div className="cap-item__text">
+                  <h3 className="cap-item__title">{cap.title}</h3>
+                  <p className="cap-item__desc">{cap.description}</p>
+                </div>
+                <span className="cap-item__indicator" aria-hidden="true" />
+              </div>
             </div>
           ))}
+        </div>
 
-          {/* Floating label that shows the active capability title */}
-          <div className="cap-split__label">
-            <span className="cap-split__label-num">
-              {capabilities[activeIndex].number}
-            </span>
-            <span className="cap-split__label-title">
-              {capabilities[activeIndex].title}
-            </span>
-          </div>
-
-          {/* Progress dots */}
-          <div className="cap-split__dots">
-            {capabilities.map((_, idx) => (
-              <button
-                key={idx}
-                className={`cap-split__dot${activeIndex === idx ? ' cap-split__dot--active' : ''}`}
-                aria-label={`View ${capabilities[idx].title}`}
-                onClick={() => {
-                  itemRefs.current[idx]?.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center',
-                  });
-                }}
-              />
+        {/* ── Right: image panel matching the active line ── */}
+        <div className="cap-split__right" aria-hidden="true">
+          <div className="cap-split__img-wrap">
+            {capabilities.map((cap, idx) => (
+              <div
+                key={cap.number}
+                className={`cap-split__img${activeIndex === idx ? ' cap-split__img--visible' : ''}`}
+              >
+                <Image
+                  src={cap.image}
+                  alt={cap.alt}
+                  fill
+                  sizes="50vw"
+                  style={{ objectFit: 'cover' }}
+                  priority={idx <= 1}
+                />
+                <span className="cap-split__overlay" />
+              </div>
             ))}
+
+            {/* Floating label that shows the active capability title */}
+            <div className="cap-split__label">
+              <span className="cap-split__label-num">
+                {capabilities[activeIndex].number}
+              </span>
+              <span className="cap-split__label-title">
+                {capabilities[activeIndex].title}
+              </span>
+            </div>
+
+            {/* Progress dots on the right */}
+            <div className="cap-split__dots">
+              {capabilities.map((_, idx) => (
+                <button
+                  key={idx}
+                  className={`cap-split__dot${activeIndex === idx ? ' cap-split__dot--active' : ''}`}
+                  aria-label={`View ${capabilities[idx].title}`}
+                  onClick={() => setActiveIndex(idx)}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>

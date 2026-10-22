@@ -293,7 +293,7 @@ export default function Contact() {
               </div>
             </fieldset>
 
-            {/* Actions: Send button + Cancel button (appears when submitting) */}
+            {/* Actions: Send button + Cancel button */}
             <div className="contact-form__actions">
               <button
                 type="submit"
@@ -301,15 +301,15 @@ export default function Contact() {
                 className={`contact-submit-btn${loading ? " is-submitting" : ""}`}
               >
                 {loading ? (
-                  <>
+                  <span className="contact-submit-btn__inner">
                     <span className="contact-btn-spinner" aria-hidden="true" />
-                    <span>Submitting project inquiry...</span>
-                  </>
+                    <span>Submitting inquiry...</span>
+                  </span>
                 ) : (
-                  <>
+                  <span className="contact-submit-btn__inner">
                     <span>Send project inquiry</span>
                     <span aria-hidden="true">→</span>
-                  </>
+                  </span>
                 )}
               </button>
 
@@ -318,9 +318,13 @@ export default function Contact() {
                   type="button"
                   onClick={handleCancel}
                   className="contact-cancel-btn"
-                  title="Cancel submission"
+                  aria-label="Cancel submission"
                 >
-                  Cancel
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                  </svg>
+                  <span>Cancel</span>
                 </button>
               )}
             </div>

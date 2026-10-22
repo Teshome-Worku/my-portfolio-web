@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useRef, useEffect } from "react";
 import Link from "next/link";
 
 const email = "kenanworku981@gmail.com";
@@ -36,34 +36,74 @@ const nextSteps = [
   ["03", "Plan", "We discuss a practical next step for the project."],
 ];
 
+type Toast = {
+  type: "success" | "error";
+  title: string;
+  message: string;
+};
+
 export default function Contact() {
   const [form, setForm] = useState(initialForm);
   const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState("");
-  const [error, setError] = useState("");
+  const [toast, setToast] = useState<Toast | null>(null);
+
+  const abortControllerRef = useRef<AbortController | null>(null);
+  const toastTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Clear toast timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (toastTimeoutRef.current) clearTimeout(toastTimeoutRef.current);
+      if (abortControllerRef.current) abortControllerRef.current.abort();
+    };
+  }, []);
+
+  const triggerToast = (type: "success" | "error", title: string, message: string) => {
+    if (toastTimeoutRef.current) clearTimeout(toastTimeoutRef.current);
+    setToast({ type, title, message });
+
+    // Toast auto-dismisses after 5.5s
+    toastTimeoutRef.current = setTimeout(() => {
+      setToast(null);
+    }, 5500);
+  };
+
+  const closeToast = () => {
+    if (toastTimeoutRef.current) clearTimeout(toastTimeoutRef.current);
+    setToast(null);
+  };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    if (loading) return;
     const { name, value } = event.target;
     setForm((current) => ({ ...current, [name]: value }));
-    if (error) setError("");
+  };
+
+  const handleCancel = () => {
+    if (loading && abortControllerRef.current) {
+      abortControllerRef.current.abort();
+      setLoading(false);
+      triggerToast("error", "Submission Cancelled", "The request was stopped before completing.");
+    }
   };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setStatus("");
-    setError("");
+    if (loading) return;
 
     if (!API_URL) {
-      setError("The contact service is not configured right now. Please use the email address below.");
+      triggerToast("error", "Service Unavailable", "Contact service is not configured. Please email me directly.");
       return;
     }
 
     setLoading(true);
+    abortControllerRef.current = new AbortController();
 
     try {
       const response = await fetch(`${API_URL}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        signal: abortControllerRef.current.signal,
         body: JSON.stringify({
           name: form.name,
           email: form.email,
@@ -76,14 +116,17 @@ export default function Contact() {
       const data: { message?: string } = await response.json();
 
       if (!response.ok) {
-        setError(data.message || "Your message could not be sent. Please try again.");
+        triggerToast("error", "Failed to Send", data.message || "Your message could not be sent. Please check and try again.");
         return;
       }
 
-      setStatus("Thanks — your message has been received. I’ll review it and get back to you.");
+      triggerToast("success", "Message Sent Successfully!", "Thanks — your message has been received. I’ll review it and get back to you promptly.");
       setForm(initialForm);
-    } catch {
-      setError("We couldn’t reach the contact service. Please try again or email me directly.");
+    } catch (err: unknown) {
+      if (err instanceof Error && err.name === "AbortError") {
+        return;
+      }
+      triggerToast("error", "Connection Error", "We couldn’t reach the server. Please check your connection or email me directly.");
     } finally {
       setLoading(false);
     }
@@ -91,6 +134,37 @@ export default function Contact() {
 
   return (
     <div className="contact-page">
+      {/* ── Top-Right Floating Animated Toast Notification ── */}
+      {toast && (
+        <aside
+          role={toast.type === "error" ? "alert" : "status"}
+          aria-live="polite"
+          className={`contact-toast contact-toast--${toast.type}`}
+        >
+          <div className="contact-toast__icon">
+            {toast.type === "success" ? (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            ) : (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+            )}
+          </div>
+          <div className="contact-toast__body">
+            <h4 className="contact-toast__title">{toast.title}</h4>
+            <p className="contact-toast__msg">{toast.message}</p>
+          </div>
+          <button
+            type="button"
+            onClick={closeToast}
+            className="contact-toast__close"
+            aria-label="Dismiss notification"
+          >
+            ✕
+          </button>
+          {/* Animated 5s countdown timer bar */}
+          <div className="contact-toast__progress" />
+        </aside>
+      )}
+
       <header className="contact-intro">
         <div className="contact-shell">
           <p className="eyebrow">Start a conversation</p>
@@ -146,80 +220,111 @@ export default function Contact() {
               <h2>What are you working on?</h2>
               <p>Even an early idea is a good place to start. The more context you share, the more useful our first conversation can be.</p>
             </div>
-            {status && <p className="contact-status contact-status--success" role="status">{status}</p>}
-            {error && <p className="contact-status contact-status--error" role="alert">{error}</p>}
-            <div className="contact-fields">
-              <label>
-                Name
-                <input
-                  name="name"
-                  value={form.name}
-                  onChange={handleChange}
-                  required
-                  minLength={3}
-                  maxLength={50}
-                  placeholder="Your name"
-                />
-              </label>
-              <label>
-                Email
-                <input
-                  name="email"
-                  type="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  required
-                  placeholder="you@example.com"
-                />
-              </label>
-              <label>
-                Phone <span>(optional)</span>
-                <input
-                  name="phone"
-                  type="tel"
-                  value={form.phone}
-                  onChange={handleChange}
-                  placeholder="+251 ..."
-                />
-              </label>
-              <label>
-                Project type <span>(optional)</span>
-                <select name="projectType" value={form.projectType} onChange={handleChange}>
-                  <option value="">Choose one</option>
-                  <option>Business Website</option>
-                  <option>Full-Stack Application</option>
-                  <option>E-commerce</option>
-                  <option>API Integration</option>
-                  <option>Other</option>
-                </select>
-              </label>
-              <label>
-                Budget range <span>(optional)</span>
-                <select name="budget" value={form.budget} onChange={handleChange}>
-                  <option value="">Prefer not to say</option>
-                  <option>Under $500</option>
-                  <option>$500 - $1,000</option>
-                  <option>$1,000 - $2,500</option>
-                  <option>$2,500+</option>
-                </select>
-              </label>
-              <label className="contact-field--full">
-                Message
-                <textarea
-                  name="message"
-                  value={form.message}
-                  onChange={handleChange}
-                  required
-                  minLength={5}
-                  rows={6}
-                  placeholder="Tell me about your goals, users, timeline, or the problem you want to solve."
-                />
-              </label>
+
+            {/* Fieldset disables all child inputs/selects during submission */}
+            <fieldset disabled={loading} className="contact-fieldset">
+              <div className="contact-fields">
+                <label>
+                  Name
+                  <input
+                    name="name"
+                    value={form.name}
+                    onChange={handleChange}
+                    required
+                    minLength={3}
+                    maxLength={50}
+                    placeholder="Your name"
+                  />
+                </label>
+                <label>
+                  Email
+                  <input
+                    name="email"
+                    type="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    required
+                    placeholder="you@example.com"
+                  />
+                </label>
+                <label>
+                  Phone <span>(optional)</span>
+                  <input
+                    name="phone"
+                    type="tel"
+                    value={form.phone}
+                    onChange={handleChange}
+                    placeholder="+251 ..."
+                  />
+                </label>
+                <label>
+                  Project type <span>(optional)</span>
+                  <select name="projectType" value={form.projectType} onChange={handleChange}>
+                    <option value="">Choose one</option>
+                    <option>Business Website</option>
+                    <option>Full-Stack Application</option>
+                    <option>E-commerce</option>
+                    <option>API Integration</option>
+                    <option>Other</option>
+                  </select>
+                </label>
+                <label>
+                  Budget range <span>(optional)</span>
+                  <select name="budget" value={form.budget} onChange={handleChange}>
+                    <option value="">Prefer not to say</option>
+                    <option>Under $500</option>
+                    <option>$500 - $1,000</option>
+                    <option>$1,000 - $2,500</option>
+                    <option>$2,500+</option>
+                  </select>
+                </label>
+                <label className="contact-field--full">
+                  Message
+                  <textarea
+                    name="message"
+                    value={form.message}
+                    onChange={handleChange}
+                    required
+                    minLength={5}
+                    rows={6}
+                    placeholder="Tell me about your goals, users, timeline, or the problem you want to solve."
+                  />
+                </label>
+              </div>
+            </fieldset>
+
+            {/* Actions: Send button + Cancel button (appears when submitting) */}
+            <div className="contact-form__actions">
+              <button
+                type="submit"
+                disabled={loading}
+                className={`contact-submit-btn${loading ? " is-submitting" : ""}`}
+              >
+                {loading ? (
+                  <>
+                    <span className="contact-btn-spinner" aria-hidden="true" />
+                    <span>Submitting project inquiry...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Send project inquiry</span>
+                    <span aria-hidden="true">→</span>
+                  </>
+                )}
+              </button>
+
+              {loading && (
+                <button
+                  type="button"
+                  onClick={handleCancel}
+                  className="contact-cancel-btn"
+                  title="Cancel submission"
+                >
+                  Cancel
+                </button>
+              )}
             </div>
-            <button type="submit" disabled={loading}>
-              {loading ? "Sending..." : "Send project inquiry"}
-              <span aria-hidden="true">{loading ? "..." : "→"}</span>
-            </button>
+
             <p className="contact-form__note">
               Your message is sent securely to the portfolio contact service. I&apos;ll review it before getting back to you.
             </p>

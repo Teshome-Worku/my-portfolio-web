@@ -1,28 +1,5 @@
 import Link from "next/link";
-
-const capabilities = [
-  ["01", "Business websites", "Clear, responsive websites that help a business present its services and guide visitors toward action.", "/projects/appointment-booking-system"],
-  ["02", "Responsive interfaces", "Thoughtful frontend experiences that stay readable, usable, and focused across screen sizes.", "/projects"],
-  ["03", "Full-stack applications", "Connected web applications that bring interface, server logic, and stored data into one useful workflow.", "/projects/astu-complaint-tracker"],
-  ["04", "REST API development", "Backend routes and integrations that allow interfaces and services to exchange the data they need.", "/projects/astu-complaint-tracker"],
-  ["05", "Database-backed systems", "Practical data workflows using persistent or browser-based storage suited to the project.", "/projects/inventory-management-system"],
-  ["06", "Integrations and automation", "Useful connections such as Telegram order notifications that reduce manual follow-up.", "/projects/lemi-fashion"],
-];
-
-const capIcons = [
-  /* 01 – monitor */
-  <svg key="01" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>,
-  /* 02 – mobile/responsive */
-  <svg key="02" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 22v-4h6v4M9 6h6M9 10h6M9 14h4"/></svg>,
-  /* 03 – layers/stack */
-  <svg key="03" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3L2 9l10 6 10-6-10-6z"/><path d="M2 15l10 6 10-6"/><path d="M2 12l10 6 10-6"/></svg>,
-  /* 04 – API/arrows */
-  <svg key="04" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M14 6l6 6-6 6"/></svg>,
-  /* 05 – database */
-  <svg key="05" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.66 3.58 3 8 3s8-1.34 8-3V6"/><path d="M4 12v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/></svg>,
-  /* 06 – link/integration */
-  <svg key="06" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>,
-];
+import CapabilitiesSection from "./CapabilitiesSection";
 
 const skillGroups = [
   {
@@ -65,31 +42,15 @@ export default function Skills() {
         </div>
       </header>
 
-      {/* ── Section 1: What I can build – Editorial showcase list ── */}
+      {/* ── Section 1: What I can build – Sticky scroll split ── */}
       <section className="skills-section skills-capabilities">
         <div className="skills-shell">
           <div className="skills-heading">
             <p className="eyebrow">What I can build</p>
             <h2>Technology matters most when it makes the work <em>easier.</em></h2>
           </div>
-          <ul className="cap-showcase">
-            {capabilities.map(([number, title, description, href], idx) => (
-              <li key={number} className="cap-showcase__item">
-                <Link href={href} className="cap-showcase__link">
-                  <span className="cap-showcase__num" aria-hidden="true">{number}</span>
-                  <span className="cap-showcase__icon">{capIcons[idx]}</span>
-                  <div className="cap-showcase__body">
-                    <h3 className="cap-showcase__title">{title}</h3>
-                    <p className="cap-showcase__desc">{description}</p>
-                  </div>
-                  <span className="cap-showcase__arrow" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
         </div>
+        <CapabilitiesSection />
       </section>
 
       {/* ── Section 2: Technical Toolkit – Typographic constellation ── */}

@@ -1379,112 +1379,212 @@ h3 em {
   font-size: clamp(2rem, 3.8vw, 3.5rem);
 }
 
-/* ── What I can build: editorial showcase ── */
+/* ── What I can build: sticky scroll split ── */
 .skills-capabilities {
   border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0 !important;
 }
 
-.cap-showcase {
-  margin: 3.5rem 0 0;
-  padding: 0;
-  list-style: none;
+/* The split grid sits outside .skills-shell so it can be full-width */
+.cap-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  margin-top: 3rem;
 }
 
-.cap-showcase__item {
+/* ── LEFT: scrollable list ── */
+.cap-split__left {
   border-top: 1px solid var(--color-border);
 }
 
-.cap-showcase__item:last-child {
+.cap-item {
+  position: relative;
   border-bottom: 1px solid var(--color-border);
+  cursor: default;
+  transition: background 0.3s ease;
 }
 
-.cap-showcase__link {
+.cap-item--active {
+  background: rgba(187, 77, 0, 0.04);
+}
+
+/* Mobile image strip (hidden on desktop) */
+.cap-item__img-mobile {
+  display: none;
+}
+
+.cap-item__body {
   display: grid;
-  grid-template-columns: 3.5rem 3rem 1fr 2.5rem;
+  grid-template-columns: 4.5rem 1fr auto;
   align-items: center;
   gap: 1.5rem;
-  padding: 1.6rem 0;
-  color: var(--color-text-primary);
-  text-decoration: none;
-  transition: background 0.2s ease;
+  padding: 2.25rem 2.5rem 2.25rem 3rem;
+  min-height: clamp(10rem, 18vh, 14rem);
 }
 
-.cap-showcase__num {
-  font-size: clamp(1.6rem, 2.8vw, 2.4rem);
-  font-weight: 750;
-  letter-spacing: -0.04em;
-  color: var(--color-brand);
-  opacity: 0.35;
-  font-variant-numeric: tabular-nums;
+.cap-item__num {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.06em;
   line-height: 1;
-  transition: opacity 0.2s ease, font-size 0.2s ease;
+  color: var(--color-brand);
+  opacity: 0.18;
+  font-variant-numeric: tabular-nums;
+  transition: opacity 0.4s ease, font-size 0.4s ease;
 }
 
-.cap-showcase__link:hover .cap-showcase__num {
+.cap-item--active .cap-item__num {
   opacity: 1;
 }
 
-.cap-showcase__icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.4rem;
-  height: 2.4rem;
-  border-radius: 50%;
-  background: rgba(187, 77, 0, 0.1);
-  color: var(--color-brand);
-  flex-shrink: 0;
-  transition: background 0.2s ease, transform 0.2s ease;
+.cap-item__title {
+  margin: 0 0 0.55rem;
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--color-text-secondary);
+  transition: color 0.35s ease;
+  line-height: 1.2;
 }
 
-.cap-showcase__icon svg {
-  width: 1.1rem;
-  height: 1.1rem;
+.cap-item--active .cap-item__title {
+  color: var(--color-text-primary);
 }
 
-.cap-showcase__link:hover .cap-showcase__icon {
-  background: rgba(187, 77, 0, 0.22);
-  transform: scale(1.1);
-}
-
-.cap-showcase__title {
-  margin: 0 0 0.3rem;
-  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
-  font-weight: 650;
-  letter-spacing: -0.02em;
-  transition: color 0.2s ease;
-}
-
-.cap-showcase__link:hover .cap-showcase__title {
-  color: var(--color-brand);
-}
-
-.cap-showcase__desc {
+.cap-item__desc {
   margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.7;
   color: var(--color-text-secondary);
-  font-size: 0.88rem;
-  line-height: 1.65;
-  max-width: 40rem;
+  opacity: 0.6;
+  max-width: 28rem;
+  transition: opacity 0.35s ease;
 }
 
-.cap-showcase__arrow {
+.cap-item--active .cap-item__desc {
+  opacity: 1;
+}
+
+/* Active left indicator bar */
+.cap-item__indicator {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--color-brand);
+  transform: scaleY(0);
+  transform-origin: top center;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 0 2px 2px 0;
+}
+
+.cap-item--active .cap-item__indicator {
+  transform: scaleY(1);
+}
+
+/* ── RIGHT: sticky image panel ── */
+.cap-split__right {
+  position: sticky;
+  top: 5rem; /* below navbar */
+  height: calc(100vh - 6rem);
+  border-left: 1px solid var(--color-border);
+  border-top: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.cap-split__img-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--color-surface-card);
+}
+
+/* Individual images stacked, cross-fade */
+.cap-split__img {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(1.03);
+}
+
+.cap-split__img--visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.cap-split__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0.15) 0%,
+    rgba(10, 10, 10, 0.1) 60%,
+    rgba(10, 10, 10, 0.55) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Floating label at the bottom of the image */
+.cap-split__label {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  z-index: 2;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  color: var(--color-text-secondary);
-  transition: color 0.2s ease, transform 0.25s ease;
+  align-items: baseline;
+  gap: 0.75rem;
 }
 
-.cap-showcase__arrow svg {
-  width: 1.1rem;
-  height: 1.1rem;
-}
-
-.cap-showcase__link:hover .cap-showcase__arrow {
+.cap-split__label-num {
+  font-size: 0.75rem;
+  font-weight: 700;
   color: var(--color-brand);
-  transform: translate(3px, -3px);
+  letter-spacing: 0.1em;
+}
+
+.cap-split__label-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: -0.01em;
+}
+
+/* Progress dots (right edge) */
+.cap-split__dots {
+  position: absolute;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.cap-split__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.cap-split__dot--active {
+  background: var(--color-brand);
+  transform: scale(1.4);
+}
+
+.cap-split__dot:hover {
+  background: rgba(255, 255, 255, 0.7);
 }
 
 /* ── Technical Toolkit: typographic constellation ── */
@@ -2826,10 +2926,27 @@ h3 em {
     border-top: 1px solid var(--color-border);
   }
 
-  /* Capability showcase tablet */
-  .cap-showcase__link {
-    grid-template-columns: 2.5rem 2.4rem 1fr 2rem;
-    gap: 1rem;
+  /* Capability split tablet: collapse to single column */
+  .cap-split {
+    grid-template-columns: 1fr;
+  }
+
+  .cap-split__right {
+    display: none; /* sticky panel hidden; mobile images take over */
+  }
+
+  /* On tablet, show inline images */
+  .cap-item__img-mobile {
+    display: block;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+
+  .cap-item__body {
+    padding: 1.75rem 2rem;
+    min-height: unset;
   }
 
   .about-process-grid {
@@ -2889,23 +3006,34 @@ h3 em {
   }
 
   /* Skills mobile overrides */
-  .cap-showcase__link {
-    grid-template-columns: 2rem 2rem 1fr;
-    gap: 0.75rem;
-    padding: 1.25rem 0;
+
+  /* Collapse cap-split: show inline images instead */
+  .cap-item__img-mobile {
+    display: block;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
   }
 
-  .cap-showcase__arrow {
-    display: none;
+  .cap-item__body {
+    grid-template-columns: 2.75rem 1fr;
+    gap: 1rem;
+    padding: 1.5rem 1.25rem;
+    min-height: unset;
   }
 
-  .cap-showcase__num {
-    font-size: 1.3rem;
+  .cap-item__num {
+    font-size: 1.5rem;
+    opacity: 0.3;
   }
 
-  .cap-showcase__icon {
-    width: 2rem;
-    height: 2rem;
+  .cap-item--active .cap-item__num {
+    opacity: 1;
+  }
+
+  .cap-item__indicator {
+    display: none; /* left bar is confusing on mobile */
   }
 
   .toolkit-grid {

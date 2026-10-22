@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const connectDB = require("./src/config/db");
 const contactRoutes = require("./src/routes/contactRoutes");
-const authRoutes=require("./src/routes/authRoutes")
+const authRoutes = require("./src/routes/authRoutes");
 
 const app = express();
 
@@ -21,7 +21,7 @@ const corsOptions = {
 
     return callback(new Error(`CORS origin not allowed: ${origin}`));
   },
-  methods: ["GET", "POST", "DELETE", "OPTIONS"],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 
@@ -30,7 +30,7 @@ connectDB();
 
 // Middleware
 app.use(cors(corsOptions));
-app.use(express.json());
+app.use(express.json({ limit: "10mb" })); // Supports avatar base64 uploads
 app.use("/api/contact", contactRoutes);
 app.use("/api/auth", authRoutes);
 
@@ -38,7 +38,6 @@ app.use("/api/auth", authRoutes);
 app.get("/", (req, res) => {
   res.send("Backend is running 🚀");
 });
-
 
 // Port
 const PORT = process.env.PORT || 5000;

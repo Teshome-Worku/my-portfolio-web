@@ -3,7 +3,7 @@
 import { FormEvent, useState } from "react";
 import Link from "next/link";
 
-const email = "teshomeworku96@gmail.com";
+const email = "kenanworku981@gmail.com";
 const phone = "+251 955 80 0626";
 const API_URL = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
 
@@ -122,7 +122,7 @@ export default function Contact() {
                 <Link href="https://github.com/Teshome-Worku" target="_blank" rel="noreferrer">
                   GitHub ↗
                 </Link>
-                <Link href="https://www.linkedin.com/in/teshome-worku-017834392" target="_blank" rel="noreferrer">
+                <Link href="https://www.linkedin.com/in/kenan-worku-017834392" target="_blank" rel="noreferrer">
                   LinkedIn ↗
                 </Link>
               </div>

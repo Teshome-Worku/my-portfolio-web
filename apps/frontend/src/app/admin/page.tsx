@@ -46,11 +46,18 @@ const ExternalLinkIcon = () => (
 const CameraIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
 );
+const MenuIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+);
+const CloseIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+);
 
 export default function AdminPage() {
   const [messages, setMessages] = useState<any[]>([]);
   const [token, setToken] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState("overview"); // overview, messages, projects, analytics, settings, profile
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [adminUser, setAdminUser] = useState<{ name: string; email: string; avatar: string }>({
     name: "Kenan Worku",
     email: "kenanworku981@gmail.com",
@@ -287,12 +294,24 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="flex h-screen w-screen overflow-hidden bg-[#0A0A0A] text-white font-sans antialiased">
-      {/* ── 1. FIXED SIDEBAR ── */}
-      <aside className="w-68 flex-shrink-0 bg-[#121212] border-r border-[#262626] flex flex-col justify-between h-full z-30 select-none">
+    <div className="flex h-screen w-screen overflow-hidden bg-[#0A0A0A] text-white font-sans antialiased relative">
+      {/* ── MOBILE OVERLAY BACKDROP ── */}
+      {mobileMenuOpen && (
+        <div
+          onClick={() => setMobileMenuOpen(false)}
+          className="fixed inset-0 bg-black/70 backdrop-blur-sm z-40 lg:hidden"
+        />
+      )}
+
+      {/* ── 1. SIDEBAR (RESPONSIVE: DRAWER ON MOBILE, FIXED ON DESKTOP) ── */}
+      <aside
+        className={`fixed inset-y-0 left-0 z-50 w-72 bg-[#121212] border-r border-[#262626] flex flex-col justify-between h-full select-none transition-transform duration-300 ease-in-out lg:static lg:translate-x-0 ${
+          mobileMenuOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full"
+        }`}
+      >
         {/* Brand / Logo */}
         <div>
-          <div className="p-6 border-b border-[#262626] flex items-center justify-between">
+          <div className="p-5 border-b border-[#262626] flex items-center justify-between">
             <Link href="/" target="_blank" className="flex items-center gap-2 group">
               <span className="w-8 h-8 rounded-lg bg-[#BB4D00] flex items-center justify-center text-white font-black text-sm tracking-tighter shadow-[0_0_15px_rgba(187,77,0,0.4)]">
                 KD
@@ -302,16 +321,28 @@ export default function AdminPage() {
                 <span className="block text-[10px] text-[#737373] tracking-widest uppercase font-semibold">Admin Workspace</span>
               </div>
             </Link>
+
+            {/* Mobile Close Button */}
+            <button
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-1.5 rounded-lg text-[#A3A3A3] hover:text-white hover:bg-[#1A1A1A] lg:hidden"
+              aria-label="Close sidebar"
+            >
+              <CloseIcon />
+            </button>
           </div>
 
           {/* Navigation Links */}
-          <nav className="p-4 space-y-1.5 overflow-y-auto">
+          <nav className="p-4 space-y-1.5 overflow-y-auto max-h-[calc(100vh-190px)]">
             <div className="px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-[#737373]">
               Workspace
             </div>
 
             <button
-              onClick={() => setActiveTab("overview")}
+              onClick={() => {
+                setActiveTab("overview");
+                setMobileMenuOpen(false);
+              }}
               className={`w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${
                 activeTab === "overview"
                   ? "bg-[#BB4D00] text-white shadow-[0_4px_16px_rgba(187,77,0,0.3)] font-semibold"
@@ -326,6 +357,7 @@ export default function AdminPage() {
               onClick={() => {
                 setActiveTab("messages");
                 setCurrentPage(1);
+                setMobileMenuOpen(false);
               }}
               className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${
                 activeTab === "messages"
@@ -347,7 +379,10 @@ export default function AdminPage() {
             </button>
 
             <button
-              onClick={() => setActiveTab("projects")}
+              onClick={() => {
+                setActiveTab("projects");
+                setMobileMenuOpen(false);
+              }}
               className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${
                 activeTab === "projects"
                   ? "bg-[#BB4D00] text-white shadow-[0_4px_16px_rgba(187,77,0,0.3)] font-semibold"
@@ -364,7 +399,10 @@ export default function AdminPage() {
             </button>
 
             <button
-              onClick={() => setActiveTab("analytics")}
+              onClick={() => {
+                setActiveTab("analytics");
+                setMobileMenuOpen(false);
+              }}
               className={`w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${
                 activeTab === "analytics"
                   ? "bg-[#BB4D00] text-white shadow-[0_4px_16px_rgba(187,77,0,0.3)] font-semibold"
@@ -380,7 +418,10 @@ export default function AdminPage() {
             </div>
 
             <button
-              onClick={() => setActiveTab("profile")}
+              onClick={() => {
+                setActiveTab("profile");
+                setMobileMenuOpen(false);
+              }}
               className={`w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${
                 activeTab === "profile"
                   ? "bg-[#BB4D00] text-white shadow-[0_4px_16px_rgba(187,77,0,0.3)] font-semibold"
@@ -392,7 +433,10 @@ export default function AdminPage() {
             </button>
 
             <button
-              onClick={() => setActiveTab("settings")}
+              onClick={() => {
+                setActiveTab("settings");
+                setMobileMenuOpen(false);
+              }}
               className={`w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${
                 activeTab === "settings"
                   ? "bg-[#BB4D00] text-white shadow-[0_4px_16px_rgba(187,77,0,0.3)] font-semibold"
@@ -436,28 +480,38 @@ export default function AdminPage() {
       {/* ── 2. MAIN VIEW AREA (Top Bar + Scrollable Content) ── */}
       <div className="flex-1 flex flex-col h-full min-w-0 overflow-hidden">
         {/* Fixed Top Bar */}
-        <header className="h-16 flex-shrink-0 bg-[#121212] border-b border-[#262626] px-8 flex items-center justify-between z-20">
-          <div className="flex items-center gap-4">
-            <h1 className="text-lg font-bold text-white capitalize tracking-tight">
-              {activeTab === "overview" && "Executive Dashboard"}
+        <header className="h-16 flex-shrink-0 bg-[#121212] border-b border-[#262626] px-4 sm:px-8 flex items-center justify-between z-20">
+          <div className="flex items-center gap-3">
+            {/* Mobile Hamburger Toggle Button */}
+            <button
+              onClick={() => setMobileMenuOpen(true)}
+              className="p-2 -ml-2 rounded-lg text-[#A3A3A3] hover:text-white hover:bg-[#1A1A1A] lg:hidden"
+              aria-label="Open sidebar menu"
+            >
+              <MenuIcon />
+            </button>
+
+            <h1 className="text-base sm:text-lg font-bold text-white capitalize tracking-tight truncate max-w-[180px] sm:max-w-none">
+              {activeTab === "overview" && "Dashboard"}
               {activeTab === "messages" && "Client Inquiries"}
-              {activeTab === "projects" && "Project Management CMS"}
-              {activeTab === "analytics" && "Inquiry Analytics"}
+              {activeTab === "projects" && "CMS"}
+              {activeTab === "analytics" && "Analytics"}
               {activeTab === "profile" && "Account & Avatar"}
-              {activeTab === "settings" && "Preferences & Settings"}
+              {activeTab === "settings" && "Settings"}
             </h1>
-            <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-[#BB4D00]" />
-            <span className="hidden sm:inline-block text-xs text-[#737373]">Live Production Environment</span>
+            <span className="hidden md:inline-block w-1.5 h-1.5 rounded-full bg-[#BB4D00]" />
+            <span className="hidden md:inline-block text-xs text-[#737373]">Live Production Environment</span>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             {/* View Live Portfolio Site */}
             <Link
               href="/"
               target="_blank"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#1A1A1A] hover:bg-[#222222] text-[#A3A3A3] hover:text-white text-xs font-medium border border-[#262626] transition-colors"
+              className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg bg-[#1A1A1A] hover:bg-[#222222] text-[#A3A3A3] hover:text-white text-xs font-medium border border-[#262626] transition-colors"
             >
-              <span>Public Site</span>
+              <span className="hidden sm:inline">Public Site</span>
+              <span className="sm:hidden">Site</span>
               <ExternalLinkIcon />
             </Link>
 
@@ -566,8 +620,8 @@ export default function AdminPage() {
         </header>
 
         {/* ── 3. INDEPENDENT SCROLLABLE MAIN CONTENT ── */}
-        <main className="flex-1 overflow-y-auto p-8 md:p-10 bg-[#0A0A0A]">
-          <div className="max-w-6xl mx-auto space-y-8 animate-in fade-in duration-300">
+        <main className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-10 bg-[#0A0A0A]">
+          <div className="max-w-6xl mx-auto space-y-6 sm:space-y-8 animate-in fade-in duration-300">
 
             {/* ──────── TAB 1: OVERVIEW ──────── */}
             {activeTab === "overview" && (

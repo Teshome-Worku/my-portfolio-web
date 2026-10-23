@@ -147,12 +147,18 @@ export default function Hero() {
       <section className="home-hero">
         <div className="home-shell">
           <div className="home-hero__copy home-reveal">
+            {/* Status Badge: Open for opportunities */}
+            <div className="home-hero__badge">
+              <span className="home-hero__badge-pulse" aria-hidden="true" />
+              <span className="home-hero__badge-text">Open for new opportunities</span>
+            </div>
+
             {/* Circular Profile Avatar with Ember Ring */}
             <div className="home-hero__avatar-wrap">
               <div className="home-hero__avatar">
                 <Image
                   src={profileAvatar}
-                  alt="Kenan Worku"
+                  alt="Kenan Worku profile avatar"
                   width={112}
                   height={112}
                   priority
@@ -201,7 +207,7 @@ export default function Hero() {
                 <span>LinkedIn</span>
               </Link>
               <Link
-                href="mailto:teshomeworku96@gmail.com"
+                href="mailto:kenanworku981@gmail.com"
                 className="home-social-link"
                 aria-label="Direct Email"
               >

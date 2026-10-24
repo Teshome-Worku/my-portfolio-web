@@ -15,7 +15,7 @@ const skillGroups = [
   {
     category: "Data and storage",
     detail: "Application data and local persistence",
-    items: ["MongoDB", "IndexedDB"],
+    items: ["MongoDB", "PostgreSQL", "Prisma",],
   },
   {
     category: "Tools and integrations",

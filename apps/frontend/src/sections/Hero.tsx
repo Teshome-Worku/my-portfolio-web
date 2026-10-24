@@ -197,7 +197,7 @@ export default function Hero() {
                 <span>GitHub</span>
               </Link>
               <Link
-                href="https://www.linkedin.com/in/teshome-worku-017834392"
+                href="https://www.linkedin.com/in/kenan-worku-017834392"
                 target="_blank"
                 rel="noreferrer"
                 className="home-social-link"

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import profileAvatar from "@/assets/profile-avatar.jpg";
-import astuTracker from "@/assets/astu-tracker.png";
+import smartMenuCover from "@/assets/smart-digital-menu-cover.jpg";
 import mamiFood from "@/assets/mami-food.png";
 
 const GlobeLayoutIcon = () => (
@@ -266,25 +266,23 @@ export default function Hero() {
             <article className="featured-project home-reveal">
               <div className="featured-project__image">
                 <Image
-                  src={astuTracker}
-                  alt="ASTU complaint tracker interface"
+                  src={smartMenuCover}
+                  alt="Smart Digital Menu table QR stand, customer ordering interface, and restaurant management dashboard"
                   sizes="(max-width: 800px) 100vw, 56vw"
                 />
-                <span>01 / Full-stack system</span>
+                <span>01 / Restaurant Management Platform</span>
               </div>
               <div className="featured-project__content">
-                <p className="eyebrow">Smart Complaint Management System</p>
-                <h3>A structured way to submit, track, and manage complaints.</h3>
+                <p className="eyebrow">Smart Digital Menu</p>
+                <h3>QR-based restaurant ordering and operations platform.</h3>
                 <p>
-                  Built around clear workflows and status updates, this project demonstrates a practical application of React, Node.js, Express, and MongoDB.
+                  A mobile-first restaurant ordering platform that lets customers scan a table QR code, browse dynamic menus, place orders, and track progress while restaurant staff manage active orders from an operations dashboard.
                 </p>
                 <Link
-                  href="https://astu-complaint-tracker.vercel.app/"
-                  target="_blank"
-                  rel="noreferrer"
+                  href="/projects/smart-digital-menu"
                   className="text-link"
                 >
-                  Visit live demo <span aria-hidden="true">→</span>
+                  View case study <span aria-hidden="true">→</span>
                 </Link>
               </div>
             </article>

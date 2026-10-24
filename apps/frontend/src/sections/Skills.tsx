@@ -93,11 +93,11 @@ export default function Skills() {
             <h2>Real projects are where the pieces <em>come together.</em></h2>
           </div>
           <div className="skills-project-list">
-            <Link href="/projects/lemi-fashion">
+            <Link href="/projects/smart-digital-menu">
               <span>01</span>
               <div>
-                <h3>Lemi Fashion</h3>
-                <p>HTML, CSS, JavaScript, Node.js, and Telegram API applied to a fashion store and order-notification workflow.</p>
+                <h3>Smart Digital Menu</h3>
+                <p>Next.js, TypeScript, Tailwind CSS, Express.js, and PostgreSQL with Prisma applied to a QR restaurant ordering and operations dashboard.</p>
               </div>
               <i aria-hidden="true">↗</i>
             </Link>

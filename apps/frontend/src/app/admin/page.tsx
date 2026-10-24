@@ -896,8 +896,8 @@ export default function AdminPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="p-5 rounded-2xl bg-[#141414] border border-[#262626]">
                     <span className="text-xs font-bold text-[#BB4D00] uppercase tracking-wider">Live Portfolio Project</span>
-                    <h4 className="text-base font-bold text-white mt-1">Lemi Fashion E-Commerce</h4>
-                    <p className="text-xs text-[#737373] mt-2">Node.js, Telegram API, responsive catalog workflow.</p>
+                    <h4 className="text-base font-bold text-white mt-1">Smart Digital Menu</h4>
+                    <p className="text-xs text-[#737373] mt-2">Next.js, Express, PostgreSQL, Prisma QR restaurant platform.</p>
                   </div>
                   <div className="p-5 rounded-2xl bg-[#141414] border border-[#262626]">
                     <span className="text-xs font-bold text-[#BB4D00] uppercase tracking-wider">Live Portfolio Project</span>

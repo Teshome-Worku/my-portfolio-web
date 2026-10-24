@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProject, projects } from "@/data/projects";
+import SmartDigitalMenuCaseStudy from "@/components/SmartDigitalMenuCaseStudy";
 
 type ProjectPageProps = { params: Promise<{ slug: string }> };
 
@@ -13,9 +14,38 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
   const { slug } = await params;
   const project = getProject(slug);
-  return project
-    ? { title: `${project.title} | Kenan Worku`, description: project.description }
-    : { title: "Project not found | Kenan Worku" };
+  if (!project) return { title: "Project not found | Kenan Worku" };
+
+  if (slug === "smart-digital-menu") {
+    return {
+      title: "Smart Digital Menu — QR Restaurant Ordering Platform | Kenan.Dev",
+      description: "Explore Smart Digital Menu, a QR-based restaurant ordering platform with mobile menu browsing, order tracking, and a restaurant management dashboard.",
+      openGraph: {
+        title: "Smart Digital Menu — QR Restaurant Ordering Platform",
+        description: "A mobile-first restaurant ordering platform that lets customers scan a table QR code, browse the menu, place orders, and track progress while restaurant staff manage orders and menu items from a dashboard.",
+        type: "article",
+        images: [
+          {
+            url: "/projects/smart-digital-menu/cover.jpg",
+            width: 1200,
+            height: 675,
+            alt: "Smart Digital Menu QR ordering stand, mobile ordering interface, and restaurant management dashboard",
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: "Smart Digital Menu — QR Restaurant Ordering Platform | Kenan.Dev",
+        description: "Explore Smart Digital Menu, a QR-based restaurant ordering platform with mobile menu browsing, order tracking, and a restaurant management dashboard.",
+        images: ["/projects/smart-digital-menu/cover.jpg"],
+      },
+    };
+  }
+
+  return {
+    title: `${project.title} | Kenan Worku`,
+    description: project.description,
+  };
 }
 
 export default async function ProjectCaseStudy({ params }: ProjectPageProps) {
@@ -27,6 +57,17 @@ export default async function ProjectCaseStudy({ params }: ProjectPageProps) {
   const relatedProjects = projects.filter((item) => item.slug !== project.slug).slice(0, 2);
   const previous = projects[(projectIndex - 1 + projects.length) % projects.length];
   const next = projects[(projectIndex + 1) % projects.length];
+
+  if (project.slug === "smart-digital-menu") {
+    return (
+      <SmartDigitalMenuCaseStudy
+        project={project}
+        previous={previous}
+        next={next}
+        relatedProjects={relatedProjects}
+      />
+    );
+  }
 
   return (
     <article className="case-study">

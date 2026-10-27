@@ -2390,15 +2390,15 @@ h3 em {
 }
 
 .about-intro {
-  padding: 1.25rem 0 clamp(2.5rem, 5vw, 4rem);
+  padding: 1.5rem 0 clamp(3rem, 6vw, 4.5rem);
   border-bottom: 1px solid var(--color-border);
 }
 
 .about-intro__grid {
   display: grid;
-  grid-template-columns: minmax(320px, 440px) 1.2fr;
+  grid-template-columns: minmax(360px, 1fr) 1.25fr;
   align-items: center;
-  gap: clamp(2rem, 4vw, 4.5rem);
+  gap: clamp(2.5rem, 5vw, 5.5rem);
 }
 
 .about-portrait {
@@ -2413,9 +2413,8 @@ h3 em {
 .about-portrait__frame {
   position: relative;
   width: 100%;
-  max-width: clamp(340px, 36vw, 450px);
-  max-height: min(500px, 62vh);
-  aspect-ratio: 4 / 5;
+  max-width: clamp(360px, 40vw, 490px);
+  aspect-ratio: 3 / 4;
   border-radius: 50%;
   overflow: hidden;
   margin: 0 auto;
@@ -2423,8 +2422,8 @@ h3 em {
   border: none;
   background: transparent;
   box-shadow: none;
-  -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 70%, transparent 100%);
-  mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 70%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 72%, transparent 100%);
+  mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 72%, transparent 100%);
 }
 
 .about-portrait__frame::before {
@@ -2439,13 +2438,13 @@ h3 em {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 4;
   object-fit: cover;
-  object-position: center 22%;
+  object-position: center 18%;
 }
 
 .about-portrait__caption {
-  margin: 0.85rem 0 0;
+  margin: 1rem 0 0;
   color: var(--color-text-secondary);
   font-size: 0.72rem;
   letter-spacing: 0.12em;
@@ -2455,15 +2454,15 @@ h3 em {
 }
 
 .about-intro__copy {
-  max-width: 41rem;
+  max-width: 42rem;
 }
 
 .about-intro h1 {
   margin: 0;
-  font-size: clamp(2.2rem, 3.8vw, 3.6rem);
+  font-size: clamp(2.4rem, 4.4vw, 4.2rem);
   font-weight: 650;
-  letter-spacing: -0.05em;
-  line-height: 1.08;
+  letter-spacing: -0.04em;
+  line-height: 1.12;
 }
 
 .about-heading h2,
@@ -2476,18 +2475,18 @@ h3 em {
 }
 
 .about-lede {
-  margin: 1.15rem 0 0;
+  margin: 1.5rem 0 0;
   color: var(--color-text-primary);
-  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
-  line-height: 1.5;
+  font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+  line-height: 1.6;
 }
 
 .about-body {
-  max-width: 36rem;
-  margin: 0.85rem 0 1.5rem;
+  max-width: 38rem;
+  margin: 1.25rem 0 2rem;
   color: var(--color-text-secondary);
-  font-size: 0.95rem;
-  line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.8;
 }
 
 .about-section {
@@ -2505,9 +2504,9 @@ h3 em {
 /* About Page Subtitles & Actions */
 .about-intro__actions {
   display: flex;
-  gap: 1rem;
+  gap: 1.25rem;
   align-items: center;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   flex-wrap: wrap;
 }
 

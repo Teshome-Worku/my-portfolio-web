@@ -186,7 +186,7 @@ export default function About() {
                 src={portraitImage}
                 alt="Kenan Worku - Full-Stack Developer"
                 priority
-                sizes="(max-width: 767px) 85vw, 480px"
+                sizes="(max-width: 767px) 90vw, 500px"
                 className="about-portrait__img"
               />
             </div>

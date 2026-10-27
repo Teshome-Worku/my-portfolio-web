@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://kenandev.vercel.app"),
   title: "Kenan Worku | Full Stack Software Engineer & Web Developer",
-  description: "The personal portfolio of Kenan Worku, a software engineer and web developer.",
+  description: "Hi, I'm Kenan Worku, a software engineer and web developer.",
   icons: {
     icon: [
       { url: "/icon.svg", type: "image/svg+xml" },

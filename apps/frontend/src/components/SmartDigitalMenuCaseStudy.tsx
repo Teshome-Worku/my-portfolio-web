@@ -623,33 +623,35 @@ export default function SmartDigitalMenuCaseStudy({
         {/* ─────────────────────────────────────────────────────────────
             SECTION L: Closing Navigation & CTA
         ───────────────────────────────────────────────────────────── */}
-        <section className="case-study__related sdm-section">
-          <div className="case-study__section-heading">
-            <p className="eyebrow">Keep exploring</p>
-            <h2>More work from the <em>catalogue.</em></h2>
-          </div>
-          <div className="case-study__related-grid">
-            {relatedProjects.map((related) => (
-              <Link href={`/projects/${related.slug}`} className="project-card project-card--compact" key={related.slug}>
-                <div className="project-card__visual">
-                  {related.image ? (
-                    <Image src={related.image} alt={related.imageAlt} sizes="(max-width: 767px) 100vw, 40vw" />
-                  ) : (
-                    <div className="project-card__placeholder">
-                      <span>{related.number}</span>
-                      <strong>{related.category}</strong>
-                    </div>
-                  )}
-                  <span className="project-card__arrow" aria-hidden="true">↗</span>
-                </div>
-                <div className="project-card__content">
-                  <h3>{related.title}</h3>
-                  <p>{related.description}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
+        {relatedProjects && relatedProjects.length > 0 && (
+          <section className="case-study__related sdm-section">
+            <div className="case-study__section-heading">
+              <p className="eyebrow">Keep exploring</p>
+              <h2>More work from the <em>catalogue.</em></h2>
+            </div>
+            <div className="case-study__related-grid">
+              {relatedProjects.map((related) => (
+                <Link href={`/projects/${related.slug}`} className="project-card project-card--compact" key={related.slug}>
+                  <div className="project-card__visual">
+                    {related.image ? (
+                      <Image src={related.image} alt={related.imageAlt} sizes="(max-width: 767px) 100vw, 40vw" />
+                    ) : (
+                      <div className="project-card__placeholder">
+                        <span>{related.number}</span>
+                        <strong>{related.category}</strong>
+                      </div>
+                    )}
+                    <span className="project-card__arrow" aria-hidden="true">↗</span>
+                  </div>
+                  <div className="project-card__content">
+                    <h3>{related.title}</h3>
+                    <p>{related.description}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* Project Contact CTA */}
         <div className="sdm-cta-box">
@@ -664,14 +666,29 @@ export default function SmartDigitalMenuCaseStudy({
         </div>
 
         <nav className="case-study__prev-next" aria-label="Project navigation">
-          <Link href={`/projects/${previous.slug}`}>
-            <span>Previous project</span>
-            <strong>← {previous.title}</strong>
-          </Link>
-          <Link href={`/projects/${next.slug}`}>
-            <span>Next project</span>
-            <strong>{next.title} →</strong>
-          </Link>
+          {previous && previous.slug !== project.slug ? (
+            <Link href={`/projects/${previous.slug}`}>
+              <span>Previous project</span>
+              <strong>← {previous.title}</strong>
+            </Link>
+          ) : (
+            <Link href="/projects">
+              <span>Selected Work</span>
+              <strong>← All Projects</strong>
+            </Link>
+          )}
+
+          {next && next.slug !== project.slug ? (
+            <Link href={`/projects/${next.slug}`}>
+              <span>Next project</span>
+              <strong>{next.title} →</strong>
+            </Link>
+          ) : (
+            <Link href="/contact">
+              <span>Get In Touch</span>
+              <strong>Start a Project →</strong>
+            </Link>
+          )}
         </nav>
       </div>
     </article>

@@ -101,30 +101,6 @@ export default function Skills() {
               </div>
               <i aria-hidden="true">↗</i>
             </Link>
-            <Link href="/projects/inventory-management-system">
-              <span>02</span>
-              <div>
-                <h3>Inventory Management System</h3>
-                <p>React and IndexedDB used for a responsive interface with browser-based local data storage.</p>
-              </div>
-              <i aria-hidden="true">↗</i>
-            </Link>
-            <Link href="/projects/astu-complaint-tracker">
-              <span>03</span>
-              <div>
-                <h3>ASTU Complaint Tracker</h3>
-                <p>React, Node.js, Express, and MongoDB connected around complaint submission, tracking, and management workflows.</p>
-              </div>
-              <i aria-hidden="true">↗</i>
-            </Link>
-            <Link href="/projects/appointment-booking-system">
-              <span>04</span>
-              <div>
-                <h3>Appointment Booking System</h3>
-                <p>React and Tailwind CSS used to shape a focused experience for scheduling service appointments.</p>
-              </div>
-              <i aria-hidden="true">↗</i>
-            </Link>
           </div>
         </div>
       </section>

@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import profileAvatar from "@/assets/profile-avatar.jpg";
 import smartMenuCover from "@/assets/smart-digital-menu-cover.jpg";
-import mamiFood from "@/assets/mami-food.png";
 
 const GlobeLayoutIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -283,32 +282,6 @@ export default function Hero() {
                   className="text-link"
                 >
                   View case study <span aria-hidden="true">→</span>
-                </Link>
-              </div>
-            </article>
-
-            <article className="featured-project featured-project--reverse home-reveal">
-              <div className="featured-project__image">
-                <Image
-                  src={mamiFood}
-                  alt="Mami Food ordering platform interface"
-                  sizes="(max-width: 800px) 100vw, 56vw"
-                />
-                <span>02 / Ordering platform</span>
-              </div>
-              <div className="featured-project__content">
-                <p className="eyebrow">Mami Food</p>
-                <h3>An ordering experience designed for everyday use.</h3>
-                <p>
-                  A full-stack food ordering platform where people can place orders online and follow them in real time.
-                </p>
-                <Link
-                  href="https://mamifood.vercel.app/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-link"
-                >
-                  Visit live demo <span aria-hidden="true">→</span>
                 </Link>
               </div>
             </article>

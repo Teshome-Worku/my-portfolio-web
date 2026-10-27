@@ -329,32 +329,30 @@ export default function About() {
               </div>
             </Link>
 
-            <a
-              href="https://astu-complaint-tracker.vercel.app/"
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              href="/projects/smart-digital-menu"
               className="about-proof-card about-proof-card--featured group"
             >
               <div className="about-proof-card__header">
                 <span className="about-proof-card__index">02</span>
                 <span className="about-proof-card__status">
                   <span className="about-proof-card__status-dot" aria-hidden="true" />
-                  Live System
+                  Featured Platform
                 </span>
               </div>
-              <h3>ASTU Complaint Tracker</h3>
-              <p>An active university incident tracking platform featuring multi-role authentication and real-time alerts.</p>
+              <h3>Smart Digital Menu</h3>
+              <p>A QR-driven restaurant ordering platform with customer mobile ordering and real-time operations dashboard.</p>
               <div className="about-proof-card__tech">
-                <span>React</span>
-                <span>Node.js</span>
+                <span>Next.js</span>
+                <span>TypeScript</span>
                 <span>Express</span>
-                <span>MongoDB</span>
+                <span>PostgreSQL</span>
               </div>
               <div className="about-proof-card__cta">
-                <span>Launch Live System</span>
-                <span className="about-proof-card__arrow" aria-hidden="true">↗</span>
+                <span>Explore Case Study</span>
+                <span className="about-proof-card__arrow" aria-hidden="true">→</span>
               </div>
-            </a>
+            </Link>
           </div>
         </div>
       </section>

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import portraitImage from "@/assets/portrait.jpg";
+import avatarImage from "@/assets/avatar.jpg";
 import smartMenuCover from "@/assets/smart-digital-menu-cover.jpg";
 
 const GlobeLayoutIcon = () => (
@@ -156,7 +156,7 @@ export default function Hero() {
             <div className="home-hero__avatar-wrap">
               <div className="home-hero__avatar">
                 <Image
-                  src={portraitImage}
+                  src={avatarImage}
                   alt="Kenan Worku profile avatar"
                   width={112}
                   height={112}

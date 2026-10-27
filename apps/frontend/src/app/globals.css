@@ -465,10 +465,63 @@ h3 em {
 }
 
 .home-hero__avatar-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 1.5rem;
 }
 
+.home-hero__avatar-orbit {
+  position: absolute;
+  inset: -7px;
+  border-radius: 9999px;
+  border: 1px dashed rgba(187, 77, 0, 0.22);
+  pointer-events: none;
+  animation: avatarOrbit 8s linear infinite;
+  z-index: 2;
+}
+
+.home-hero__avatar-orbit::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 9999px;
+  background: conic-gradient(
+    from 180deg,
+    transparent 0deg,
+    transparent 260deg,
+    rgba(187, 77, 0, 0.18) 310deg,
+    rgba(255, 122, 0, 0.7) 360deg
+  );
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #fff calc(100% - 2px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #fff calc(100% - 2px));
+}
+
+.home-hero__avatar-orbit::after {
+  content: "";
+  position: absolute;
+  top: -3.5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ff9838;
+  box-shadow: 0 0 8px #ff7a00, 0 0 16px rgba(255, 122, 0, 0.75);
+}
+
+@keyframes avatarOrbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .home-hero__avatar {
+  position: relative;
   width: 140px;
   height: 140px;
   border-radius: 9999px;
@@ -3437,7 +3490,8 @@ h3 em {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .home-reveal {
+  .home-reveal,
+  .home-hero__avatar-orbit {
     animation: none;
   }
   .featured-project__image img,

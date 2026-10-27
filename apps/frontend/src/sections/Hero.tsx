@@ -152,8 +152,9 @@ export default function Hero() {
               <span className="home-hero__badge-text">Open for new opportunities</span>
             </div>
 
-            {/* Profile Avatar */}
+            {/* Profile Avatar with subtle 360° animated orbit */}
             <div className="home-hero__avatar-wrap">
+              <span className="home-hero__avatar-orbit" aria-hidden="true" />
               <div className="home-hero__avatar">
                 <Image
                   src={avatarImage}

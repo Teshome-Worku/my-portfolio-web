@@ -152,15 +152,15 @@ export default function Hero() {
               <span className="home-hero__badge-text">Open for new opportunities</span>
             </div>
 
-            {/* Seamless Elliptical Portrait */}
-            <div className="home-hero__portrait-wrap">
-              <div className="home-hero__portrait">
+            {/* Profile Avatar */}
+            <div className="home-hero__avatar-wrap">
+              <div className="home-hero__avatar">
                 <Image
                   src={portraitImage}
-                  alt="Kenan Worku - Full-Stack Developer"
+                  alt="Kenan Worku profile avatar"
+                  width={112}
+                  height={112}
                   priority
-                  sizes="(max-width: 768px) 160px, 195px"
-                  className="home-hero__portrait-img"
                 />
               </div>
             </div>

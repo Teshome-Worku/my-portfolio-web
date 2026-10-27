@@ -379,7 +379,7 @@ h3 em {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4.5rem 0 5.5rem;
+  padding: 1.75rem 0 3.5rem;
   isolation: isolate;
   text-align: center;
 }
@@ -411,7 +411,7 @@ h3 em {
   align-items: center;
   gap: 0.55rem;
   padding: 0.4rem 0.95rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
   border-radius: 9999px;
   background: rgba(23, 23, 23, 0.8);
   border: 1px solid rgba(187, 77, 0, 0.35);
@@ -465,17 +465,17 @@ h3 em {
 }
 
 .home-hero__avatar-wrap {
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.5rem;
 }
 
 .home-hero__avatar {
-  width: 112px;
-  height: 112px;
+  width: 140px;
+  height: 140px;
   border-radius: 9999px;
-  border: 2px solid var(--color-brand);
-  padding: 3px;
+  border: 2.5px solid var(--color-brand);
+  padding: 4px;
   background: var(--color-surface-card);
-  box-shadow: 0 0 28px rgba(187, 77, 0, 0.28);
+  box-shadow: 0 0 32px rgba(187, 77, 0, 0.32);
   overflow: hidden;
   margin: 0 auto;
   display: flex;
@@ -2390,7 +2390,7 @@ h3 em {
 }
 
 .about-intro {
-  padding: 1.5rem 0 clamp(3rem, 6vw, 4.5rem);
+  padding: 0.75rem 0 clamp(2.5rem, 5vw, 4rem);
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -3423,12 +3423,12 @@ h3 em {
   }
 
   .home-hero {
-    padding: 2.5rem 0 3.5rem;
+    padding: 1.5rem 0 2.5rem;
   }
 
   .home-hero__avatar {
-    width: 92px;
-    height: 92px;
+    width: 116px;
+    height: 116px;
   }
 
   .home-role {

@@ -158,8 +158,8 @@ export default function Hero() {
                 <Image
                   src={avatarImage}
                   alt="Kenan Worku profile avatar"
-                  width={112}
-                  height={112}
+                  width={140}
+                  height={140}
                   priority
                 />
               </div>

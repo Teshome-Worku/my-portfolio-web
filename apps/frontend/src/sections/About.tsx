@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import aboutImage from "@/assets/about.jpg";
+import portraitImage from "@/assets/portrait.jpg";
 
 // High-performance, clean inline SVG icons
 const CompassIcon = () => (
@@ -183,10 +183,11 @@ export default function About() {
           <div className="about-portrait">
             <div className="about-portrait__frame">
               <Image
-                src={aboutImage}
-                alt="Kenan Worku"
+                src={portraitImage}
+                alt="Kenan Worku - Full-Stack Developer"
                 priority
-                sizes="(max-width: 767px) 88vw, 38vw"
+                sizes="(max-width: 767px) 70vw, 340px"
+                className="about-portrait__img"
               />
             </div>
             <p className="about-portrait__caption">Kenan Worku / Full-Stack Developer</p>

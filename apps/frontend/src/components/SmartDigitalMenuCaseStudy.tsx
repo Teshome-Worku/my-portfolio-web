@@ -660,7 +660,7 @@ export default function SmartDigitalMenuCaseStudy({
             <h3>Have a product or full-stack application in mind?</h3>
             <p>I build robust web platforms, business systems, and tailored digital experiences with a focus on usability, clean code, and reliable architecture.</p>
           </div>
-          <Link href="/contact" className="home-button home-button--primary">
+          <Link href="/contact#contact-form" className="home-button home-button--primary">
             Get in Touch <span aria-hidden="true">↗</span>
           </Link>
         </div>
@@ -684,7 +684,7 @@ export default function SmartDigitalMenuCaseStudy({
               <strong>{next.title} →</strong>
             </Link>
           ) : (
-            <Link href="/contact">
+            <Link href="/contact#contact-form">
               <span>Get In Touch</span>
               <strong>Start a Project →</strong>
             </Link>

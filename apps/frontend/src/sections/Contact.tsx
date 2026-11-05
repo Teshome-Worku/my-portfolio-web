@@ -2,6 +2,7 @@
 
 import { FormEvent, useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import AnimatedSection from "@/components/AnimatedSection";
 
 const email = "kenanworku981@gmail.com";
 const phone = "+251 955 80 0626";
@@ -56,6 +57,25 @@ export default function Contact() {
       if (toastTimeoutRef.current) clearTimeout(toastTimeoutRef.current);
       if (abortControllerRef.current) abortControllerRef.current.abort();
     };
+  }, []);
+
+  // Smooth scroll to the contact form if navigated with #contact-form
+  useEffect(() => {
+    const handleScrollToForm = () => {
+      if (typeof window !== "undefined" && window.location.hash === "#contact-form") {
+        const timer = setTimeout(() => {
+          const formEl = document.getElementById("contact-form");
+          if (formEl) {
+            formEl.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }, 80);
+        return () => clearTimeout(timer);
+      }
+    };
+
+    handleScrollToForm();
+    window.addEventListener("hashchange", handleScrollToForm);
+    return () => window.removeEventListener("hashchange", handleScrollToForm);
   }, []);
 
   const triggerToast = (type: "success" | "error", title: string, message: string) => {
@@ -165,17 +185,17 @@ export default function Contact() {
         </aside>
       )}
 
-      <header className="contact-intro">
+      <AnimatedSection as="header" variant="fadeInUp" className="contact-intro">
         <div className="contact-shell">
           <p className="eyebrow">Start a conversation</p>
           <h1>Let&apos;s build something <em>meaningful.</em></h1>
           <p>Tell me about your website, full-stack application, or digital project. Share the goals, the context, and what you would like to make better.</p>
         </div>
-      </header>
+      </AnimatedSection>
 
       <section className="contact-main">
         <div className="contact-shell contact-grid">
-          <aside className="contact-aside">
+          <AnimatedSection as="aside" variant="fadeInLeft" className="contact-aside">
             <div className="contact-details">
               <p className="eyebrow">Direct contact</p>
               {contactDetails.map(([label, value, href]) => (
@@ -212,9 +232,9 @@ export default function Contact() {
                 </div>
               ))}
             </div>
-          </aside>
+          </AnimatedSection>
 
-          <form className="contact-form" onSubmit={handleSubmit}>
+          <AnimatedSection as="form" id="contact-form" variant="cardElevate" className="contact-form" onSubmit={handleSubmit}>
             <div className="contact-form__heading">
               <p className="eyebrow">Project inquiry</p>
               <h2>What are you working on?</h2>
@@ -332,7 +352,7 @@ export default function Contact() {
             <p className="contact-form__note">
               Your message is sent securely to the portfolio contact service. I&apos;ll review it before getting back to you.
             </p>
-          </form>
+          </AnimatedSection>
         </div>
       </section>
     </div>

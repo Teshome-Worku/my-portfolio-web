@@ -3,6 +3,7 @@ import Link from "next/link";
 import portraitImage from "@/assets/portrait.jpg";
 import JourneyWave from "@/components/JourneyWave";
 import ProcessBento from "@/components/ProcessBento";
+import AnimatedSection, { AnimatedStaggerContainer, AnimatedStaggerItem } from "@/components/AnimatedSection";
 
 // High-performance, clean inline SVG icons
 const MessageChatIcon = () => (
@@ -75,7 +76,7 @@ export default function About() {
       {/* Intro Hero Section */}
       <section className="about-intro">
         <div className="about-shell about-intro__grid">
-          <div className="about-portrait">
+          <AnimatedSection variant="scaleUp" className="about-portrait">
             <div className="about-portrait__frame">
               <Image
                 src={portraitImage}
@@ -86,8 +87,8 @@ export default function About() {
               />
             </div>
             <p className="about-portrait__caption">Kenan Worku / Full-Stack Developer</p>
-          </div>
-          <div className="about-intro__copy">
+          </AnimatedSection>
+          <AnimatedSection variant="fadeInRight" className="about-intro__copy">
             <p className="eyebrow">A little more about me</p>
             <h1>Building with purpose, <em>not just pixels.</em></h1>
             <p className="about-lede">
@@ -97,27 +98,27 @@ export default function About() {
               My focus is on making digital products usable, reliable, and clear. I enjoy taking a real problem, understanding the people behind it, and shaping a solution that feels considered from the first interaction to the final detail.
             </p>
             <div className="about-intro__actions">
-              <Link href="/contact" className="home-button home-button--primary">
+              <Link href="/contact#contact-form" className="home-button home-button--primary">
                 Let&apos;s work together <span aria-hidden="true">→</span>
               </Link>
               <Link href="/projects" className="home-button home-button--secondary">
                 View Projects <span aria-hidden="true">→</span>
               </Link>
             </div>
-          </div>
+          </AnimatedSection>
         </div>
       </section>
 
       {/* Section 2: The Journey So Far - Vertical Engineering Stepper */}
       <section className="about-section about-journey">
         <div className="about-shell">
-          <div className="about-heading">
+          <AnimatedSection variant="fadeInUp" className="about-heading">
             <p className="eyebrow">The journey so far</p>
             <h2>From learning the fundamentals to <em>building useful things.</em></h2>
             <p className="about-heading__sub">
               A continuous path of engineering curiosity, hands-on iteration, and delivering scalable solutions.
             </p>
-          </div>
+          </AnimatedSection>
 
           {/* Undulating Engineering Waveform Matrix */}
           <JourneyWave />
@@ -127,7 +128,7 @@ export default function About() {
       {/* Section 3: How I Work - Connected Engineering Methodology Flow */}
       <section className="about-section about-process">
         <div className="about-shell">
-          <div className="about-heading about-heading--row">
+          <AnimatedSection variant="fadeInUp" className="about-heading about-heading--row">
             <div>
               <p className="eyebrow">How I work</p>
               <h2>A clear process keeps good work <em>moving.</em></h2>
@@ -135,7 +136,7 @@ export default function About() {
             <p className="about-heading__note">
               The details change from project to project, but the way I approach the work stays grounded, structured, and collaborative.
             </p>
-          </div>
+          </AnimatedSection>
 
           {/* Interactive Bento Pipeline Matrix */}
           <ProcessBento />
@@ -145,7 +146,7 @@ export default function About() {
       {/* Section 4: Practical Experience - Evidence & Live Proof Cards */}
       <section className="about-section about-credibility">
         <div className="about-shell about-credibility__grid">
-          <div className="about-heading">
+          <AnimatedSection variant="fadeInLeft" className="about-heading">
             <p className="eyebrow">Practical experience</p>
             <h2>Learning by <em>making.</em></h2>
             <p className="about-credibility__copy-lead">
@@ -166,9 +167,9 @@ export default function About() {
                 <span>Frontend to Cloud</span>
               </div>
             </div>
-          </div>
+          </AnimatedSection>
 
-          <div className="about-credibility__cards">
+          <AnimatedSection variant="fadeInRight" className="about-credibility__cards">
             <Link href="/projects" className="about-proof-card group">
               <div className="about-proof-card__header">
                 <span className="about-proof-card__index">01</span>
@@ -212,24 +213,24 @@ export default function About() {
                 <span className="about-proof-card__arrow" aria-hidden="true">→</span>
               </div>
             </Link>
-          </div>
+          </AnimatedSection>
         </div>
       </section>
 
       {/* Section 5: Working Principles - 2x2 Elevated Principle Grid */}
       <section className="about-section about-principles">
         <div className="about-shell">
-          <div className="about-heading about-heading--center">
+          <AnimatedSection variant="fadeInUp" className="about-heading about-heading--center">
             <p className="eyebrow">Working principles</p>
             <h2>Good work should feel <em>thoughtful.</em></h2>
             <p className="about-heading__sub">
               Core engineering tenets that guide my work from initial discovery to deployment.
             </p>
-          </div>
+          </AnimatedSection>
 
-          <div className="about-principles-grid">
+          <AnimatedStaggerContainer className="about-principles-grid">
             {workingPrinciples.map((item) => (
-              <div className="about-principle-card" key={item.number}>
+              <AnimatedStaggerItem variant="staggerCard" className="about-principle-card" key={item.number}>
                 <div className="about-principle-card__top">
                   <div className="about-principle-card__icon" aria-hidden="true">
                     {item.icon}
@@ -239,26 +240,26 @@ export default function About() {
                 <h3 className="about-principle-card__title">{item.title}</h3>
                 <p className="about-principle-card__quote">&ldquo;{item.quote}&rdquo;</p>
                 <p className="about-principle-card__detail">{item.detail}</p>
-              </div>
+              </AnimatedStaggerItem>
             ))}
-          </div>
+          </AnimatedStaggerContainer>
         </div>
       </section>
 
       {/* Bottom Closing CTA Section */}
       <section className="about-closing">
-        <div className="about-shell about-closing__inner">
+        <AnimatedSection variant="scaleUp" className="about-shell about-closing__inner">
           <p className="eyebrow">Have something in mind?</p>
           <h2>Let&apos;s make your next idea <em>useful.</em></h2>
           <div className="about-actions">
-            <Link href="/contact" className="home-button home-button--primary">
+            <Link href="/contact#contact-form" className="home-button home-button--primary">
               Let&apos;s Discuss Your Project <span aria-hidden="true">→</span>
             </Link>
             <Link href="/projects" className="home-button home-button--secondary">
               Explore My Work <span aria-hidden="true">→</span>
             </Link>
           </div>
-        </div>
+        </AnimatedSection>
       </section>
     </div>
   );

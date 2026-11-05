@@ -82,7 +82,20 @@ export default function Navbar() {
               );
             })}
           </nav>
-          <Link href="/contact" className="hire-cta">
+          <Link
+            href="/contact#contact-form"
+            className="hire-cta"
+            onClick={(e) => {
+              if (pathname === "/contact") {
+                e.preventDefault();
+                const el = document.getElementById("contact-form");
+                if (el) {
+                  el.scrollIntoView({ behavior: "smooth", block: "start" });
+                  window.history.pushState(null, "", "/contact#contact-form");
+                }
+              }
+            }}
+          >
             Hire Me <span aria-hidden="true">→</span>
           </Link>
         </div>

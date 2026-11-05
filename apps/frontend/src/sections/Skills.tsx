@@ -1,5 +1,6 @@
 import Link from "next/link";
 import CapabilitiesSection from "./CapabilitiesSection";
+import AnimatedSection, { AnimatedStaggerContainer, AnimatedStaggerItem } from "@/components/AnimatedSection";
 
 const skillGroups = [
   {
@@ -15,7 +16,7 @@ const skillGroups = [
   {
     category: "Data and storage",
     detail: "Application data and local persistence",
-    items: ["MongoDB", "PostgreSQL", "Prisma",],
+    items: ["MongoDB", "PostgreSQL", "Prisma"],
   },
   {
     category: "Tools and integrations",
@@ -34,21 +35,21 @@ const practices = [
 export default function Skills() {
   return (
     <div className="skills-page">
-      <header className="skills-intro">
+      <AnimatedSection as="header" variant="fadeInUp" className="skills-intro">
         <div className="skills-shell">
           <p className="eyebrow">Capabilities / technical skills</p>
           <h1>Technical skills, <em>applied to real problems.</em></h1>
           <p>I build business websites and full-stack web applications using modern frontend, backend, and data technologies chosen around what the project needs.</p>
         </div>
-      </header>
+      </AnimatedSection>
 
       {/* ── Section 1: What I can build – Sticky scroll split ── */}
       <section className="skills-section skills-capabilities">
         <div className="skills-shell">
-          <div className="skills-heading">
+          <AnimatedSection variant="fadeInUp" className="skills-heading">
             <p className="eyebrow">What I can build</p>
             <h2>Technology matters most when it makes the work <em>easier.</em></h2>
-          </div>
+          </AnimatedSection>
         </div>
         <CapabilitiesSection />
       </section>
@@ -56,16 +57,16 @@ export default function Skills() {
       {/* ── Section 2: Technical Toolkit – Typographic constellation ── */}
       <section className="skills-section skills-stack">
         <div className="skills-shell">
-          <div className="skills-heading skills-heading--row">
+          <AnimatedSection variant="fadeInUp" className="skills-heading skills-heading--row">
             <div>
               <p className="eyebrow">Technical toolkit</p>
               <h2>Tools I use to turn ideas into <em>working products.</em></h2>
             </div>
             <p>These groups reflect technologies already represented in my projects, portfolio, and supporting application code.</p>
-          </div>
-          <div className="toolkit-grid">
+          </AnimatedSection>
+          <AnimatedStaggerContainer className="toolkit-grid">
             {skillGroups.map((group, gi) => (
-              <div className="toolkit-col" key={group.category}>
+              <AnimatedStaggerItem variant="staggerCard" className="toolkit-col" key={group.category}>
                 <div className="toolkit-col__header">
                   <span className="toolkit-col__index">0{gi + 1}</span>
                   <h3 className="toolkit-col__name">{group.category}</h3>
@@ -79,20 +80,20 @@ export default function Skills() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </AnimatedStaggerItem>
             ))}
-          </div>
+          </AnimatedStaggerContainer>
         </div>
       </section>
 
       {/* ── Skills in practice ── */}
       <section className="skills-section skills-projects">
         <div className="skills-shell">
-          <div className="skills-heading">
+          <AnimatedSection variant="fadeInUp" className="skills-heading">
             <p className="eyebrow">Skills in practice</p>
             <h2>Real projects are where the pieces <em>come together.</em></h2>
-          </div>
-          <div className="skills-project-list">
+          </AnimatedSection>
+          <AnimatedSection variant="cardElevate" className="skills-project-list">
             <Link href="/projects/smart-digital-menu">
               <span>01</span>
               <div>
@@ -101,45 +102,45 @@ export default function Skills() {
               </div>
               <i aria-hidden="true">↗</i>
             </Link>
-          </div>
+          </AnimatedSection>
         </div>
       </section>
 
       {/* ── Section 3: Engineering Approach – Manifesto strip ── */}
       <section className="skills-section skills-approach">
         <div className="skills-shell">
-          <div className="skills-heading">
+          <AnimatedSection variant="fadeInUp" className="skills-heading">
             <p className="eyebrow">Engineering approach</p>
             <h2>Build clearly. Test carefully. <em>Keep improving.</em></h2>
-          </div>
-          <div className="manifesto-strip">
+          </AnimatedSection>
+          <AnimatedStaggerContainer className="manifesto-strip">
             {practices.map(([number, title, description]) => (
-              <div className="manifesto-step" key={number}>
+              <AnimatedStaggerItem variant="staggerItem" className="manifesto-step" key={number}>
                 <span className="manifesto-step__ghost" aria-hidden="true">{number}</span>
                 <div className="manifesto-step__content">
                   <h3 className="manifesto-step__title">{title}</h3>
                   <p className="manifesto-step__desc">{description}</p>
                 </div>
                 <span className="manifesto-step__bar" aria-hidden="true" />
-              </div>
+              </AnimatedStaggerItem>
             ))}
-          </div>
+          </AnimatedStaggerContainer>
         </div>
       </section>
 
       <section className="skills-closing">
-        <div className="skills-shell">
+        <AnimatedSection variant="scaleUp" className="skills-shell">
           <p className="eyebrow">Have a project in mind?</p>
           <h2>Let&apos;s put the right skills to <em>work.</em></h2>
           <div className="skills-actions">
-            <Link href="/contact" className="home-button home-button--primary">
+            <Link href="/contact#contact-form" className="home-button home-button--primary">
               Let&apos;s Discuss Your Project <span aria-hidden="true">→</span>
             </Link>
             <Link href="/projects" className="home-button home-button--secondary">
               Explore My Work <span aria-hidden="true">→</span>
             </Link>
           </div>
-        </div>
+        </AnimatedSection>
       </section>
     </div>
   );

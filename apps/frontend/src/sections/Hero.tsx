@@ -3,6 +3,7 @@ import Link from "next/link";
 import avatarImage from "@/assets/avatar.jpg";
 import smartMenuCover from "@/assets/smart-digital-menu-cover.jpg";
 import ProcessJourney from "@/components/ProcessJourney";
+import AnimatedSection, { AnimatedStaggerContainer, AnimatedStaggerItem } from "@/components/AnimatedSection";
 
 const GlobeLayoutIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -84,7 +85,7 @@ export default function Hero() {
       {/* Hero Section */}
       <section className="home-hero">
         <div className="home-shell">
-          <div className="home-hero__copy home-reveal">
+          <AnimatedSection variant="fadeInUp" className="home-hero__copy">
             {/* Status Badge: Open for opportunities */}
             <div className="home-hero__badge">
               <span className="home-hero__badge-pulse" aria-hidden="true" />
@@ -118,7 +119,7 @@ export default function Hero() {
               <Link href="/projects" className="home-button home-button--primary">
                 View Projects
               </Link>
-              <Link href="/contact" className="home-button home-button--secondary">
+              <Link href="/contact#contact-form" className="home-button home-button--secondary">
                 Contact Me
               </Link>
             </div>
@@ -154,20 +155,20 @@ export default function Hero() {
                 <span>Email</span>
               </Link>
             </div>
-          </div>
+          </AnimatedSection>
         </div>
       </section>
 
       {/* Services Section with Elevated Cards */}
       <section className="home-section home-services">
         <div className="home-shell">
-          <div className="section-heading home-reveal">
+          <AnimatedSection variant="fadeInUp" className="section-heading">
             <p className="eyebrow">What I can help with</p>
             <h2>Useful digital work, <em>made with care.</em></h2>
-          </div>
-          <div className="services-grid">
+          </AnimatedSection>
+          <AnimatedStaggerContainer className="services-grid">
             {services.map((service) => (
-              <article className="service-card home-reveal" key={service.number}>
+              <AnimatedStaggerItem as="article" variant="staggerCard" className="service-card" key={service.number}>
                 <div className="service-card__top">
                   <div className="service-card__icon">
                     {service.icon}
@@ -183,16 +184,16 @@ export default function Hero() {
                     </span>
                   ))}
                 </div>
-              </article>
+              </AnimatedStaggerItem>
             ))}
-          </div>
+          </AnimatedStaggerContainer>
         </div>
       </section>
 
       {/* Featured Projects Section */}
       <section className="home-section home-work">
         <div className="home-shell">
-          <div className="section-heading section-heading--row home-reveal">
+          <AnimatedSection variant="fadeInUp" className="section-heading section-heading--row">
             <div>
               <p className="eyebrow">Selected work</p>
               <h2>Projects built to <em>do the work.</em></h2>
@@ -200,9 +201,9 @@ export default function Hero() {
             <Link href="/projects" className="text-link">
               Explore all projects <span aria-hidden="true">→</span>
             </Link>
-          </div>
+          </AnimatedSection>
           <div className="featured-work">
-            <article className="featured-project home-reveal">
+            <AnimatedSection as="article" variant="cardElevate" className="featured-project">
               <div className="featured-project__image">
                 <Image
                   src={smartMenuCover}
@@ -224,7 +225,7 @@ export default function Hero() {
                   View case study <span aria-hidden="true">→</span>
                 </Link>
               </div>
-            </article>
+            </AnimatedSection>
           </div>
         </div>
       </section>
@@ -234,16 +235,16 @@ export default function Hero() {
 
       {/* Closing CTA Banner */}
       <section className="home-closing">
-        <div className="home-shell home-closing__inner home-reveal">
+        <AnimatedSection variant="scaleUp" className="home-shell home-closing__inner">
           <p className="eyebrow">Have a project in mind?</p>
           <h2>Let&apos;s make the next step <em>useful.</em></h2>
           <p>
             I take a practical, project-based approach: understand the requirement, make the right plan, and build a clear digital experience around it.
           </p>
-          <Link href="/contact" className="home-button home-button--primary">
+          <Link href="/contact#contact-form" className="home-button home-button--primary">
             Start a conversation <span aria-hidden="true">→</span>
           </Link>
-        </div>
+        </AnimatedSection>
       </section>
     </div>
   );

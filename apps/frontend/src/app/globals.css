@@ -3165,149 +3165,525 @@ h3 em {
   margin: 1rem auto 0;
 }
 
-/* Section 2: The Journey So Far - Vertical Stepper */
-.about-stepper {
+/* ==========================================================================
+   The Journey So Far - Undulating Waveform Matrix & Timeline
+   ========================================================================== */
+
+.journey-wave-root {
   position: relative;
-  max-width: 860px;
-  margin: 3.5rem auto 0;
-  padding-left: 3.5rem;
+  width: 100%;
+  margin-top: clamp(3rem, 6vw, 4.5rem);
 }
 
-.about-stepper::before {
-  content: "";
-  position: absolute;
-  left: 1.25rem;
-  top: 1.75rem;
-  bottom: 2rem;
-  width: 2px;
-  background: linear-gradient(180deg, var(--color-brand) 0%, rgba(187, 77, 0, 0.45) 75%, rgba(38, 38, 38, 0.2) 100%);
-}
-
-.about-stepper__item {
+/* Desktop Waveform Matrix (>= 960px) */
+.journey-wave-desktop {
   position: relative;
-  margin-bottom: 2.25rem;
+  width: 100%;
+  display: block;
 }
 
-.about-stepper__item:last-child {
-  margin-bottom: 0;
-}
-
-.about-stepper__node {
+/* Continuous Flowing SVG Sine Wave Track */
+.journey-wave-track {
   position: absolute;
-  left: -3.5rem;
-  top: 0;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 9999px;
-  background: var(--color-surface-card);
-  border: 2px solid var(--color-brand);
+  top: 15px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 120px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.journey-wave-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.journey-wave-pulse-path {
+  animation: wavePulseFlow 18s linear infinite;
+}
+
+@keyframes wavePulseFlow {
+  to {
+    stroke-dashoffset: -200;
+  }
+}
+
+/* 4 Staggered Milestone Columns along the Wave */
+.journey-wave-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1rem, 1.8vw, 1.75rem);
+  align-items: flex-start;
+}
+
+.journey-wave-col {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Organic crest & trough vertical staggering */
+.journey-wave-col.is-crest {
+  transform: translateY(0);
+}
+
+.journey-wave-col.is-trough {
+  transform: translateY(32px);
+}
+
+.journey-wave-col.is-active,
+.journey-wave-col:hover {
+  transform: translateY(-6px) scale(1.01);
+  z-index: 5;
+}
+
+/* Milestone Node Anchor on the Wave */
+.journey-node-anchor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0.85rem;
+  position: relative;
+  z-index: 3;
+}
+
+.journey-node-disc {
+  position: relative;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #1A1A1A 0%, #0E0E0E 100%);
+  border: 2px solid rgba(187, 77, 0, 0.4);
+  box-shadow: 
+    0 8px 20px rgba(0, 0, 0, 0.7),
+    inset 0 1px 2px rgba(255, 255, 255, 0.12),
+    0 0 16px rgba(187, 77, 0, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.75rem;
-  font-weight: 750;
-  color: var(--color-brand);
-  box-shadow: 0 0 16px rgba(187, 77, 0, 0.28);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  z-index: 2;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.about-stepper__item:hover .about-stepper__node {
+.journey-node-disc__num {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.journey-node-disc__badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #22c55e;
+  border: 2px solid #0A0A0A;
+  box-shadow: 0 0 8px #22c55e;
+}
+
+.journey-node-disc__beacon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  animation: beaconPulse 2s ease-out infinite;
+  background: rgba(34, 197, 94, 0.6);
+}
+
+@keyframes beaconPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+.journey-wave-col.is-active .journey-node-disc,
+.journey-node-disc:hover {
+  border-color: #FF7A00;
+  box-shadow: 
+    0 10px 24px rgba(0, 0, 0, 0.85),
+    inset 0 1px 3px rgba(255, 255, 255, 0.2),
+    0 0 28px rgba(255, 122, 0, 0.5);
   transform: scale(1.12);
-  box-shadow: 0 0 24px rgba(255, 122, 0, 0.5);
 }
 
-.about-stepper__card {
+.journey-node-stem {
+  width: 2px;
+  height: 16px;
+  background: linear-gradient(180deg, rgba(255, 122, 0, 0.8), rgba(187, 77, 0, 0.2));
+  margin: 0 auto;
+}
+
+/* Modern Bento Milestone Card */
+.journey-card {
+  width: 100%;
   background: var(--color-surface-card);
   border: 1px solid var(--color-border);
-  border-radius: 1rem;
-  padding: 1.85rem 2rem;
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 1.15rem;
+  padding: 1.6rem 1.4rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
   position: relative;
   overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
 }
 
-.about-stepper__card::before {
+.journey-card::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--color-brand), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 122, 0, 0.7), transparent);
   opacity: 0;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.3s ease;
 }
 
-.about-stepper__card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(187, 77, 0, 0.4);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4), 0 0 20px rgba(187, 77, 0, 0.1);
+.journey-wave-col.is-active .journey-card,
+.journey-card:hover {
+  border-color: rgba(187, 77, 0, 0.45);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6), 0 0 24px rgba(187, 77, 0, 0.12);
+  background: #191919;
 }
 
-.about-stepper__card:hover::before {
+.journey-wave-col.is-active .journey-card::before,
+.journey-card:hover::before {
   opacity: 1;
 }
 
-.about-stepper__header {
+.journey-card__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.75rem;
-  flex-wrap: wrap;
   gap: 0.5rem;
+  margin-bottom: 0.85rem;
 }
 
-.about-stepper__phase {
-  color: var(--color-brand);
-  font-size: 0.8rem;
+.journey-card__phase {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.1em;
+  color: var(--color-brand);
   text-transform: uppercase;
 }
 
-.about-stepper__number {
-  color: var(--color-text-secondary);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 0.2rem 0.55rem;
-  border-radius: 9999px;
-  border: 1px solid var(--color-border);
+.journey-card__icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(187, 77, 0, 0.12);
+  border: 1px solid rgba(187, 77, 0, 0.3);
+  color: #FF9838;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.3s ease, background 0.3s ease;
 }
 
-.about-stepper__title {
-  margin: 0 0 0.65rem;
-  font-size: 1.25rem;
+.journey-wave-col.is-active .journey-card__icon {
+  transform: scale(1.1) rotate(6deg);
+  background: rgba(187, 77, 0, 0.22);
+  border-color: rgba(255, 122, 0, 0.5);
+  color: #FFAF66;
+}
+
+.journey-card__title {
+  margin: 0 0 0.3rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--color-text-primary);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
 }
 
-.about-stepper__desc {
-  margin: 0 0 1.35rem;
+.journey-card__tagline {
+  margin: 0 0 0.75rem;
+  font-size: 0.82rem;
+  font-style: italic;
+  color: #D6D6D6;
+  line-height: 1.4;
+}
+
+.journey-card__summary {
+  margin: 0 0 1.25rem;
+  font-size: 0.86rem;
+  line-height: 1.6;
   color: var(--color-text-secondary);
-  line-height: 1.7;
-  font-size: 0.94rem;
+  flex-grow: 1;
 }
 
-.about-stepper__skills {
+.journey-card__skills {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.4rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
 }
 
-.about-stepper__skill-pill {
+.journey-card__pill {
   display: inline-flex;
   align-items: center;
-  padding: 0.3rem 0.75rem;
+  padding: 0.2rem 0.6rem;
   border-radius: 9999px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--color-border);
-  color: #d4d4d4;
-  font-size: 0.78rem;
+  color: #CFCFCF;
+  font-size: 0.72rem;
   font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.journey-wave-col.is-active .journey-card__pill {
+  border-color: rgba(187, 77, 0, 0.35);
+  color: #FFFFFF;
+  background: rgba(187, 77, 0, 0.08);
+}
+
+/* Mobile & Tablet Wave Experience (<= 959px) */
+.journey-wave-mobile {
+  display: none;
+}
+
+@media (max-width: 959px) {
+  .journey-wave-desktop {
+    display: none !important;
+  }
+
+  .journey-wave-mobile {
+    display: block !important;
+    position: relative;
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  /* Central glowing vertical sinusoidal spine */
+  .journey-mobile-spine {
+    position: absolute;
+    top: 30px;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .journey-mobile-spine__line {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      rgba(187, 77, 0, 0.2) 0%,
+      rgba(255, 122, 0, 0.8) 25%,
+      rgba(187, 77, 0, 0.9) 75%,
+      rgba(255, 152, 56, 0.3) 100%
+    );
+    box-shadow: 0 0 10px rgba(255, 122, 0, 0.55);
+  }
+
+  .journey-mobile-list {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .journey-mobile-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+  }
+
+  /* Disc on Mobile Spine */
+  .journey-mobile-disc-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 3;
+  }
+
+  .journey-mobile-disc {
+    position: relative;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #1C1C1C 0%, #101010 100%);
+    border: 2px solid var(--color-brand);
+    box-shadow: 
+      0 8px 20px rgba(0, 0, 0, 0.8),
+      inset 0 1px 2px rgba(255, 255, 255, 0.12),
+      0 0 18px rgba(187, 77, 0, 0.35);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .journey-mobile-disc__step {
+    font-family: var(--font-geist-mono), monospace;
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--color-brand);
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 0.15rem;
+  }
+
+  .journey-mobile-disc__num {
+    font-family: var(--font-geist-sans), sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    line-height: 1;
+    color: #FFFFFF;
+    letter-spacing: -0.04em;
+  }
+
+  .journey-mobile-stem {
+    width: 2px;
+    height: 16px;
+    background: linear-gradient(180deg, #FF7A00, #BB4D00);
+    box-shadow: 0 0 8px rgba(255, 122, 0, 0.5);
+    margin: 0 auto;
+    z-index: 2;
+  }
+
+  /* Full-Width Mobile Card */
+  .journey-mobile-card {
+    width: 100%;
+    max-width: 580px;
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-top: 2px solid rgba(187, 77, 0, 0.8);
+    border-radius: 1.15rem;
+    padding: 1.4rem 1.25rem;
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.5), 0 0 20px rgba(187, 77, 0, 0.08);
+    position: relative;
+    z-index: 2;
+  }
+
+  .journey-mobile-card__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.55rem;
+  }
+
+  .journey-mobile-card__meta {
+    flex: 1;
+  }
+
+  .journey-mobile-card__phase {
+    display: inline-block;
+    font-family: var(--font-geist-mono), monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--color-brand);
+    text-transform: uppercase;
+  }
+
+  .journey-mobile-card__title {
+    margin: 0.25rem 0 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1.3;
+  }
+
+  .journey-mobile-card__icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(187, 77, 0, 0.14);
+    border: 1px solid rgba(187, 77, 0, 0.35);
+    color: #FF9838;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .journey-mobile-card__tagline {
+    margin: 0 0 0.55rem;
+    font-size: 0.85rem;
+    font-style: italic;
+    color: #D6D6D6;
+    line-height: 1.4;
+  }
+
+  .journey-mobile-card__summary {
+    margin: 0 0 1rem;
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .journey-mobile-card__skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  .journey-mobile-card__pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.55rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--color-border);
+    color: #CFCFCF;
+    font-size: 0.72rem;
+    font-weight: 500;
+  }
+
+  .journey-mobile-bridge {
+    width: 2px;
+    height: 32px;
+    background: linear-gradient(180deg, #BB4D00, #FF7A00);
+    box-shadow: 0 0 8px rgba(255, 122, 0, 0.5);
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .journey-mobile-bridge__pulse {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #FF9838;
+    box-shadow: 0 0 8px #FF7A00;
+  }
 }
 
 /* Section 3: How I Work - Connected Engineering Methodology */
@@ -3897,25 +4273,6 @@ h3 em {
 }
 
 @media (max-width: 767px) {
-  .about-stepper {
-    padding-left: 2.75rem;
-  }
-
-  .about-stepper::before {
-    left: 1rem;
-  }
-
-  .about-stepper__node {
-    left: -2.75rem;
-    width: 2rem;
-    height: 2rem;
-    font-size: 0.7rem;
-  }
-
-  .about-stepper__card {
-    padding: 1.5rem 1.35rem;
-  }
-
   .about-process-grid {
     grid-template-columns: 1fr;
   }

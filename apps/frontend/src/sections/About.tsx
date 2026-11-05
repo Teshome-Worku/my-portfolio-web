@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import portraitImage from "@/assets/portrait.jpg";
+import JourneyWave from "@/components/JourneyWave";
 
 // High-performance, clean inline SVG icons
 const CompassIcon = () => (
@@ -69,37 +70,6 @@ const TargetCheckIcon = () => (
     <circle cx="12" cy="12" r="2" />
   </svg>
 );
-
-const journeySteps = [
-  {
-    step: "01",
-    phase: "Learn",
-    title: "Web Fundamentals & Frontend Foundations",
-    description: "I started by understanding how the web works under the hood, building a solid foundation in responsive HTML, CSS architecture, and modern JavaScript.",
-    skills: ["HTML5 / Semantic Web", "Modern CSS & Flexbox/Grid", "JavaScript (ES6+)"],
-  },
-  {
-    step: "02",
-    phase: "Build",
-    title: "Interactive Interfaces & Component Architecture",
-    description: "Hands-on projects helped me turn that foundation into responsive interfaces, reusable component libraries, and clean client experiences.",
-    skills: ["React.js", "Next.js App Router", "Tailwind CSS", "State Management"],
-  },
-  {
-    step: "03",
-    phase: "Go deeper",
-    title: "APIs, Databases & Backend Systems",
-    description: "I expanded into RESTful APIs, relational & document databases, authentication flows, and the backend systems that make products secure and reliable.",
-    skills: ["Node.js / Express", "MongoDB & Mongoose", "JWT Auth", "Telegram Alerts"],
-  },
-  {
-    step: "04",
-    phase: "Keep improving",
-    title: "Full-Stack Craft & Real Business Solutions",
-    description: "Today I bring frontend refinement and backend reliability together, shipping thoughtful, production-grade solutions tailored to client needs.",
-    skills: ["Full-Stack Architecture", "End-to-End Delivery", "Performance & SEO"],
-  },
-];
 
 const processSteps = [
   {
@@ -224,30 +194,8 @@ export default function About() {
             </p>
           </div>
 
-          <div className="about-stepper">
-            {journeySteps.map((step) => (
-              <div className="about-stepper__item" key={step.step}>
-                <div className="about-stepper__node" aria-hidden="true">
-                  <span>{step.step}</span>
-                </div>
-                <div className="about-stepper__card">
-                  <div className="about-stepper__header">
-                    <span className="about-stepper__phase">{step.phase}</span>
-                    <span className="about-stepper__number">STAGE {step.step}</span>
-                  </div>
-                  <h3 className="about-stepper__title">{step.title}</h3>
-                  <p className="about-stepper__desc">{step.description}</p>
-                  <div className="about-stepper__skills">
-                    {step.skills.map((skill) => (
-                      <span className="about-stepper__skill-pill" key={skill}>
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          {/* Undulating Engineering Waveform Matrix */}
+          <JourneyWave />
         </div>
       </section>
 

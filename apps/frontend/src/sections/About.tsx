@@ -2,46 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import portraitImage from "@/assets/portrait.jpg";
 import JourneyWave from "@/components/JourneyWave";
+import ProcessBento from "@/components/ProcessBento";
 
 // High-performance, clean inline SVG icons
-const CompassIcon = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <circle cx="12" cy="12" r="10" />
-    <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
-  </svg>
-);
-
-const BlueprintIcon = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-  </svg>
-);
-
-const CodeIcon = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <polyline points="16 18 22 12 16 6" />
-    <polyline points="8 6 2 12 8 18" />
-    <line x1="12" y1="2" x2="12" y2="22" />
-  </svg>
-);
-
-const ShieldCheckIcon = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-    <polyline points="9 12 11 14 15 10" />
-  </svg>
-);
-
-const RocketIcon = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
-    <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
-    <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
-    <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
-  </svg>
-);
-
 const MessageChatIcon = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
@@ -70,44 +33,6 @@ const TargetCheckIcon = () => (
     <circle cx="12" cy="12" r="2" />
   </svg>
 );
-
-const processSteps = [
-  {
-    number: "01",
-    title: "Understand",
-    description: "Identify the practical goals, core users, and technical requirements before writing a single line of code.",
-    deliverable: "Scope & Discovery",
-    icon: <CompassIcon />,
-  },
-  {
-    number: "02",
-    title: "Plan",
-    description: "Define the right feature priorities, system architecture, database models, and sprint milestones.",
-    deliverable: "Architecture & Schemas",
-    icon: <BlueprintIcon />,
-  },
-  {
-    number: "03",
-    title: "Build",
-    description: "Develop responsive, accessible frontend interfaces and secure backend APIs with clean, maintainable code.",
-    deliverable: "Clean Development",
-    icon: <CodeIcon />,
-  },
-  {
-    number: "04",
-    title: "Test",
-    description: "Check usability across devices, responsiveness, edge-case reliability, and performance optimizations.",
-    deliverable: "QA & Performance",
-    icon: <ShieldCheckIcon />,
-  },
-  {
-    number: "05",
-    title: "Deploy",
-    description: "Prepare the application for release, configure secure cloud hosting, and support post-launch improvements.",
-    deliverable: "Launch & Support",
-    icon: <RocketIcon />,
-  },
-];
 
 const workingPrinciples = [
   {
@@ -212,23 +137,8 @@ export default function About() {
             </p>
           </div>
 
-          <div className="about-process-grid">
-            {processSteps.map((step) => (
-              <div className="about-process-card" key={step.number}>
-                <div className="about-process-card__top">
-                  <span className="about-process-card__index">{step.number}</span>
-                  <div className="about-process-card__icon" aria-hidden="true">
-                    {step.icon}
-                  </div>
-                </div>
-                <h3 className="about-process-card__title">{step.title}</h3>
-                <p className="about-process-card__desc">{step.description}</p>
-                <div className="about-process-card__deliverable">
-                  <span>{step.deliverable}</span>
-                </div>
-              </div>
-            ))}
-          </div>
+          {/* Interactive Bento Pipeline Matrix */}
+          <ProcessBento />
         </div>
       </section>
 

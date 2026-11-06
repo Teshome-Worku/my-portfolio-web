@@ -19,8 +19,6 @@ export default function AnimatedIntro() {
   }, []);
 
   useEffect(() => {
-    setMounted(true);
-
     // 1. Check if user prefers reduced motion
     const prefersReducedMotion =
       typeof window !== "undefined" &&
@@ -40,8 +38,11 @@ export default function AnimatedIntro() {
       return;
     }
 
-    // Activate the intro
-    setIsVisible(true);
+    // Activate the intro on next paint
+    const rafId = requestAnimationFrame(() => {
+      setMounted(true);
+      setIsVisible(true);
+    });
 
     // 3. Fallback auto-dismiss timer (safety cap at 2.6s)
     const timer = setTimeout(() => {
@@ -57,6 +58,7 @@ export default function AnimatedIntro() {
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
+      cancelAnimationFrame(rafId);
       clearTimeout(timer);
       window.removeEventListener("keydown", handleKeyDown);
     };

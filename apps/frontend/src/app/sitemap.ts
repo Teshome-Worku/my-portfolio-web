@@ -4,7 +4,7 @@ import { projects } from "@/data/projects";
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://kenandev.vercel.app";
 
-  const staticRoutes = ["", "/projects", "/skills", "/about", "/contact"].map((route) => ({
+  const staticRoutes = ["", "/projects", "/skills", "/about", "/contact", "/blog"].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,

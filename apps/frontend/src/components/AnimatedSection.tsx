@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, type TargetAndTransition, type HTMLMotionProps } from "framer-motion";
+import { motion, type TargetAndTransition } from "framer-motion";
 import React, { ReactNode } from "react";
 
 type AnimationVariant = {

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import BrandLogo from "@/components/BrandLogo";
 
-// Consistent 20x20 inline SVG icons with 1.8 stroke width
+// Consistent inline SVG icons with 1.8 stroke width
 const HomeIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
@@ -39,7 +39,25 @@ const MailIcon = () => (
   </svg>
 );
 
-const navLinks = [
+const BookOpenIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+  </svg>
+);
+
+// Desktop Navigation Order: Home | About | Projects | Skills | Contact | Blog | [Hire Me CTA]
+const desktopNavLinks = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Projects", href: "/projects" },
+  { name: "Skills", href: "/skills" },
+  { name: "Contact", href: "/contact" },
+  { name: "Blog", href: "/blog" },
+];
+
+// Preserved 5-item Mobile Bottom Navigation: exactly 5 items
+const mobileBottomNavLinks = [
   { name: "Home", href: "/", icon: <HomeIcon /> },
   { name: "About", href: "/about", icon: <UserRoundIcon /> },
   { name: "Projects", href: "/projects", icon: <FolderKanbanIcon /> },
@@ -67,8 +85,10 @@ export default function Navbar() {
               <span>Kenan</span><em>.Dev</em>
             </span>
           </Link>
+
+          {/* Desktop Navbar: Home | About | Projects | Skills | Contact | Blog */}
           <nav className="desktop-nav" aria-label="Primary navigation">
-            {navLinks.map((link) => {
+            {desktopNavLinks.map((link) => {
               const active = isLinkActive(link.href);
               return (
                 <Link
@@ -82,27 +102,43 @@ export default function Navbar() {
               );
             })}
           </nav>
-          <Link
-            href="/contact#contact-form"
-            className="hire-cta"
-            onClick={(e) => {
-              if (pathname === "/contact") {
-                e.preventDefault();
-                const el = document.getElementById("contact-form");
-                if (el) {
-                  el.scrollIntoView({ behavior: "smooth", block: "start" });
-                  window.history.pushState(null, "", "/contact#contact-form");
+
+          {/* Header Action Section: Mobile Blog Link & Hire Me CTA */}
+          <div className="site-header__actions">
+            <Link
+              href="/blog"
+              className={`mobile-header-blog-link ${isLinkActive("/blog") ? "is-active" : ""}`}
+              aria-label="Blog"
+              title="Blog"
+              aria-current={isLinkActive("/blog") ? "page" : undefined}
+            >
+              <BookOpenIcon />
+              <span className="mobile-header-blog-link__text">Blog</span>
+            </Link>
+
+            <Link
+              href="/contact#contact-form"
+              className="hire-cta"
+              onClick={(e) => {
+                if (pathname === "/contact") {
+                  e.preventDefault();
+                  const el = document.getElementById("contact-form");
+                  if (el) {
+                    el.scrollIntoView({ behavior: "smooth", block: "start" });
+                    window.history.pushState(null, "", "/contact#contact-form");
+                  }
                 }
-              }
-            }}
-          >
-            Hire Me <span aria-hidden="true">→</span>
-          </Link>
+              }}
+            >
+              Hire Me <span aria-hidden="true">→</span>
+            </Link>
+          </div>
         </div>
       </header>
 
+      {/* Strictly Preserved 5-item Mobile Bottom Navigation */}
       <nav className="mobile-nav" aria-label="Mobile navigation">
-        {navLinks.map((link) => {
+        {mobileBottomNavLinks.map((link) => {
           const active = isLinkActive(link.href);
           return (
             <Link

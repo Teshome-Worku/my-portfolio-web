@@ -184,7 +184,7 @@ export default function ProcessBento() {
                 <div className="bento-tile__top">
                   <span className="bento-tile__badge">
                     <span className="bento-tile__dot" />
-                    STAGE {step.step} // {step.phase}
+                    STAGE {step.step} {"//"} {step.phase}
                   </span>
                   <div className="bento-tile__icon" aria-hidden="true">
                     {step.icon}
@@ -221,7 +221,7 @@ export default function ProcessBento() {
                   <div className="bento-tile__top">
                     <span className="bento-tile__badge bento-tile__badge--hero">
                       <span className="bento-tile__dot bento-tile__dot--live" />
-                      STAGE 03 // {heroStep.phase}
+                      STAGE 03 {"//"} {heroStep.phase}
                     </span>
                     <div className="bento-tile__icon bento-tile__icon--hero" aria-hidden="true">
                       {heroStep.icon}
@@ -295,7 +295,7 @@ export default function ProcessBento() {
                 <div className="bento-tile__top">
                   <span className="bento-tile__badge">
                     <span className="bento-tile__dot" />
-                    STAGE {step.step} // {step.phase}
+                    STAGE {step.step} {"//"} {step.phase}
                   </span>
                   <div className="bento-tile__icon" aria-hidden="true">
                     {step.icon}

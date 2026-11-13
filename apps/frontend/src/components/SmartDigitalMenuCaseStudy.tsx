@@ -37,6 +37,17 @@ export default function SmartDigitalMenuCaseStudy({
             </div>
 
             <div className="case-study__actions">
+              {project.live && (
+                <a
+                  href={project.live}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="home-button home-button--primary"
+                  aria-label="View Smart Digital Menu live demo"
+                >
+                  Live Application <span aria-hidden="true">↗</span>
+                </a>
+              )}
               {project.github && (
                 <a
                   href={project.github}

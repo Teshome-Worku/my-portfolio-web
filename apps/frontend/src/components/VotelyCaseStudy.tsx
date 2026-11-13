@@ -39,6 +39,28 @@ export default function VotelyCaseStudy({
             </div>
 
             <div className="case-study__actions">
+              {project.live && (
+                <a
+                  href={project.live}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="home-button home-button--primary"
+                  aria-label="View Votely live application"
+                >
+                  Live Application <span aria-hidden="true">↗</span>
+                </a>
+              )}
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="home-button home-button--secondary"
+                  aria-label="View Votely source code on GitHub"
+                >
+                  View Source Code <span aria-hidden="true">↗</span>
+                </a>
+              )}
               <span className="votely-badge-status">
                 <span className="votely-badge-status__dot" aria-hidden="true" />
                 Production-Engineered Architecture

@@ -53,6 +53,7 @@ export const projects: Project[] = [
     image: smartMenuCover,
     imageAlt: "Smart Digital Menu QR ordering stand, mobile ordering interface, and restaurant management dashboard",
     github: "https://github.com/Teshome-Worku/smart_digital_menu",
+    live: "https://smart-digital-menu.vercel.app/",
   },
   {
     slug: "votely",
@@ -84,6 +85,8 @@ export const projects: Project[] = [
     lessons: "Engineering a public-facing voting mechanism demonstrated that preventing abuse requires defense in depth—combining cryptographic receipt generation, server-side phone number normalization, rate limiting, and database-level unique constraints to guarantee election integrity.",
     image: votelyCover,
     imageAlt: "Votely Online Awards & Voting Platform organizer dashboard, public voting interface, and SMS OTP verification modal",
+    github: "https://github.com/Teshome-Worku/Votely-Online-Awards-Voting-Platform",
+    live: "https://votely-online-awards-voting-platfor.vercel.app/",
   },
 ];
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getProject, projects } from "@/data/projects";
 import SmartDigitalMenuCaseStudy from "@/components/SmartDigitalMenuCaseStudy";
+import VotelyCaseStudy from "@/components/VotelyCaseStudy";
 
 type ProjectPageProps = { params: Promise<{ slug: string }> };
 
@@ -40,6 +41,32 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
     };
   }
 
+  if (slug === "votely") {
+    return {
+      title: "Votely — Online Awards & Voting Platform | Kenan.Dev",
+      description: "A secure, multi-tenant awards platform enabling event creation, phone-verified public voting via AfroMessage OTP, and certified results.",
+      openGraph: {
+        title: "Votely — Online Awards & Voting Platform",
+        description: "A secure, multi-tenant awards platform enabling event creation, phone-verified public voting via AfroMessage OTP, and certified results.",
+        type: "article",
+        images: [
+          {
+            url: "/projects/votely/cover.jpg",
+            width: 1200,
+            height: 675,
+            alt: "Votely Online Awards & Voting Platform organizer dashboard, public voting interface, and SMS OTP verification modal",
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: "Votely — Online Awards & Voting Platform | Kenan.Dev",
+        description: "A secure, multi-tenant awards platform enabling event creation, phone-verified public voting via AfroMessage OTP, and certified results.",
+        images: ["/projects/votely/cover.jpg"],
+      },
+    };
+  }
+
   return {
     title: `${project.title} | Kenan Worku`,
     description: project.description,
@@ -49,7 +76,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
 export default async function ProjectCaseStudy({ params }: ProjectPageProps) {
   const { slug } = await params;
   const project = getProject(slug);
-  if (!project || project.slug !== "smart-digital-menu") {
+  if (!project) {
     notFound();
   }
 
@@ -58,12 +85,27 @@ export default async function ProjectCaseStudy({ params }: ProjectPageProps) {
   const previous = projects[(projectIndex - 1 + projects.length) % projects.length];
   const next = projects[(projectIndex + 1) % projects.length];
 
-  return (
-    <SmartDigitalMenuCaseStudy
-      project={project}
-      previous={previous}
-      next={next}
-      relatedProjects={relatedProjects}
-    />
-  );
+  if (project.slug === "votely") {
+    return (
+      <VotelyCaseStudy
+        project={project}
+        previous={previous}
+        next={next}
+        relatedProjects={relatedProjects}
+      />
+    );
+  }
+
+  if (project.slug === "smart-digital-menu") {
+    return (
+      <SmartDigitalMenuCaseStudy
+        project={project}
+        previous={previous}
+        next={next}
+        relatedProjects={relatedProjects}
+      />
+    );
+  }
+
+  notFound();
 }

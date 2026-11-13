@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import avatarImage from "@/assets/avatar.jpg";
 import smartMenuCover from "@/assets/smart-digital-menu-cover.jpg";
+import votelyCover from "@/assets/votely-cover.jpg";
 import ProcessJourney from "@/components/ProcessJourney";
 import AnimatedSection, { AnimatedStaggerContainer, AnimatedStaggerItem } from "@/components/AnimatedSection";
 
@@ -220,6 +221,30 @@ export default function Hero() {
                 </p>
                 <Link
                   href="/projects/smart-digital-menu"
+                  className="text-link"
+                >
+                  View case study <span aria-hidden="true">→</span>
+                </Link>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection as="article" variant="cardElevate" className="featured-project">
+              <div className="featured-project__image">
+                <Image
+                  src={votelyCover}
+                  alt="Votely Online Awards & Voting Platform organizer dashboard, public voting interface, and SMS OTP verification modal"
+                  sizes="(max-width: 800px) 100vw, 56vw"
+                />
+                <span>02 / Online Awards & Voting Platform</span>
+              </div>
+              <div className="featured-project__content">
+                <p className="eyebrow">Votely</p>
+                <h3>Online awards platform with phone-verified voting.</h3>
+                <p>
+                  A secure, multi-tenant awards platform enabling organizers to create competitions, manage categories, and oversee contender rosters while the public casts ballots through AfroMessage phone OTP verification.
+                </p>
+                <Link
+                  href="/projects/votely"
                   className="text-link"
                 >
                   View case study <span aria-hidden="true">→</span>

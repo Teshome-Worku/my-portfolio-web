@@ -1,5 +1,6 @@
 import type { StaticImageData } from "next/image";
 import smartMenuCover from "@/assets/smart-digital-menu-cover.jpg";
+import votelyCover from "@/assets/votely-cover.jpg";
 
 export type Project = {
   slug: string;
@@ -52,6 +53,37 @@ export const projects: Project[] = [
     image: smartMenuCover,
     imageAlt: "Smart Digital Menu QR ordering stand, mobile ordering interface, and restaurant management dashboard",
     github: "https://github.com/Teshome-Worku/smart_digital_menu",
+  },
+  {
+    slug: "votely",
+    number: "02",
+    title: "Votely — Online Awards & Voting Platform",
+    category: "Online Awards & Voting Platform",
+    description: "A secure, multi-organizer awards platform that enables event creation, phone-verified public voting, live competition management, and certified results.",
+    overview: "Votely is a multi-tenant awards and voting platform engineered for transparent competitions. It enables organizers to create customized award events, define categories and nominees, and monitor real-time standings, while allowing the public to vote through tamper-resistant, phone-based OTP verification powered by AfroMessage SMS.",
+    problem: "Award competitions and public talent votes frequently battle ballot stuffing, automated bot abuse, opaque spreadsheet tabulation, and disputed outcomes. Free online polls lack identity verification, while enterprise voting tools impose high per-seat software fees or excessive registration barriers on voters, depressing engagement.",
+    solution: "Votely introduces an awards-first architecture that unifies public transparency with rigorous server-side voting verification. Organizers manage events with countdown schedules, categories, and contender rosters from an organizer console. Voters cast ballots via one-time SMS passwords with strict per-phone rate limits, and platform administrators retain system oversight with an immutable audit trail.",
+    features: [
+      "Organizer authentication and dedicated organizer event console",
+      "Dynamic competition creation with categories, nominees, and countdown voting windows",
+      "Phone-number-based OTP ballot verification via AfroMessage SMS integration",
+      "Server-enforced vote deduplication (strictly 1 vote per verified phone per category)",
+      "Public awards discovery, responsive contender cards, and live standings",
+      "Platform administrator dashboard with system oversight and security audit trail",
+      "Automated vote certification and winner finalization upon voting window closure",
+    ],
+    technologies: [
+      { name: "Next.js", role: "Full-stack framework with React App Router & Server Actions" },
+      { name: "TypeScript", role: "End-to-end type safety across ballots, events, and auth contracts" },
+      { name: "Tailwind CSS", role: "Dark violet & navy design system with responsive layouts" },
+      { name: "PostgreSQL & Supabase", role: "Relational persistence with row-level security and indexing" },
+      { name: "Prisma ORM", role: "Schema modeling, relational migrations, and ACID transactions" },
+      { name: "AfroMessage SMS", role: "Direct telecommunications gateway for 6-digit OTP dispatch" },
+    ],
+    contribution: "I architected and developed the full-stack system, including the organizer event management console, the platform administration oversight dashboard, the public voting interface with countdown timers, the AfroMessage SMS OTP verification pipeline, and the Prisma database schema enforcing multi-tenant isolation and duplicate-vote prevention.",
+    lessons: "Engineering a public-facing voting mechanism demonstrated that preventing abuse requires defense in depth—combining cryptographic receipt generation, server-side phone number normalization, rate limiting, and database-level unique constraints to guarantee election integrity.",
+    image: votelyCover,
+    imageAlt: "Votely Online Awards & Voting Platform organizer dashboard, public voting interface, and SMS OTP verification modal",
   },
 ];
 
